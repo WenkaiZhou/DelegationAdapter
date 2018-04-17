@@ -1,0 +1,2 @@
+# DelegationAdapter
+一种优雅的方式来使用RecyclerView
