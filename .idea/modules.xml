@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DelegationAdapter.iml" filepath="$PROJECT_DIR$/DelegationAdapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/delegationadapter/delegationadapter.iml" filepath="$PROJECT_DIR$/delegationadapter/delegationadapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>
 </project>
