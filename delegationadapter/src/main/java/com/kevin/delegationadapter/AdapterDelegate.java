@@ -28,8 +28,9 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
 
     public AdapterDelegate(@NonNull String tag) {
         if (null == tag || tag.length() == 0) {
-            throw new NullPointerException(
-                    String.format("The tag of %s should not be null.", getClass().getSimpleName()));
+            throw new NullPointerException("The tag of "
+                    + this
+                    + " is null.");
         }
         this.setTag(tag);
     }
@@ -42,11 +43,11 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
         this.mTag = tag;
     }
 
-    protected boolean isForViewType(@NonNull T item, int position) {
+    protected boolean isForViewType(T item, int position) {
         return true;
     }
 
-    protected abstract VH onCreateViewHolder(@NonNull ViewGroup parent);
+    protected abstract VH onCreateViewHolder(ViewGroup parent);
 
-    protected abstract void onBindViewHolder(@NonNull T item, int position, @NonNull VH holder, @NonNull List<Object> payloads);
+    protected abstract void onBindViewHolder(T item, int position, VH holder, List<Object> payloads);
 }

@@ -89,7 +89,8 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         return mDataItems;
     }
 
-    public Object getItem(int position) {
+    @Override
+    protected Object getItemData(int position) {
         if (position < mHeaderItems.size()) {
             return mHeaderItems.get(position);
         }

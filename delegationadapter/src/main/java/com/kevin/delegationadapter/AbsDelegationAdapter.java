@@ -26,7 +26,7 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
 
     public AbsDelegationAdapter(@NonNull AdapterDelegatesManager delegatesManager) {
         if (delegatesManager == null) {
-            throw new NullPointerException("AdapterDelegatesManager is null");
+            throw new NullPointerException("AdapterDelegatesManager is null.");
         }
 
         this.mDelegatesManager = delegatesManager;
@@ -69,6 +69,36 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
     @Override
     public int getItemViewType(int position) {
         return mDelegatesManager.getItemViewType(getItemData(position), position);
+    }
+
+    @Override
+    public void onViewRecycled(VH holder) {
+        mDelegatesManager.onViewRecycled(holder);
+    }
+
+    @Override
+    public boolean onFailedToRecycleView(VH holder) {
+        return mDelegatesManager.onFailedToRecycleView(holder);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(VH holder) {
+        mDelegatesManager.onViewAttachedToWindow(holder);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(VH holder) {
+        mDelegatesManager.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        mDelegatesManager.onAttachedToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        mDelegatesManager.onDetachedFromRecyclerView(recyclerView);
     }
 
     protected abstract Object getItemData(int position);
