@@ -1,10 +1,7 @@
 package com.kevin.delegationadapter;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import java.util.List;
 
 /**
  * ClickableDelegate
@@ -12,14 +9,13 @@ import java.util.List;
  * @author zwenkai@foxmail.com, Created on 2018-04-06 23:28:37
  *         Major Function：<b>可点击的 ViewHolder Delegate</b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
 public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.ViewHolder> extends AdapterDelegate<T, VH> {
 
     public ClickableDelegationAdapter() {
-        super();
     }
 
     public ClickableDelegationAdapter(String tag) {
@@ -27,7 +23,7 @@ public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.View
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final T item, int position, @NonNull final VH holder, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(final VH holder, int position, final T item) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +33,7 @@ public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.View
                     if (item instanceof ItemData) {
                         onItemClick(v, (T) ((ItemData) item).getData(), getPosition(holder));
                     } else {
-                        onItemClick(v, (T) item, getPosition(holder));
+                        onItemClick(v, item, getPosition(holder));
                     }
                 }
             }
@@ -52,7 +48,7 @@ public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.View
                     if (item instanceof ItemData) {
                         return onItemLongClick(v, (T) ((ItemData) item).getData(), getPosition(holder));
                     } else {
-                        return onItemLongClick(v, (T) item, getPosition(holder));
+                        return onItemLongClick(v, item, getPosition(holder));
                     }
                 }
                 return false;
@@ -84,10 +80,10 @@ public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.View
      * Called when a item view has been clicked.
      *
      * @param view
-     * @param data
+     * @param item
      * @param position
      */
-    public void onItemClick(View view, T data, int position) {
+    public void onItemClick(View view, T item, int position) {
         // do nothing
     }
 
@@ -95,11 +91,11 @@ public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.View
      * Called when a item view has been clicked and held.
      *
      * @param view
-     * @param data
+     * @param item
      * @param position
      * @return
      */
-    public boolean onItemLongClick(View view, T data, int position) {
+    public boolean onItemLongClick(View view, T item, int position) {
         // do nothing
         return false;
     }

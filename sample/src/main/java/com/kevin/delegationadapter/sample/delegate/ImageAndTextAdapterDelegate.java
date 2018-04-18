@@ -5,12 +5,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.kevin.delegationadapter.binding.BindingAdapterDelegate;
-import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.BR;
+import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.ImageTextBean;
 
 /**
- * ImageAndTextViewHolder
+ * ImageAndTextAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-04 15:57:48
  *         Major Function：<b></b>
@@ -19,11 +19,7 @@ import com.kevin.delegationadapter.sample.bean.ImageTextBean;
  * @author mender，Modified Date Modify Content:
  */
 
-public class ImageAndTextViewHolder extends BindingAdapterDelegate<ImageTextBean> {
-
-    public ImageAndTextViewHolder() {
-        super("LeftImage");
-    }
+public class ImageAndTextAdapterDelegate extends BindingAdapterDelegate<ImageTextBean> {
 
     @Override
     public int getLayoutRes() {
@@ -31,7 +27,7 @@ public class ImageAndTextViewHolder extends BindingAdapterDelegate<ImageTextBean
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, ImageTextBean data) {
+    public void setVariable(ViewDataBinding binding, ImageTextBean data, int position) {
         binding.setVariable(BR.model, data);
     }
 

@@ -10,24 +10,26 @@ import android.view.ViewGroup;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * AdapterDelegatesManager
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:24:58
- *         Major Function：<b></b>
+ *         Major Function：<b>This class is the element that ties {@link RecyclerView.Adapter}
+ *         together with {@link AdapterDelegate}.
+ *         <p>
+ *         So you have to add / register your {@link AdapterDelegate}s to this manager by calling
+ *         {@link #addDelegate(AdapterDelegate, String)}
+ *         /b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
 public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
 
-    private static final List<Object> PAYLOADS_EMPTY_LIST = Collections.emptyList();
-
-    private SparseArray<String> clazzWithTags = new SparseArray<>();
+    private SparseArray<String> dataTypeWithTags = new SparseArray<>();
     private SparseArrayCompat<AdapterDelegate<Object, VH>> delegates = new SparseArrayCompat();
     protected AdapterDelegate fallbackDelegate;
 
@@ -40,51 +42,19 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         Type superclass = delegate.getClass().getGenericSuperclass();
         if (superclass instanceof ParameterizedType) {
             Class<?> clazz = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
-            String nameWithTag = getNameWithTag(clazz, tag);
+            String typeWithTag = getTypeWithTag(clazz, tag);
 
             int viewType = delegates.size();
             // Save the delegate to the collection;
             delegates.put(viewType, delegate);
             // Save the index of the delegate to the collection;
-            clazzWithTags.put(viewType, nameWithTag);
+            dataTypeWithTags.put(viewType, typeWithTag);
         } else {
             // Has no generics.
             throw new IllegalArgumentException(
                     String.format("Please set the correct generic parameters on %s.", delegate.getClass().getName()));
         }
         return this;
-    }
-
-    /**
-     * Return the view type of the item.
-     *
-     * @param itemData
-     * @param position
-     * @return
-     */
-    public int getItemViewType(@NonNull Object itemData, int position) {
-        if (itemData == null) {
-            throw new NullPointerException("Item data source is null.");
-        }
-
-        Class clazz = getTargetClass(itemData);
-        String tag = getTargetTag(itemData);
-
-        String clazzWithTag = getNameWithTag(clazz, tag);
-        ArrayList<Integer> indexList = indexListOfValue(clazzWithTags, clazzWithTag);
-        if (indexList.size() > 0) {
-            for (Integer index : indexList) {
-                AdapterDelegate<Object, VH> delegate = delegates.valueAt(index);
-                if (null != delegate
-                        && delegate.getTag().equals(tag)
-                        && delegate.isForViewType(itemData, position)) {
-                    return index;
-                }
-            }
-        }
-
-        throw new NullPointerException("No AdapterDelegate added that matches position="
-                + position + " in data source");
     }
 
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -104,46 +74,115 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         return vh;
     }
 
-    public void onBindViewHolder(Object item, int position, VH viewHolder, List payloads) {
-        int viewType = getItemViewType(item, position);
+    public void onBindViewHolder(VH holder, int position, Object item) {
+        int viewType = holder.getItemViewType();
         AdapterDelegate<Object, VH> delegate = getDelegate(viewType);
         if (delegate == null) {
             throw new NullPointerException("No delegate found for item at position = "
                     + position
                     + " for viewType = "
-                    + viewHolder.getItemViewType());
+                    + viewType);
         }
-        delegate.onBindViewHolder(item, position, viewHolder,
-                payloads != null ? payloads : PAYLOADS_EMPTY_LIST);
+        delegate.onBindViewHolder(holder, position, item);
     }
 
-    public void onBindViewHolder(Object item, int position, VH viewHolder) {
-        onBindViewHolder(item, position, viewHolder, PAYLOADS_EMPTY_LIST);
+    public void onBindViewHolder(VH holder, int position, List payloads, Object item) {
+        int viewType = holder.getItemViewType();
+        AdapterDelegate<Object, VH> delegate = getDelegate(viewType);
+        if (delegate == null) {
+            throw new NullPointerException("No delegate found for item at position = "
+                    + position
+                    + " for viewType = "
+                    + viewType);
+        }
+        delegate.onBindViewHolder(holder, position, payloads, item);
     }
 
+    /**
+     * Return the view type of the item.
+     *
+     * @param item
+     * @param position
+     * @return
+     */
+    public int getItemViewType(@NonNull Object item, int position) {
+        if (item == null) {
+            throw new NullPointerException("Item data source is null.");
+        }
+
+        Class clazz = getTargetClass(item);
+        String tag = getTargetTag(item);
+
+        String typeWithTag = getTypeWithTag(clazz, tag);
+        ArrayList<Integer> indexList = indexListOfValue(dataTypeWithTags, typeWithTag);
+        if (indexList.size() > 0) {
+            for (Integer index : indexList) {
+                AdapterDelegate<Object, VH> delegate = delegates.valueAt(index);
+                if (null != delegate
+                        && delegate.getTag().equals(tag)
+                        && delegate.isForViewType(item, position)) {
+                    return index;
+                }
+            }
+        }
+
+        throw new NullPointerException("No AdapterDelegate added that matches position="
+                + position + " in data source.");
+    }
 
     public void onViewRecycled(VH holder) {
-//        holder.getItemViewType()
+        AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
+        if (delegate == null) {
+            throw new NullPointerException("No delegate found for "
+                    + holder
+                    + " for item at position = "
+                    + holder.getAdapterPosition()
+                    + " for viewType = "
+                    + holder.getItemViewType());
+        }
+        delegate.onViewRecycled(holder);
     }
 
     public boolean onFailedToRecycleView(VH holder) {
-        return false;
+        AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
+        if (delegate == null) {
+            throw new NullPointerException("No delegate found for "
+                    + holder
+                    + " for item at position = "
+                    + holder.getAdapterPosition()
+                    + " for viewType = "
+                    + holder.getItemViewType());
+        }
+        return delegate.onFailedToRecycleView(holder);
     }
 
     public void onViewAttachedToWindow(VH holder) {
+        AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
+        if (delegate == null) {
+            throw new NullPointerException("No delegate found for "
+                    + holder
+                    + " for item at position = "
+                    + holder.getAdapterPosition()
+                    + " for viewType = "
+                    + holder.getItemViewType());
+        }
+        delegate.onViewAttachedToWindow(holder);
     }
 
     public void onViewDetachedFromWindow(VH holder) {
+        AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
+        if (delegate == null) {
+            throw new NullPointerException("No delegate found for "
+                    + holder
+                    + " for item at position = "
+                    + holder.getAdapterPosition()
+                    + " for viewType = "
+                    + holder.getItemViewType());
+        }
+        delegate.onViewDetachedFromWindow(holder);
     }
 
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-    }
-
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-    }
-
-    public AdapterDelegatesManager setFallbackDelegate(
-            @Nullable AdapterDelegate fallbackDelegate) {
+    public AdapterDelegatesManager setFallbackDelegate(AdapterDelegate fallbackDelegate) {
         this.fallbackDelegate = fallbackDelegate;
         return this;
     }
@@ -171,8 +210,12 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
      * @param tag
      * @return
      */
-    private String getNameWithTag(Class clazz, String tag) {
-        return clazz.getName() + tag;
+    private String getTypeWithTag(Class clazz, String tag) {
+        if (tag.length() == 0) {
+            return clazz.getName();
+        } else {
+            return clazz.getName() + ":" + tag;
+        }
     }
 
     /**

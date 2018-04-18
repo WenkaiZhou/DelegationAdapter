@@ -6,7 +6,7 @@ package com.kevin.delegationadapter;
  * @author zwenkai@foxmail.com, Created on 2018-04-06 13:47:09
  *         Major Function：<b>ItemData，用于同一数据对象对应多个Delegate无法区分时</b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 

@@ -1,7 +1,3 @@
-/*
- * Copyright (C) 2018 Baidu, Inc. All Rights Reserved.
- */
-
 package com.kevin.delegationadapter.binding;
 
 import android.databinding.ViewDataBinding;

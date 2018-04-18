@@ -27,7 +27,7 @@ public class RightTextAdapterDelegate extends BindingAdapterDelegate<TextBean> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, TextBean data) {
+    public void setVariable(ViewDataBinding binding, TextBean data, int position) {
         binding.setVariable(BR.model, data);
     }
 

@@ -19,7 +19,7 @@ import com.kevin.delegationadapter.sample.bean.ImageBean;
  * @author mender，Modified Date Modify Content:
  */
 
-public class ImageViewViewHolder extends BindingAdapterDelegate<ImageBean> {
+public class ImageViewAdapterDelegate extends BindingAdapterDelegate<ImageBean> {
 
     @Override
     public int getLayoutRes() {
@@ -27,7 +27,7 @@ public class ImageViewViewHolder extends BindingAdapterDelegate<ImageBean> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, ImageBean data) {
+    public void setVariable(ViewDataBinding binding, ImageBean data, int position) {
         binding.setVariable(BR.model, data);
     }
 

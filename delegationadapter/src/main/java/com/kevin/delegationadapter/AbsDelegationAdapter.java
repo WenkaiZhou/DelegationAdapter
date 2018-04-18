@@ -12,7 +12,7 @@ import java.util.List;
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
  *         Major Function：<b></b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
@@ -28,12 +28,11 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
         if (delegatesManager == null) {
             throw new NullPointerException("AdapterDelegatesManager is null.");
         }
-
         this.mDelegatesManager = delegatesManager;
     }
 
     /**
-     * Add a Delegate
+     * Add an Adapter Delegate
      *
      * @param delegate
      */
@@ -42,9 +41,11 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
     }
 
     /**
-     * Add a Delegate
+     * Add an Adapter Delegate with tag, the role of tag is to distinguish Adapters with the
+     * same data type.
      *
      * @param delegate
+     * @param tag
      */
     public void addDelegate(AdapterDelegate delegate, String tag) {
         delegate.setTag(tag);
@@ -58,17 +59,18 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        mDelegatesManager.onBindViewHolder(getItemData(position), position, holder);
+        mDelegatesManager.onBindViewHolder(holder, position, getItem(position));
     }
 
     @Override
     public void onBindViewHolder(VH holder, int position, List<Object> payloads) {
-        mDelegatesManager.onBindViewHolder(getItemData(position), position, holder, payloads);
+        super.onBindViewHolder(holder, position, payloads);
+        mDelegatesManager.onBindViewHolder(holder, position, payloads, getItem(position));
     }
 
     @Override
     public int getItemViewType(int position) {
-        return mDelegatesManager.getItemViewType(getItemData(position), position);
+        return mDelegatesManager.getItemViewType(getItem(position), position);
     }
 
     @Override
@@ -91,15 +93,5 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
         mDelegatesManager.onViewDetachedFromWindow(holder);
     }
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        mDelegatesManager.onAttachedToRecyclerView(recyclerView);
-    }
-
-    @Override
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        mDelegatesManager.onDetachedFromRecyclerView(recyclerView);
-    }
-
-    protected abstract Object getItemData(int position);
+    protected abstract Object getItem(int position);
 }

@@ -10,9 +10,9 @@ import java.util.List;
  * DelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
- *         Major Function：<b></b>
+ *         Major Function：<b>Delegation Adapter</b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
@@ -47,8 +47,8 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         addDataItem(mDataItems.size(), item);
     }
 
-    public void addDataItem(int position, Object itemData) {
-        mDataItems.add(position, itemData);
+    public void addDataItem(int position, Object item) {
+        mDataItems.add(position, item);
         notifyItemRangeInserted(position, 1);
     }
 
@@ -90,7 +90,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     }
 
     @Override
-    protected Object getItemData(int position) {
+    protected Object getItem(int position) {
         if (position < mHeaderItems.size()) {
             return mHeaderItems.get(position);
         }

@@ -1,6 +1,5 @@
 package com.kevin.delegationadapter.sample.delegate;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 import com.kevin.delegationadapter.AdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.TextBean;
-
-import java.util.List;
 
 
 /**
@@ -27,20 +24,21 @@ import java.util.List;
 public class LeftTextAdapterDelegate extends AdapterDelegate<TextBean, LeftTextAdapterDelegate.TextViewHolder> {
 
     @Override
-    protected boolean isForViewType(@NonNull TextBean item, int position) {
+    protected boolean isForViewType(TextBean item, int position) {
         return item.isLeft;
     }
 
     @Override
-    protected TextViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
-        return new TextViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_left, parent, false));
+    protected TextViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text_left, parent, false);
+        TextViewHolder holder = new TextViewHolder(view);
+        return holder;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull TextBean item, int position, @NonNull TextViewHolder holder, @NonNull List<Object> payloads) {
+    protected void onBindViewHolder(TextViewHolder holder, int position, TextBean item) {
         holder.text.setText(item.text);
     }
-
 
     static class TextViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,7 +46,7 @@ public class LeftTextAdapterDelegate extends AdapterDelegate<TextBean, LeftTextA
 
         public TextViewHolder(View itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(R.id.text);
+            text = itemView.findViewById(R.id.text);
         }
     }
 }
