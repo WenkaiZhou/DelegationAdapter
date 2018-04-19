@@ -12,6 +12,7 @@ import com.kevin.delegationadapter.ItemData;
 import com.kevin.delegationadapter.sample.bean.ImageBean;
 import com.kevin.delegationadapter.sample.bean.ImageTextBean;
 import com.kevin.delegationadapter.sample.bean.TextBean;
+import com.kevin.delegationadapter.sample.delegate.FallbackAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.ImageAndTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.ImageViewAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.LeftTextAdapterDelegate;
@@ -44,9 +45,12 @@ public class MainActivity extends AppCompatActivity {
     protected void initViews() {
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new DelegationAdapter();
+
+
+        mAdapter.setFallbackDelegate(new FallbackAdapterDelegate());
+
         // LeftTextViewHolder和RightTextViewHolder具有相同的实体模型
-        mAdapter.addDelegate(new LeftTextAdapterDelegate());
-        mAdapter.addDelegate(new LeftTextAdapterDelegate());
+//        mAdapter.addDelegate(new LeftTextAdapterDelegate());
         mAdapter.addDelegate(new RightTextAdapterDelegate());
         mAdapter.addDelegate(new ImageAndTextAdapterDelegate());
         mAdapter.addDelegate(new ImageAndTextAdapterDelegate(), "LeftImage");

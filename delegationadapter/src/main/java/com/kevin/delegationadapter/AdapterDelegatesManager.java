@@ -126,8 +126,13 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
             }
         }
 
+        // If has not add the AdapterDelegate for data type, returns the largest viewType + 1.
+        if (fallbackDelegate != null) {
+            return delegates.size();
+        }
+
         throw new NullPointerException("No AdapterDelegate added that matches position="
-                + position + " in data source.");
+                + position + " item=" + item + " in data source.");
     }
 
     public void onViewRecycled(VH holder) {
@@ -187,10 +192,6 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         return this;
     }
 
-    public AdapterDelegate<Object, VH> getDelegate(int viewType) {
-        return delegates.get(viewType, fallbackDelegate);
-    }
-
     /**
      * Get the fallback delegate
      *
@@ -202,6 +203,10 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         return fallbackDelegate;
     }
 
+
+    public AdapterDelegate<Object, VH> getDelegate(int viewType) {
+        return delegates.get(viewType, fallbackDelegate);
+    }
 
     /**
      * Returns the class name with tag;
