@@ -243,7 +243,7 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
     }
 
     /**
-     * Returns all indexes for the specified start value
+     * Returns all indexes for the specified value
      *
      * @param array
      * @param value

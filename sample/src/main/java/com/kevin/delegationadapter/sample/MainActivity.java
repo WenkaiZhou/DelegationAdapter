@@ -17,6 +17,8 @@ import com.kevin.delegationadapter.sample.delegate.ImageAndTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.ImageViewAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.LeftTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.delegate.RightTextAdapterDelegate;
+import com.kevin.delegationadapter.sample.util.LocalFileUtil;
+import com.kevin.jsontool.JsonTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,4 +76,13 @@ public class MainActivity extends AppCompatActivity {
     public static void setSrc(ImageView view, int resId) {
         view.setImageResource(resId);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String homeIndexStr = LocalFileUtil.getStringFormAsset(this, "home_index.json");
+        System.out.print(JsonTool.createBean(homeIndexStr, "HomeIndex"));
+    }
+
+
 }

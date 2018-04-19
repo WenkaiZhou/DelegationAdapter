@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kevin.delegationadapter.AdapterDelegate;
-import com.kevin.delegationadapter.sample.BuildConfig;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.jsontool.JsonTool;
 
