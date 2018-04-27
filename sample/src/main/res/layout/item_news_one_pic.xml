@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@+id/iv_pic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="这是一条新闻，这是一条新闻，这是一条新闻" />
+
+    <TextView
+        android:id="@+id/tv_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pic"
+        app:layout_constraintLeft_toRightOf="@+id/iv_pic"
+        tools:text="澎湃新闻" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pic"
+        app:layout_constraintLeft_toRightOf="@+id/tv_source"
+        tools:text="07:33" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_margin="10dp"
+        android:background="#EEEEEE"
+        app:layout_constraintTop_toBottomOf="@id/iv_pic" />
+
+</android.support.constraint.ConstraintLayout>

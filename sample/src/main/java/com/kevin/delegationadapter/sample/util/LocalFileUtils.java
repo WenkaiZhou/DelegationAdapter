@@ -1,5 +1,9 @@
 package com.kevin.delegationadapter.sample.util;
 
+/**
+ * Created by zhouwenkai on 2017/5/1.
+ */
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -12,16 +16,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * LocalFileUtil
+ * 版权所有：----有限公司</br>
  *
- * @author zhouwenkai@baidu.com, Created on 2018-04-07 19:39:52
- *         Major Function：<b></b>
- *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ * LocalFileUtils </br>
+ *
+ * <p>
+ * @author zhou.wenkai ,Created on 2015-5-9 13:11:48</br>
+ * @Description Major Function：读取本地包内文件</br>
+ * </p>
+ * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！</br>
  * @author mender，Modified Date Modify Content:
  */
-
-public class LocalFileUtil {
+public class LocalFileUtils {
 
     /**
      * 获取Asset下文本内容
