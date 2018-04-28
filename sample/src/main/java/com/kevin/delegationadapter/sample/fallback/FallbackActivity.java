@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,38 +27,46 @@ import java.util.List;
 
 public class FallbackActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    DelegationAdapter delegationAdapter;
+    RecyclerView mRecyclerView;
+    DelegationAdapter mDelegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_type);
+        setContentView(R.layout.activity_fallback);
         initRecyclerView();
         initData();
+
+        findViewById(R.id.btn_conversion).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 更换位置
+                mDelegationAdapter.moveDataItem(2, 8);
+            }
+        });
     }
 
     private void initRecyclerView() {
-        recyclerView = this.findViewById(R.id.recycler_view);
+        mRecyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         // 添加分割线
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
-        delegationAdapter = new DelegationAdapter();
+        mDelegationAdapter = new DelegationAdapter();
         // 添加委托Adapter
-        delegationAdapter.addDelegate(new TextAdapterDelegate());
+        mDelegationAdapter.addDelegate(new TextAdapterDelegate());
         // 添加兜底的委托Adapter
-        delegationAdapter.setFallbackDelegate(new FallbackAdapterDelegate());
-        recyclerView.setAdapter(delegationAdapter);
+        mDelegationAdapter.setFallbackDelegate(new FallbackAdapterDelegate());
+        mRecyclerView.setAdapter(mDelegationAdapter);
     }
 
     private void initData() {
         // 除去4之外，其余都是String类型
-        Object[] datas = {"1", "2", "3", 4, "5", "6", "7", "8", "9"};
+        Object[] datas = {"1", "2", "3", 4, "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"};
         List<Object> dataList = Arrays.asList(datas);
-        delegationAdapter.setDataItems(dataList);
+        mDelegationAdapter.setDataItems(new ArrayList(dataList));
     }
 }

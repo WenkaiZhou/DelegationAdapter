@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kevin.delegationadapter.sample.samedata.bean.Bill" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="#EEEEEE"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="合计:"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@{model.total}"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_total"
+            tools:text="123.00" />
+
+        <TextView
+            android:id="@+id/tv_discounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="优惠:"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@{model.discounts}"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_discounts"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_discounts"
+            tools:text="0.00" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="#EEEEEE"
+            app:layout_constraintTop_toBottomOf="@id/tv_discounts" />
+
+        <TextView
+            android:id="@+id/tv_receivable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="应收:"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="@{model.receivable}"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_receivable"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_receivable"
+            tools:text="123.00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="30dp"
+            android:text="@{model.describe}"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_receivable"
+            tools:text="谢谢光临" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

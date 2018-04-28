@@ -7,16 +7,12 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
-import com.kevin.delegationadapter.sample.bean.News;
 import com.kevin.delegationadapter.sample.multidataandtype.adapter.DoubleAdapterDelegate;
 import com.kevin.delegationadapter.sample.multidataandtype.adapter.FloatAdapterDelegate;
 import com.kevin.delegationadapter.sample.multidataandtype.adapter.IntegerAdapterDelegate;
 import com.kevin.delegationadapter.sample.multidataandtype.adapter.StringAdapterDelegate;
-import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +29,8 @@ import java.util.List;
 
 public class MultiDataAndTypeActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    DelegationAdapter delegationAdapter;
+    RecyclerView mRecyclerView;
+    DelegationAdapter mDelegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,21 +41,21 @@ public class MultiDataAndTypeActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        recyclerView = this.findViewById(R.id.recycler_view);
+        mRecyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         // 添加分割线
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
-        delegationAdapter = new DelegationAdapter();
-        delegationAdapter.addDelegate(new StringAdapterDelegate());
-        delegationAdapter.addDelegate(new IntegerAdapterDelegate());
-        delegationAdapter.addDelegate(new FloatAdapterDelegate());
-        delegationAdapter.addDelegate(new DoubleAdapterDelegate());
+        mDelegationAdapter = new DelegationAdapter();
+        mDelegationAdapter.addDelegate(new StringAdapterDelegate());
+        mDelegationAdapter.addDelegate(new IntegerAdapterDelegate());
+        mDelegationAdapter.addDelegate(new FloatAdapterDelegate());
+        mDelegationAdapter.addDelegate(new DoubleAdapterDelegate());
         // 添加委托Adapter
-        recyclerView.setAdapter(delegationAdapter);
+        mRecyclerView.setAdapter(mDelegationAdapter);
     }
 
     private void initData() {
@@ -71,6 +67,6 @@ public class MultiDataAndTypeActivity extends AppCompatActivity {
         dataList.add("具体是多少？");      // 添加一个String类型数据
         dataList.add(29.5F);             // 添加一个Float类型数据
         dataList.add(29.527921364978D);  // 添加一个Double类型数据
-        delegationAdapter.setDataItems(dataList);
+        mDelegationAdapter.setDataItems(dataList);
     }
 }

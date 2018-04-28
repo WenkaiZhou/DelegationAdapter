@@ -26,6 +26,7 @@
         <activity android:name=".multidataandtype.MultiDataAndTypeActivity" />
         <activity android:name=".header.HeaderActivity" />
         <activity android:name=".footer.FooterActivity" />
+        <activity android:name=".samedata.SameDataActivity" />
     </application>
 
 </manifest>

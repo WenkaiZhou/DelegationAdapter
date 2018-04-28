@@ -32,8 +32,8 @@ import java.util.List;
 
 public class FooterActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    DelegationAdapter delegationAdapter;
+    RecyclerView mRecyclerView;
+    DelegationAdapter mDelegationAdapter;
     int addFooterCount;
 
     @Override
@@ -46,33 +46,35 @@ public class FooterActivity extends AppCompatActivity {
         findViewById(R.id.btn_add_footer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delegationAdapter.addFooterItem("添加的尾部数据：" + (++addFooterCount));
-                recyclerView.scrollToPosition(delegationAdapter.getItemCount() - 1);
+                // 添加尾部数据
+                mDelegationAdapter.addFooterItem("添加的尾部数据：" + (++addFooterCount));
+                // 滚动到底部
+                mRecyclerView.scrollToPosition(mDelegationAdapter.getItemCount() - 1);
             }
         });
     }
 
     private void initRecyclerView() {
-        recyclerView = this.findViewById(R.id.recycler_view);
+        mRecyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         // 添加分割线
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
-        delegationAdapter = new DelegationAdapter();
-        delegationAdapter.addDelegate(new TextAdapterDelegate());
-        delegationAdapter.addDelegate(new BannerDelegateAdapter());
-        recyclerView.setAdapter(delegationAdapter);
+        mDelegationAdapter = new DelegationAdapter();
+        mDelegationAdapter.addDelegate(new TextAdapterDelegate());
+        mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+        mRecyclerView.setAdapter(mDelegationAdapter);
     }
 
     private void initData() {
         String loopStr = LocalFileUtils.getStringFormAsset(this, "loop.json");
         LoopData loopData = new Gson().fromJson(loopStr, LoopData.class);
-        delegationAdapter.addFooterItem(loopData);
-        String[] datas = {"1", "2", "3", "4", "5", "6"};
+        mDelegationAdapter.addFooterItem(loopData);
+        String[] datas = {"1", "2", "3", "4", "5"};
         List<String> dataList = Arrays.asList(datas);
-        delegationAdapter.setDataItems(new ArrayList(dataList));
+        mDelegationAdapter.setDataItems(new ArrayList(dataList));
     }
 }

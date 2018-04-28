@@ -1,0 +1,64 @@
+{
+  "title": "沪小胖（张杨路店）",
+  "waiter": "刘峰",
+  "cashier": "赵秀秀",
+  "ramadhin": 213,
+  "guests": 2,
+  "beginTime": "2016-4-29 18:33",
+  "endTime": "2016-4-29 21:40",
+  "duration": "3小时6分钟",
+  "total": "642.00",
+  "discounts": "0.00",
+  "receivable": "642.00",
+  "describe": "谢谢光临，欢迎下次惠顾！",
+  "details": [
+    {
+      "name": "黄焖龙虾大份",
+      "count": "1.0盘",
+      "price": "168.00",
+      "subtotal": "168.00"
+    },
+    {
+      "name": "餐具费",
+      "count": "2.0袋",
+      "price": "3.00",
+      "subtotal": "6.00"
+    },
+    {
+      "name": "大生蚝",
+      "count": "2.0只",
+      "price": "20.00",
+      "subtotal": "40.00"
+    },
+    {
+      "name": "扇贝",
+      "count": "4.0只",
+      "price": "12.00",
+      "subtotal": "48.00"
+    },
+    {
+      "name": "带子",
+      "count": "1.0个",
+      "price": "15.00",
+      "subtotal": "15.00"
+    },
+    {
+      "name": "锡箔金针菇",
+      "count": "1.0份",
+      "price": "25.00",
+      "subtotal": "25.00"
+    },
+    {
+      "name": "招牌龙虾",
+      "count": "3.0斤",
+      "price": "68.00",
+      "subtotal": "204.00"
+    },
+    {
+      "name": "招牌龙虾",
+      "count": "2.0斤",
+      "price": "68.00",
+      "subtotal": "136.00"
+    }
+  ]
+}

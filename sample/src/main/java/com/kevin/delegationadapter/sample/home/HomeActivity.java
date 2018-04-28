@@ -16,6 +16,7 @@ import com.kevin.delegationadapter.sample.footer.FooterActivity;
 import com.kevin.delegationadapter.sample.header.HeaderActivity;
 import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
 import com.kevin.delegationadapter.sample.multitype.MultiTypeActivity;
+import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +33,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    DelegationAdapter delegationAdapter;
+    RecyclerView mRecyclerView;
+    DelegationAdapter mDelegationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +45,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        recyclerView = this.findViewById(R.id.recycler_view);
+        mRecyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         // 添加分割线
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
-        delegationAdapter = new DelegationAdapter();
-        delegationAdapter.addDelegate(new HomeAdapterDelegate(this));
-        recyclerView.setAdapter(delegationAdapter);
+        mDelegationAdapter = new DelegationAdapter();
+        mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
+        mRecyclerView.setAdapter(mDelegationAdapter);
     }
 
     private void initData() {
@@ -62,11 +63,13 @@ public class HomeActivity extends AppCompatActivity {
                 "同一数据类型多种样式",
                 "同一数据类型多种样式(dataBinding实现)",
                 "不同数据类型多种样式",
+                "同一数据多种类型",
                 "带头部数据的不同数据类型多样式",
-                "带尾部数据的不同数据类型多样式"
+                "带尾部数据的不同数据类型多样式",
+                "带兜底的委托Adapter(未注册委托时的处理)"
         };
         List<String> titleList = Arrays.asList(titles);
-        delegationAdapter.setDataItems(titleList);
+        mDelegationAdapter.setDataItems(titleList);
     }
 
     public void onItemClick(View v, int position, String item) {
@@ -81,12 +84,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, MultiDataAndTypeActivity.class));
                 break;
             case 3:
-                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
+                startActivity(new Intent(HomeActivity.this, SameDataActivity.class));
                 break;
             case 4:
-                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
                 break;
             case 5:
+                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                break;
+            case 6:
                 startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
                 break;
         }

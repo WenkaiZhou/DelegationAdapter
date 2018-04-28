@@ -40,7 +40,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     }
 
     public void addFooterItem(Object footerItem) {
-        addFooterItem(getFootCount(), footerItem);
+        addFooterItem(getFooterCount(), footerItem);
     }
 
     public void addFooterItem(int position, Object footerItem) {
@@ -59,7 +59,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
 
     public void addDataItem(int position, Object item) {
         mDataItems.add(position, item);
-        notifyItemRangeInserted(position + getHeaderCount(), 1);
+        notifyItemRangeInserted(getHeaderCount() + position, 1);
     }
 
     public void addDataItems(List dataItems) {
@@ -68,7 +68,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
 
     public void addDataItems(int position, List dataItems) {
         mDataItems.addAll(position, dataItems);
-        notifyItemRangeInserted(position + getHeaderCount(), dataItems.size());
+        notifyItemRangeInserted(getHeaderCount() + position , dataItems.size());
     }
 
     public void moveDataItem(int fromPosition, int toPosition) {
@@ -92,7 +92,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         for (int i = 0; i < itemCount; i++) {
             mDataItems.remove(position);
         }
-        notifyItemRangeRemoved(position + getHeaderCount(), itemCount);
+        notifyItemRangeRemoved(getHeaderCount() + position , itemCount);
     }
 
     public List<Object> getDataList() {
@@ -110,7 +110,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
             return mDataItems.get(position);
         }
 
-        position -= getDataCount();
+        position -= mDataItems.size();
         if (position < mFooterItems.size()) {
             return mFooterItems.get(position);
         }
@@ -120,7 +120,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
 
     @Override
     public int getItemCount() {
-        return getDataCount() + getHeaderCount() + getFootCount();
+        return getHeaderCount() + getDataCount() + getFooterCount();
     }
 
     public int getDataCount() {
@@ -131,7 +131,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         return mHeaderItems.size();
     }
 
-    public int getFootCount() {
+    public int getFooterCount() {
         return mFooterItems.size();
     }
 
