@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.multitype.bean;
+package com.kevin.delegationadapter.sample.bean;
 
 import java.util.List;
 

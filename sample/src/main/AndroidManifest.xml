@@ -23,6 +23,9 @@
         <activity android:name=".multitype.MultiTypeActivity" />
         <activity android:name=".fallback.FallbackActivity" />
         <activity android:name=".binding.BindingMultiTypeActivity" />
+        <activity android:name=".multidataandtype.MultiDataAndTypeActivity" />
+        <activity android:name=".header.HeaderActivity" />
+        <activity android:name=".footer.FooterActivity" />
     </application>
 
 </manifest>

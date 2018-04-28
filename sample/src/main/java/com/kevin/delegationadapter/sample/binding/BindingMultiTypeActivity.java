@@ -11,11 +11,11 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
+import com.kevin.delegationadapter.sample.bean.News;
 import com.kevin.delegationadapter.sample.binding.adapter.MorePicDelegateAdapter;
 import com.kevin.delegationadapter.sample.binding.adapter.OnePicDelegateAdapter;
 import com.kevin.delegationadapter.sample.binding.adapter.ThreePicDelegateAdapter;
 import com.kevin.delegationadapter.sample.binding.adapter.VideoDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.bean.News;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.List;

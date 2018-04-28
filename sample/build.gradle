@@ -38,8 +38,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':delegationadapter')
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.kevin:jsontool:1.0.0'
 
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.kevin:loopview:1.0.9'
 }

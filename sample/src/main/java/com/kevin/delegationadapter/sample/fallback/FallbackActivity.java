@@ -7,16 +7,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
-import com.kevin.delegationadapter.sample.multitype.adapter.MorePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.OnePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.ThreePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.VideoDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.bean.News;
-import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -62,8 +54,9 @@ public class FallbackActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        Object[] titles = {"1", "2", "3", 4, "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
-        List<Object> titleList = Arrays.asList(titles);
-        delegationAdapter.setDataItems(titleList);
+        // 除去4之外，其余都是String类型
+        Object[] datas = {"1", "2", "3", 4, "5", "6", "7", "8", "9"};
+        List<Object> dataList = Arrays.asList(datas);
+        delegationAdapter.setDataItems(dataList);
     }
 }

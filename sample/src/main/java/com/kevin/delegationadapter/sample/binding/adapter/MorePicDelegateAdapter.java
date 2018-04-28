@@ -5,7 +5,7 @@ import android.databinding.ViewDataBinding;
 import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
-import com.kevin.delegationadapter.sample.multitype.bean.News;
+import com.kevin.delegationadapter.sample.bean.News;
 
 /**
  * MorePicDelegateAdapter

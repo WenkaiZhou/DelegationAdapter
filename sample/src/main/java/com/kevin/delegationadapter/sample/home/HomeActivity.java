@@ -12,6 +12,9 @@ import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.binding.BindingMultiTypeActivity;
 import com.kevin.delegationadapter.sample.fallback.FallbackActivity;
+import com.kevin.delegationadapter.sample.footer.FooterActivity;
+import com.kevin.delegationadapter.sample.header.HeaderActivity;
+import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
 import com.kevin.delegationadapter.sample.multitype.MultiTypeActivity;
 
 import java.util.Arrays;
@@ -55,7 +58,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String[] titles = {"多类型委托Adapter", "dataBinding实现多类型委托Adapter", "带兜底委托Adapter"};
+        String[] titles = {
+                "同一数据类型多种样式",
+                "同一数据类型多种样式(dataBinding实现)",
+                "不同数据类型多种样式",
+                "带头部数据的不同数据类型多样式",
+                "带尾部数据的不同数据类型多样式"
+        };
         List<String> titleList = Arrays.asList(titles);
         delegationAdapter.setDataItems(titleList);
     }
@@ -69,6 +78,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, BindingMultiTypeActivity.class));
                 break;
             case 2:
+                startActivity(new Intent(HomeActivity.this, MultiDataAndTypeActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
+                break;
+            case 4:
+                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                break;
+            case 5:
                 startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
                 break;
         }

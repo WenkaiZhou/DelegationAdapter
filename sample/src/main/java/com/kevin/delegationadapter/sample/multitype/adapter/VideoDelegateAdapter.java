@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.AdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
-import com.kevin.delegationadapter.sample.multitype.bean.News;
+import com.kevin.delegationadapter.sample.bean.News;
 
 /**
  * OnePicDelegateAdapter
