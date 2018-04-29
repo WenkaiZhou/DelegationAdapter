@@ -6,8 +6,9 @@ import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.kevin.delegationadapter.ItemData;
 import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
+
+import com.kevin.delegationadapter.ItemData;
 
 /**
  * BindingDelegationAdapter

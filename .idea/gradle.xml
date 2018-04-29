@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/delegationadapter" />
+            <option value="$PROJECT_DIR$/delegationadapter-extras" />
             <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>
