@@ -4,7 +4,8 @@ package com.kevin.delegationadapter;
  * ItemData
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-06 13:47:09
- *         Major Function：<b>ItemData，用于同一数据对象对应多个Delegate无法区分时</b>
+ *         Major Function：<b>For the same data object corresponding to multiple Delegate
+ *         are indistinguishable.</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:

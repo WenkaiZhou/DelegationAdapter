@@ -3,7 +3,7 @@ package com.kevin.delegationadapter.sample.samedata.adapter;
 import android.databinding.ViewDataBinding;
 
 import com.android.databinding.library.baseAdapters.BR;
-import com.kevin.delegationadapter.binding.BindingAdapterDelegate;
+import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.samedata.bean.Bill;
 

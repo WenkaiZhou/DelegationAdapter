@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.binding;
+package com.kevin.delegationadapter.extras.binding;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -6,8 +6,8 @@ import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.kevin.delegationadapter.ClickableDelegationAdapter;
 import com.kevin.delegationadapter.ItemData;
+import com.kevin.delegationadapter.extras.ClickableDelegationAdapter;
 
 /**
  * BindingDelegationAdapter

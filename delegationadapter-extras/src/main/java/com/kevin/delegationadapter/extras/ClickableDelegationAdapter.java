@@ -1,7 +1,10 @@
-package com.kevin.delegationadapter;
+package com.kevin.delegationadapter.extras;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.kevin.delegationadapter.AdapterDelegate;
+import com.kevin.delegationadapter.ItemData;
 
 /**
  * ClickableDelegate

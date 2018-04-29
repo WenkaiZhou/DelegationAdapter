@@ -6,10 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.ItemData;
-import com.kevin.delegationadapter.sample.bean.News;
 import com.kevin.delegationadapter.sample.samedata.adapter.BillItemDelegateAdapter;
 import com.kevin.delegationadapter.sample.samedata.adapter.ChargeInfoDelegateAdapter;
 import com.kevin.delegationadapter.sample.samedata.adapter.ServiceInfoDelegateAdapter;
@@ -23,7 +21,7 @@ import java.util.List;
  * SameDataActivity
  *
  * @author zhouwenkai@baidu.com, Created on 2018-04-28 15:36:58
- *         Major Function：<b></b>
+ *         Major Function：<b>同一数据，不同样式</b>
  *         <p/>
  *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * @author mender，Modified Date Modify Content:

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kevin.delegationadapter.ClickableDelegationAdapter;
+import com.kevin.delegationadapter.extras.ClickableDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 
 /**

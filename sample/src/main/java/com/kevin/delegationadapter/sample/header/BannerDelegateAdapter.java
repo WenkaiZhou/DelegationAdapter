@@ -2,7 +2,7 @@ package com.kevin.delegationadapter.sample.header;
 
 import android.databinding.ViewDataBinding;
 
-import com.kevin.delegationadapter.binding.BindingAdapterDelegate;
+import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.BR;
 import com.kevin.loopview.internal.LoopData;

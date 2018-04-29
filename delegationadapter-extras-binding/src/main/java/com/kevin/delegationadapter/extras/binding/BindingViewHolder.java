@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.binding;
+package com.kevin.delegationadapter.extras.binding;
 
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
