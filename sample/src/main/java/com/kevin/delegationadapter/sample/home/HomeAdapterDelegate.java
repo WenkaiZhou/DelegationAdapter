@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.kevin.delegationadapter.extras.ClickableDelegationAdapter;
+import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 
 /**
@@ -19,7 +19,7 @@ import com.kevin.delegationadapter.sample.R;
  * @author mender，Modified Date Modify Content:
  */
 
-public class HomeAdapterDelegate extends ClickableDelegationAdapter<String, HomeAdapterDelegate.ViewHolder> {
+public class HomeAdapterDelegate extends ClickableAdapterDelegate<String, HomeAdapterDelegate.ViewHolder> {
 
     private HomeActivity mActivity;
 

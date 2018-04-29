@@ -7,21 +7,21 @@ import com.kevin.delegationadapter.AdapterDelegate;
 import com.kevin.delegationadapter.ItemData;
 
 /**
- * ClickableDelegate
+ * ClickableAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-06 23:28:37
- *         Major Function：<b>可点击的 ViewHolder Delegate</b>
+ *         Major Function：<b>Clickable ViewHolder Delegate</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class ClickableDelegationAdapter<T, VH extends RecyclerView.ViewHolder> extends AdapterDelegate<T, VH> {
+public abstract class ClickableAdapterDelegate<T, VH extends RecyclerView.ViewHolder> extends AdapterDelegate<T, VH> {
 
-    public ClickableDelegationAdapter() {
+    public ClickableAdapterDelegate() {
     }
 
-    public ClickableDelegationAdapter(String tag) {
+    public ClickableAdapterDelegate(String tag) {
         super(tag);
     }
 

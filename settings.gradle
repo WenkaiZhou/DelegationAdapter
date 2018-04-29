@@ -1,1 +1,1 @@
-include ':sample', ':delegationadapter', ':delegationadapter-extras-binding', ':delegationadapter-extras'
+include ':sample', ':delegationadapter'

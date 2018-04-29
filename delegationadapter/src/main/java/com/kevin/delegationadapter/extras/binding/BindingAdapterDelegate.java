@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.kevin.delegationadapter.ItemData;
-import com.kevin.delegationadapter.extras.ClickableDelegationAdapter;
+import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 
 /**
  * BindingDelegationAdapter
@@ -19,7 +19,7 @@ import com.kevin.delegationadapter.extras.ClickableDelegationAdapter;
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class BindingAdapterDelegate<T> extends ClickableDelegationAdapter<T, BindingViewHolder> {
+public abstract class BindingAdapterDelegate<T> extends ClickableAdapterDelegate<T, BindingViewHolder> {
 
     public BindingAdapterDelegate() {
     }

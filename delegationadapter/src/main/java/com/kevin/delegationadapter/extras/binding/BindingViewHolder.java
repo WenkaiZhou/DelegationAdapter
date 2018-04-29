@@ -14,7 +14,7 @@ import android.view.View;
  * @author mender，Modified Date Modify Content:
  */
 
-public final class BindingViewHolder extends RecyclerView.ViewHolder {
+final class BindingViewHolder extends RecyclerView.ViewHolder {
 
     private ViewDataBinding binding;
 
