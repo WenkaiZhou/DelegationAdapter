@@ -11,8 +11,19 @@
 
 ## 实现方案
 
+1. **addDelegate** 向Adapter中注册委托Adapter;
+2. **addDatas** 设置数据；
+3. **layout** 渲染布局，Adapter查找到对应的委托Adapter，由委托Adapter去做具体渲染。
 
+![](https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/show.gif)
 
-**THANKS TO**
+## 如何使用
+
+### 基本用法
+
+1. 
+
+## THANKS TO
+
 1. [MultiItem](https://github.com/free46000/MultiItem) 委托思想来源
 2. [AdapterDelegates](https://github.com/sockeqwe/AdapterDelegates) 委托架子来源
