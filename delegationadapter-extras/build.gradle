@@ -35,3 +35,16 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation project(':delegationadapter')
 }
+
+// -------
+setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
+setProperty "PROJECT_NAME", "DelegationAdapter-extras"
+//setProperty "VERSION_CODE", "22"
+//setProperty "VERSION_NAME", "0.5.2"
+
+setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
+
+ext {
+    kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
+}
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
