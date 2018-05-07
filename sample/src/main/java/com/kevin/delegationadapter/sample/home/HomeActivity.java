@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * HomeActivity
  *
- * @author zhouwenkai@baidu.com, Created on 2018-04-27 16:12:00
+ * @author zwenkai@foxmail.com, Created on 2018-04-27 16:12:00
  *         Major Function：<b></b>
  *         <p/>
  *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
         mDelegationAdapter = new DelegationAdapter();
+        // 向Adapter中注册委托Adapter
         mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
         mRecyclerView.setAdapter(mDelegationAdapter);
     }
