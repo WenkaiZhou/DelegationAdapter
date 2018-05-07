@@ -14,25 +14,25 @@ import java.util.List;
 
 public class Bill {
 
-    public String title;
-    public String waiter;
-    public String cashier;
-    public int ramadhin;
-    public int guests;
-    public String beginTime;
-    public String endTime;
-    public String duration;
-    public List<Item> details;
-    public String total;
-    public String discounts;
-    public String receivable;
-    public String describe;
+    public String title = "";           // 标题
+    public String waiter = "";          // 服务员
+    public String cashier = "";         // 收银员
+    public int ramadhin = 0;            // 桌号
+    public int guests = 0;              // 客人数
+    public String beginTime = "";       // 开台时间
+    public String endTime = "";         // 结账时间
+    public String duration = "";        // 用餐时长
+    public List<Item> details = null;   // 用餐详情
+    public String total = "";           // 合计
+    public String discounts = "";       // 优惠
+    public String receivable = "";      // 应收
+    public String describe = "";        // 描述信息
 
     public static class Item {
-        public String name;
-        public String count;
-        public String price;
-        public String subtotal;
+        public String name = "";    // 名称
+        public String count = "";   // 数量
+        public String price = "";   // 单价
+        public String subtotal = "";// 小计
     }
 
 }
