@@ -19,9 +19,131 @@
 
 ## 如何使用
 
-### 基本用法
+### 引入
 
-1. 
+```
+compile 'com.kevin:delegationadapter:0.0.1'
+// 扩展库，使得databinding更简易，可以不引入
+compile 'com.kevin:delegationadapter-extras:0.0.1'
+```
+
+### 用法
+
+1. 同一数据类型多种样式
+
+    ```
+    // 设置LayoutManager
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    recyclerView.setLayoutManager(layoutManager);
+    // 设置Adapter
+    delegationAdapter = new DelegationAdapter();
+    // 添加委托Adapter
+    delegationAdapter.addDelegate(new OnePicDelegateAdapter());
+    delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
+    delegationAdapter.addDelegate(new MorePicDelegateAdapter());
+    delegationAdapter.addDelegate(new VideoDelegateAdapter());
+    recyclerView.setAdapter(delegationAdapter);
+    ```
+    
+2. 不同数据类型多种样式
+
+    ```
+    // 设置LayoutManager
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    mRecyclerView.setLayoutManager(layoutManager);
+    // 设置Adapter
+    mDelegationAdapter = new DelegationAdapter();
+    mDelegationAdapter.addDelegate(new StringAdapterDelegate());
+    mDelegationAdapter.addDelegate(new IntegerAdapterDelegate());
+    mDelegationAdapter.addDelegate(new FloatAdapterDelegate());
+    mDelegationAdapter.addDelegate(new DoubleAdapterDelegate());
+    // 添加委托Adapter
+    mRecyclerView.setAdapter(mDelegationAdapter);
+    
+    // 设置数据
+    List<Object> dataList = new ArrayList<>();
+    dataList.add("今天天气怎么样？");  // 添加一个String类型数据
+    dataList.add("大晴天，有点热。");  // 添加一个String类型数据
+    dataList.add("温度多少度呢？");    // 添加一个String类型数据
+    dataList.add(29);                // 添加一个int类型数据
+    dataList.add("具体是多少？");      // 添加一个String类型数据
+    dataList.add(29.5F);             // 添加一个Float类型数据
+    dataList.add(29.527921364978D);  // 添加一个Double类型数据
+    mDelegationAdapter.setDataItems(dataList);
+    ```
+
+3. 同一数据多种类型
+
+    ```
+    // 设置LayoutManager
+    mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    // 设置LayoutManager
+    mDelegationAdapter = new DelegationAdapter();
+    // 添加委托Adapter
+    mDelegationAdapter.addDelegate(new ServiceInfoDelegateAdapter());
+    mDelegationAdapter.addDelegate(new BillItemDelegateAdapter());
+    mDelegationAdapter.addDelegate(new ChargeInfoDelegateAdapter());
+    mBinding.recyclerView.setAdapter(mDelegationAdapter);
+    
+    // 设置数据
+    String newsListStr = LocalFileUtils.getStringFormAsset(this, "bill.json");
+    Bill bill = new Gson().fromJson(newsListStr, Bill.class);
+    
+    List<Object> dataList = new ArrayList<>();
+    dataList.add(new ItemData(bill, ServiceInfoDelegateAdapter.TAG));
+    dataList.addAll(bill.details);
+    dataList.add(new ItemData(bill, ChargeInfoDelegateAdapter.TAG));
+    mDelegationAdapter.setDataItems(dataList);
+    ```
+    
+4. 添加头部
+    
+    ```
+    // 设置LayoutManager
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    mRecyclerView.setLayoutManager(layoutManager);
+    // 设置Adapter
+    mDelegationAdapter = new DelegationAdapter();
+    // 添加委托Adapter
+    mDelegationAdapter.addDelegate(new TextAdapterDelegate());
+    mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+    mRecyclerView.setAdapter(mDelegationAdapter);
+    
+    // 添加头部
+    mDelegationAdapter.addHeaderItem("这是添加的添加的头部数据");
+    ```
+    
+4. 添加头部
+        
+    ```
+    // 设置LayoutManager
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    mRecyclerView.setLayoutManager(layoutManager);
+    // 设置Adapter
+    mDelegationAdapter = new DelegationAdapter();
+    // 添加委托Adapter
+    mDelegationAdapter.addDelegate(new TextAdapterDelegate());
+    mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+    mRecyclerView.setAdapter(mDelegationAdapter);
+    
+    // 添加尾部
+    mDelegationAdapter.addFotterItem("这是添加的添加的尾部数据");
+    ```
+    
+5. 带兜底的委托Adapter
+
+    ```
+    // 设置LayoutManager
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    mRecyclerView.setLayoutManager(layoutManager);
+    // 设置Adapter
+    mDelegationAdapter = new DelegationAdapter();
+    // 添加委托Adapter
+    mDelegationAdapter.addDelegate(new TextAdapterDelegate());
+    // 添加兜底的委托Adapter
+    mDelegationAdapter.setFallbackDelegate(new FallbackAdapterDelegate());
+    mRecyclerView.setAdapter(mDelegationAdapter);
+    ```
 
 ## THANKS TO
 
