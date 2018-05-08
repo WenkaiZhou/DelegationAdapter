@@ -22,9 +22,9 @@
 ### 引入
 
 ```
-compile 'com.kevin:delegationadapter:0.0.1'
+compile 'com.kevin:delegationadapter:1.0.0'
 // 扩展库，使得databinding更简易，可以不引入
-compile 'com.kevin:delegationadapter-extras:0.0.1'
+compile 'com.kevin:delegationadapter-extras:1.0.0'
 ```
 
 ### 用法
@@ -113,7 +113,7 @@ compile 'com.kevin:delegationadapter-extras:0.0.1'
     mDelegationAdapter.addHeaderItem("这是添加的添加的头部数据");
     ```
     
-4. 添加头部
+4. 添加尾部
         
     ```
     // 设置LayoutManager
