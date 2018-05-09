@@ -8,9 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.google.gson.Gson;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.ItemData;
-import com.kevin.delegationadapter.sample.samedata.adapter.BillItemDelegateAdapter;
-import com.kevin.delegationadapter.sample.samedata.adapter.ChargeInfoDelegateAdapter;
-import com.kevin.delegationadapter.sample.samedata.adapter.ServiceInfoDelegateAdapter;
+import com.kevin.delegationadapter.sample.samedata.adapter.BillItemAdapterDelegate;
+import com.kevin.delegationadapter.sample.samedata.adapter.ChargeInfoAdapterDelegate;
+import com.kevin.delegationadapter.sample.samedata.adapter.ServiceInfoAdapterDelegate;
 import com.kevin.delegationadapter.sample.samedata.bean.Bill;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
@@ -44,9 +44,9 @@ public class SameDataActivity extends AppCompatActivity {
     private void initRecyclerView() {
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDelegationAdapter = new DelegationAdapter();
-        mDelegationAdapter.addDelegate(new ServiceInfoDelegateAdapter());
-        mDelegationAdapter.addDelegate(new BillItemDelegateAdapter());
-        mDelegationAdapter.addDelegate(new ChargeInfoDelegateAdapter());
+        mDelegationAdapter.addDelegate(new ServiceInfoAdapterDelegate());
+        mDelegationAdapter.addDelegate(new BillItemAdapterDelegate());
+        mDelegationAdapter.addDelegate(new ChargeInfoAdapterDelegate());
         mBinding.recyclerView.setAdapter(mDelegationAdapter);
     }
 
@@ -55,9 +55,9 @@ public class SameDataActivity extends AppCompatActivity {
         Bill bill = new Gson().fromJson(newsListStr, Bill.class);
 
         List<Object> dataList = new ArrayList<>();
-        dataList.add(new ItemData(bill, ServiceInfoDelegateAdapter.TAG));
+        dataList.add(new ItemData(bill, ServiceInfoAdapterDelegate.TAG));
         dataList.addAll(bill.details);
-        dataList.add(new ItemData(bill, ChargeInfoDelegateAdapter.TAG));
+        dataList.add(new ItemData(bill, ChargeInfoAdapterDelegate.TAG));
         mDelegationAdapter.setDataItems(dataList);
     }
 }

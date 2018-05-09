@@ -14,7 +14,7 @@ import com.kevin.delegationadapter.sample.bean.News;
 
 
 /**
- * OnePicDelegateAdapter
+ * ThreePicAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-26 17:06:15
  *         Major Function：<b></b>
@@ -23,7 +23,7 @@ import com.kevin.delegationadapter.sample.bean.News;
  * @author mender，Modified Date Modify Content:
  */
 
-public class ThreePicDelegateAdapter extends AdapterDelegate<News, ThreePicDelegateAdapter.ThreePicViewHolder> {
+public class ThreePicAdapterDelegate extends AdapterDelegate<News, ThreePicAdapterDelegate.ThreePicViewHolder> {
 
     @Override
     protected boolean isForViewType(News item, int position) {

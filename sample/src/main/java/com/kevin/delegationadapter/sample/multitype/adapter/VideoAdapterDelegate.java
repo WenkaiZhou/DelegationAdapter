@@ -13,7 +13,7 @@ import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
 
 /**
- * OnePicDelegateAdapter
+ * VideoAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-26 17:06:15
  *         Major Function：<b></b>
@@ -22,7 +22,7 @@ import com.kevin.delegationadapter.sample.bean.News;
  * @author mender，Modified Date Modify Content:
  */
 
-public class VideoDelegateAdapter extends AdapterDelegate<News, VideoDelegateAdapter.VideoViewHolder> {
+public class VideoAdapterDelegate extends AdapterDelegate<News, VideoAdapterDelegate.VideoViewHolder> {
 
     @Override
     protected boolean isForViewType(News news, int position) {

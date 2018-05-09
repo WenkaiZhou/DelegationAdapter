@@ -3,12 +3,12 @@ package com.kevin.delegationadapter.sample.header;
 import android.databinding.ViewDataBinding;
 
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
-import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.BR;
+import com.kevin.delegationadapter.sample.R;
 import com.kevin.loopview.internal.LoopData;
 
 /**
- * BannerViewHolder
+ * BannerAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-07 21:53:19
  *         Major Function：<b></b>
@@ -17,7 +17,7 @@ import com.kevin.loopview.internal.LoopData;
  * @author mender，Modified Date Modify Content:
  */
 
-public class BannerDelegateAdapter extends BindingAdapterDelegate<LoopData> {
+public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
 
     @Override
     public int getLayoutRes() {

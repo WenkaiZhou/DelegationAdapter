@@ -12,7 +12,7 @@
 ## 实现方案
 
 1. **addDelegate** 向Adapter中注册委托Adapter;
-2. **addDatas** 设置数据；
+2. **addDataList** 设置数据；
 3. **layout** 渲染布局，Adapter查找到对应的委托Adapter，由委托Adapter去做具体渲染。
 
 ![](https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/show.gif)
@@ -40,10 +40,10 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
     // 设置Adapter
     delegationAdapter = new DelegationAdapter();
     // 添加委托Adapter
-    delegationAdapter.addDelegate(new OnePicDelegateAdapter());
-    delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
-    delegationAdapter.addDelegate(new MorePicDelegateAdapter());
-    delegationAdapter.addDelegate(new VideoDelegateAdapter());
+    delegationAdapter.addDelegate(new OnePicAdapterDelegate());
+    delegationAdapter.addDelegate(new ThreePicAdapterDelegate());
+    delegationAdapter.addDelegate(new MorePicAdapterDelegate());
+    delegationAdapter.addDelegate(new VideoAdapterDelegate());
     recyclerView.setAdapter(delegationAdapter);
     ```
     
@@ -84,9 +84,9 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
     // 设置LayoutManager
     mDelegationAdapter = new DelegationAdapter();
     // 添加委托Adapter
-    mDelegationAdapter.addDelegate(new ServiceInfoDelegateAdapter());
-    mDelegationAdapter.addDelegate(new BillItemDelegateAdapter());
-    mDelegationAdapter.addDelegate(new ChargeInfoDelegateAdapter());
+    mDelegationAdapter.addDelegate(new ServiceInfoAdapterDelegate());
+    mDelegationAdapter.addDelegate(new BillItemAdapterDelegate());
+    mDelegationAdapter.addDelegate(new ChargeInfoAdapterDelegate());
     mBinding.recyclerView.setAdapter(mDelegationAdapter);
     
     // 设置数据
@@ -110,7 +110,7 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
     mDelegationAdapter = new DelegationAdapter();
     // 添加委托Adapter
     mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-    mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+    mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
     mRecyclerView.setAdapter(mDelegationAdapter);
     
     // 添加头部
@@ -127,7 +127,7 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
     mDelegationAdapter = new DelegationAdapter();
     // 添加委托Adapter
     mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-    mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+    mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
     mRecyclerView.setAdapter(mDelegationAdapter);
     
     // 添加尾部

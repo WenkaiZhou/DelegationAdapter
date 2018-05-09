@@ -62,7 +62,7 @@ public class HeaderActivity extends AppCompatActivity {
         // 设置Adapter
         mDelegationAdapter = new DelegationAdapter();
         mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-        mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+        mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
         mRecyclerView.setAdapter(mDelegationAdapter);
     }
 

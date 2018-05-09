@@ -12,10 +12,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.binding.adapter.MorePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.binding.adapter.OnePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.binding.adapter.ThreePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.binding.adapter.VideoDelegateAdapter;
+import com.kevin.delegationadapter.sample.binding.adapter.MorePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.binding.adapter.OnePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.binding.adapter.ThreePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.binding.adapter.VideoAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.List;
@@ -47,10 +47,10 @@ public class BindingMultiTypeActivity extends AppCompatActivity {
     private void initRecyclerView() {
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         delegationAdapter = new DelegationAdapter();
-        delegationAdapter.addDelegate(new OnePicDelegateAdapter());
-        delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
-        delegationAdapter.addDelegate(new MorePicDelegateAdapter());
-        delegationAdapter.addDelegate(new VideoDelegateAdapter());
+        delegationAdapter.addDelegate(new OnePicAdapterDelegate());
+        delegationAdapter.addDelegate(new ThreePicAdapterDelegate());
+        delegationAdapter.addDelegate(new MorePicAdapterDelegate());
+        delegationAdapter.addDelegate(new VideoAdapterDelegate());
         mBinding.recyclerView.setAdapter(delegationAdapter);
     }
 

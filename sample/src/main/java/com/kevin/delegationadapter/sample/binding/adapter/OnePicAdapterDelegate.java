@@ -8,7 +8,7 @@ import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
 
 /**
- * VideoDelegateAdapter
+ * OnePicAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-27 19:09:27
  *         Major Function：<b></b>
@@ -17,17 +17,17 @@ import com.kevin.delegationadapter.sample.bean.News;
  * @author mender，Modified Date Modify Content:
  */
 
-public class VideoDelegateAdapter extends BindingAdapterDelegate<News> {
+public class OnePicAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
     protected boolean isForViewType(News news, int position) {
-        // 我能处理视频类型
-        return news.type == 3;
+        // 我能处理一张图片
+        return news.type == 0;
     }
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_binding_news_video;
+        return R.layout.item_binding_news_one_pic;
     }
 
     @Override

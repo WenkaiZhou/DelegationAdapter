@@ -8,7 +8,7 @@ import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.samedata.bean.Bill;
 
 /**
- * BillItemDelegateAdapter
+ * BillItemAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-28 17:23:00
  *         Major Function：<b></b>
@@ -17,7 +17,7 @@ import com.kevin.delegationadapter.sample.samedata.bean.Bill;
  * @author mender，Modified Date Modify Content:
  */
 
-public class BillItemDelegateAdapter extends BindingAdapterDelegate<Bill.Item> {
+public class BillItemAdapterDelegate extends BindingAdapterDelegate<Bill.Item> {
 
     @Override
     public int getLayoutRes() {

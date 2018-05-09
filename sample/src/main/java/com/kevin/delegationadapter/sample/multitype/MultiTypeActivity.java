@@ -12,10 +12,10 @@ import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.multitype.adapter.MorePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.OnePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.ThreePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.multitype.adapter.VideoDelegateAdapter;
+import com.kevin.delegationadapter.sample.binding.adapter.MorePicDelegateAdapter;
+import com.kevin.delegationadapter.sample.binding.adapter.OnePicDelegateAdapter;
+import com.kevin.delegationadapter.sample.binding.adapter.ThreePicDelegateAdapter;
+import com.kevin.delegationadapter.sample.multitype.adapter.VideoAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public class MultiTypeActivity extends AppCompatActivity {
         delegationAdapter.addDelegate(new OnePicDelegateAdapter());
         delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
         delegationAdapter.addDelegate(new MorePicDelegateAdapter());
-        delegationAdapter.addDelegate(new VideoDelegateAdapter());
+        delegationAdapter.addDelegate(new VideoAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
     }
 

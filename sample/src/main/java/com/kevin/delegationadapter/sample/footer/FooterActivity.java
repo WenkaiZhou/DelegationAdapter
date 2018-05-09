@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.fallback.TextAdapterDelegate;
-import com.kevin.delegationadapter.sample.header.BannerDelegateAdapter;
+import com.kevin.delegationadapter.sample.header.BannerAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 import com.kevin.loopview.internal.LoopData;
 
@@ -65,7 +65,7 @@ public class FooterActivity extends AppCompatActivity {
         // 设置Adapter
         mDelegationAdapter = new DelegationAdapter();
         mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-        mDelegationAdapter.addDelegate(new BannerDelegateAdapter());
+        mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
         mRecyclerView.setAdapter(mDelegationAdapter);
     }
 
