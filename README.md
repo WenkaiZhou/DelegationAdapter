@@ -31,6 +31,8 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
 
 1. 同一数据类型多种样式
 
+    <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.png" width="320" />
+
     ```
     // 设置LayoutManager
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -73,6 +75,8 @@ compile 'com.kevin:delegationadapter-extras:1.0.0'
     ```
 
 3. 同一数据多种类型
+
+    <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.png" width="320" />
 
     ```
     // 设置LayoutManager
