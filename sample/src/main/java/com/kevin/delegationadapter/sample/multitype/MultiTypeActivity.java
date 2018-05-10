@@ -12,9 +12,9 @@ import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.binding.adapter.MorePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.binding.adapter.OnePicDelegateAdapter;
-import com.kevin.delegationadapter.sample.binding.adapter.ThreePicDelegateAdapter;
+import com.kevin.delegationadapter.sample.multitype.adapter.MorePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.adapter.OnePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.adapter.ThreePicAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.adapter.VideoAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
@@ -54,9 +54,9 @@ public class MultiTypeActivity extends AppCompatActivity {
         // 设置Adapter
         delegationAdapter = new DelegationAdapter();
         // 添加委托Adapter
-        delegationAdapter.addDelegate(new OnePicDelegateAdapter());
-        delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
-        delegationAdapter.addDelegate(new MorePicDelegateAdapter());
+        delegationAdapter.addDelegate(new OnePicAdapterDelegate());
+        delegationAdapter.addDelegate(new ThreePicAdapterDelegate());
+        delegationAdapter.addDelegate(new MorePicAdapterDelegate());
         delegationAdapter.addDelegate(new VideoAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
     }
