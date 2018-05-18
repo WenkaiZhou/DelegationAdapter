@@ -45,6 +45,17 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         super(delegatesManager);
     }
 
+    public void setHeaderItems(List headerItems) {
+        mHeaderItems = headerItems;
+        notifyDataSetChanged();
+    }
+
+    public void setHeaderItem(Object headerItem) {
+        mHeaderItems.clear();
+        mHeaderItems.add(headerItem);
+        notifyDataSetChanged();
+    }
+
     public void addHeaderItem(Object headerItem) {
         addHeaderItem(getHeaderCount(), headerItem);
     }
@@ -52,6 +63,17 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     public void addHeaderItem(int position, Object headerItem) {
         mHeaderItems.add(position, headerItem);
         notifyItemRangeInserted(position, 1);
+    }
+
+    public void setFooterItems(List footerItems) {
+        mFooterItems = footerItems;
+        notifyDataSetChanged();
+    }
+
+    public void setFooterItem(Object footerItem) {
+        mFooterItems.clear();
+        mFooterItems.add(footerItem);
+        notifyDataSetChanged();
     }
 
     public void addFooterItem(Object footerItem) {
@@ -64,7 +86,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     }
 
     public void setDataItems(List dataItems) {
-        this.mDataItems = dataItems;
+        mDataItems = dataItems;
         notifyDataSetChanged();
     }
 
@@ -114,6 +136,14 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         return mDataItems;
     }
 
+    public List<Object> getHeaderList() {
+        return mHeaderItems;
+    }
+
+    public List<Object> getFooterItems() {
+        return mFooterItems;
+    }
+
     @Override
     protected Object getItem(int position) {
         if (position < mHeaderItems.size()) {
@@ -154,10 +184,18 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         mDataItems.clear();
     }
 
+    public void clearHeader() {
+        mHeaderItems.clear();
+    }
+
+    public void clearFooter() {
+        mFooterItems.clear();
+    }
+
     public void clearAllData() {
         clearData();
-        mHeaderItems.clear();
-        mFooterItems.clear();
+        clearHeader();
+        clearFooter();
     }
 
 }
