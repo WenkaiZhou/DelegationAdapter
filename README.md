@@ -22,7 +22,7 @@
 ### 引入
 
 ```
-compile 'com.kevin:delegationadapter:1.0.0'
+compile 'com.kevin:delegationadapter:1.0.1'
 // 扩展库，使得databinding更简易，可以不引入
 compile 'com.kevin:delegationadapter-extras:1.0.0'
 ```
