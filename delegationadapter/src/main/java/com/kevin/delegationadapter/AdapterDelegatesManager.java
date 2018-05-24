@@ -152,54 +152,31 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
 
     public void onViewRecycled(VH holder) {
         AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
-        if (delegate == null) {
-            throw new NullPointerException("No delegate found for "
-                    + holder
-                    + " for item at position = "
-                    + holder.getAdapterPosition()
-                    + " for viewType = "
-                    + holder.getItemViewType());
+        if (delegate != null) {
+            delegate.onViewRecycled(holder);
         }
-        delegate.onViewRecycled(holder);
     }
 
     public boolean onFailedToRecycleView(VH holder) {
         AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
-        if (delegate == null) {
-            throw new NullPointerException("No delegate found for "
-                    + holder
-                    + " for item at position = "
-                    + holder.getAdapterPosition()
-                    + " for viewType = "
-                    + holder.getItemViewType());
+        if (delegate != null) {
+            return delegate.onFailedToRecycleView(holder);
         }
-        return delegate.onFailedToRecycleView(holder);
+        return false;
     }
 
     public void onViewAttachedToWindow(VH holder) {
         AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
-        if (delegate == null) {
-            throw new NullPointerException("No delegate found for "
-                    + holder
-                    + " for item at position = "
-                    + holder.getAdapterPosition()
-                    + " for viewType = "
-                    + holder.getItemViewType());
+        if (delegate != null) {
+            delegate.onViewAttachedToWindow(holder);
         }
-        delegate.onViewAttachedToWindow(holder);
     }
 
     public void onViewDetachedFromWindow(VH holder) {
         AdapterDelegate<Object, VH> delegate = getDelegate(holder.getItemViewType());
-        if (delegate == null) {
-            throw new NullPointerException("No delegate found for "
-                    + holder
-                    + " for item at position = "
-                    + holder.getAdapterPosition()
-                    + " for viewType = "
-                    + holder.getItemViewType());
+        if (delegate != null) {
+            delegate.onViewDetachedFromWindow(holder);
         }
-        delegate.onViewDetachedFromWindow(holder);
     }
 
     public AdapterDelegatesManager setFallbackDelegate(AdapterDelegate fallbackDelegate) {
