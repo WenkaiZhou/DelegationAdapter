@@ -1,5 +1,9 @@
-# DelegationAdapter
-一种优雅的方式来使用RecyclerView
+# 一种优雅的方式来使用RecyclerView
+
+[![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
+[![JCenter](https://img.shields.io/badge/%20JCenter%20-1.0.2-5bc0de.svg?style=flat-square)](https://bintray.com/xuehuayous/maven/DelegationAdapter/_latestVersion)
+[![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
+[![Methods](https://img.shields.io/badge/Methods%20%7C%20Size%20-%20901%20%7C%20121%20KB-d9534f.svg)](http://www.methodscount.com/?lib=com.scwang.smartrefresh%3ASmartRefreshLayout%3A1.0.4)
 
 ## 核心思想
 
