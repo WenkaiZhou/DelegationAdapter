@@ -1,5 +1,7 @@
 # 一种优雅的方式来使用RecyclerView
 
+使得RecyclerView各种情况的多类型条目更简单！
+
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
 [![JCenter](https://img.shields.io/badge/%20JCenter%20-1.0.2-5bc0de.svg?style=flat-square)](https://bintray.com/xuehuayous/maven/DelegationAdapter/_latestVersion)
 [![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
@@ -20,43 +22,82 @@
 
 ![](https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/show.gif)
 
-## 如何使用
-
-### 引入
+## 引入
 
 ```
 compile 'com.kevin:delegationadapter:1.0.2'
-// 扩展库，使得databinding更简易，可以不引入
+// 扩展库，扩展支持了item click、item long click、databinding
 compile 'com.kevin:delegationadapter-extras:1.0.0'
 ```
 
 ### 用法
 
-### 同一数据类型多种样式
+#### 同一数据类型多种样式
 
 <table>
   <tr>
     <td>
-    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.jpg" width="320" />
+    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.jpg" width="300" />
     </td>
     <td>
-    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="320" />
+    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="300" />
 	</td>
   </tr>
 </table>
 
+
+1. 为RecyclerView设置DelegationAdapter的实例
+
 ```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-recyclerView.setLayoutManager(layoutManager);
 // 设置Adapter
 delegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-delegationAdapter.addDelegate(new OnePicAdapterDelegate());
-delegationAdapter.addDelegate(new ThreePicAdapterDelegate());
-delegationAdapter.addDelegate(new MorePicAdapterDelegate());
-delegationAdapter.addDelegate(new VideoAdapterDelegate());
 recyclerView.setAdapter(delegationAdapter);
+```
+
+2. 创建委托Adapter
+
+```
+public class ChatItemMyTextAdapterDelegate extends BindingAdapterDelegate<Chat.TalkMsg> {
+
+    @Override
+    protected boolean isForViewType(Chat.TalkMsg item, int position) {
+        // 用户类型为1(自己)，条目类型1(文本)
+        return item.user.type == 1 && item.type == 1;
+    }
+
+    @Override
+    public int getLayoutRes() {
+        return R.layout.item_chat_my_text_binding;
+    }
+
+    @Override
+    public void setVariable(ViewDataBinding binding, Chat.TalkMsg item, int position) {
+        binding.setVariable(BR.model, item);
+    }
+
+}
+```
+
+3. 添加委托Adapter
+
+```
+// 添加委托Adapter
+delegationAdapter.addDelegate(new ChatItemOtherTextAdapterDelegate());
+delegationAdapter.addDelegate(new ChatItemMyTextAdapterDelegate());
+delegationAdapter.addDelegate(new ChatItemMyImageAdapterDelegate());
+```
+
+4. 设置数据
+
+```
+// 设置一组数据
+delegationAdapter.setDataItems(chat.msgs);
+// 添加一组数据
+delegationAdapter.setDataItems(chat.msgs);
+// 添加单个数据
+delegationAdapter.setDataItem(chat.msgs.get(0));
+// 清空数据
+delegationAdapter.clearData();
 ```
 
 ### 不同数据类型多种样式
