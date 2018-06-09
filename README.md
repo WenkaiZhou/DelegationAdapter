@@ -30,9 +30,9 @@ compile 'com.kevin:delegationadapter:1.0.2'
 compile 'com.kevin:delegationadapter-extras:1.0.0'
 ```
 
-### 用法
+## 用法
 
-#### 同一数据类型多种样式
+### 同一数据类型多种样式
 
 <table>
   <tr>

@@ -21,13 +21,14 @@
         </activity>
 
         <activity android:name=".multitype.news.common.MultiTypeActivity" />
-        <activity android:name=".fallback.FallbackActivity" />
         <activity android:name=".multitype.news.binding.BindingMultiTypeActivity" />
+        <activity android:name=".multitype.chat.binding.BindingChatActivity" />
+        <activity android:name=".multitype.chat.common.ChatActivity" />
+        <activity android:name=".fallback.FallbackActivity" />
         <activity android:name=".multidataandtype.MultiDataAndTypeActivity" />
         <activity android:name=".header.HeaderActivity" />
         <activity android:name=".footer.FooterActivity" />
         <activity android:name=".samedata.SameDataActivity" />
-        <activity android:name=".multitype.chat.BindingChatActivity" />
     </application>
 
 </manifest>

@@ -14,7 +14,8 @@ import com.kevin.delegationadapter.sample.fallback.FallbackActivity;
 import com.kevin.delegationadapter.sample.footer.FooterActivity;
 import com.kevin.delegationadapter.sample.header.HeaderActivity;
 import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
-import com.kevin.delegationadapter.sample.multitype.chat.BindingChatActivity;
+import com.kevin.delegationadapter.sample.multitype.chat.binding.BindingChatActivity;
+import com.kevin.delegationadapter.sample.multitype.chat.common.ChatActivity;
 import com.kevin.delegationadapter.sample.multitype.news.binding.BindingMultiTypeActivity;
 import com.kevin.delegationadapter.sample.multitype.news.common.MultiTypeActivity;
 import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
@@ -62,14 +63,15 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initData() {
         String[] titles = {
-                "同一数据类型多种样式",
-                "同一数据类型多种样式(dataBinding实现)",
+                "同一类型多种样式(新闻)",
+                "同一类型多种样式(新闻-dataBinding实现)",
+                "同一类型多种样式(聊天)",
+                "同一类型多种样式(聊天-dataBinding实现)",
                 "不同数据类型多种样式",
                 "同一数据多种类型",
                 "带头部数据的不同数据类型多样式",
                 "带尾部数据的不同数据类型多样式",
                 "带兜底的委托Adapter(未注册委托时的处理)",
-                "聊天界面"
         };
         List<String> titleList = Arrays.asList(titles);
         mDelegationAdapter.setDataItems(titleList);
@@ -84,22 +86,25 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, BindingMultiTypeActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(HomeActivity.this, MultiDataAndTypeActivity.class));
+                startActivity(new Intent(HomeActivity.this, ChatActivity.class));
                 break;
             case 3:
-                startActivity(new Intent(HomeActivity.this, SameDataActivity.class));
+                startActivity(new Intent(HomeActivity.this, BindingChatActivity.class));
                 break;
             case 4:
-                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
+                startActivity(new Intent(HomeActivity.this, MultiDataAndTypeActivity.class));
                 break;
             case 5:
-                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                startActivity(new Intent(HomeActivity.this, SameDataActivity.class));
                 break;
             case 6:
-                startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
+                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
                 break;
             case 7:
-                startActivity(new Intent(HomeActivity.this, BindingChatActivity.class));
+                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                break;
+            case 8:
+                startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
                 break;
         }
     }
