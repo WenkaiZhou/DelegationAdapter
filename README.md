@@ -57,7 +57,7 @@ recyclerView.setAdapter(delegationAdapter);
 2. 创建委托Adapter
 
 ```
-public class ChatItemMyTextAdapterDelegate extends BindingAdapterDelegate<Chat.TalkMsg> {
+public class ChatItemMyTextAdapterDelegate extends AdapterDelegate<Chat.TalkMsg, ChatItemMyTextAdapterDelegate.ViewHolder> {
 
     @Override
     protected boolean isForViewType(Chat.TalkMsg item, int position) {
@@ -66,15 +66,28 @@ public class ChatItemMyTextAdapterDelegate extends BindingAdapterDelegate<Chat.T
     }
 
     @Override
-    public int getLayoutRes() {
-        return R.layout.item_chat_my_text_binding;
+    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_text, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Chat.TalkMsg item, int position) {
-        binding.setVariable(BR.model, item);
+    protected void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
+        Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
+        holder.tvContent.setText(item.text);
     }
 
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivAvatar;
+        TextView tvContent;
+
+        public ViewHolder(View view) {
+            super(view);
+            ivAvatar = view.findViewById(R.id.iv_avatar);
+            tvContent = view.findViewById(R.id.tv_content);
+        }
+    }
 }
 ```
 
