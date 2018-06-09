@@ -29,7 +29,7 @@ public class OnePicAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_binding_news_one_pic;
+        return R.layout.item_news_one_pic_binding;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class MorePicAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_binding_news_three_pic;
+        return R.layout.item_news_three_pic_binding;
     }
 
     @Override

@@ -16,8 +16,8 @@ import com.kevin.delegationadapter.sample.header.HeaderActivity;
 import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
 import com.kevin.delegationadapter.sample.multitype.chat.binding.BindingChatActivity;
 import com.kevin.delegationadapter.sample.multitype.chat.common.ChatActivity;
-import com.kevin.delegationadapter.sample.multitype.news.binding.BindingMultiTypeActivity;
-import com.kevin.delegationadapter.sample.multitype.news.common.MultiTypeActivity;
+import com.kevin.delegationadapter.sample.multitype.news.binding.BindingNewsActivity;
+import com.kevin.delegationadapter.sample.multitype.news.common.NewsActivity;
 import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
 
 import java.util.Arrays;
@@ -80,31 +80,31 @@ public class HomeActivity extends AppCompatActivity {
     public void onItemClick(View v, int position, String item) {
         switch (position) {
             case 0:
-                startActivity(new Intent(HomeActivity.this, MultiTypeActivity.class));
+                startActivity(new Intent(this, NewsActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(HomeActivity.this, BindingMultiTypeActivity.class));
+                startActivity(new Intent(this, BindingNewsActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(HomeActivity.this, ChatActivity.class));
+                startActivity(new Intent(this, ChatActivity.class));
                 break;
             case 3:
-                startActivity(new Intent(HomeActivity.this, BindingChatActivity.class));
+                startActivity(new Intent(this, BindingChatActivity.class));
                 break;
             case 4:
-                startActivity(new Intent(HomeActivity.this, MultiDataAndTypeActivity.class));
+                startActivity(new Intent(this, MultiDataAndTypeActivity.class));
                 break;
             case 5:
-                startActivity(new Intent(HomeActivity.this, SameDataActivity.class));
+                startActivity(new Intent(this, SameDataActivity.class));
                 break;
             case 6:
-                startActivity(new Intent(HomeActivity.this, HeaderActivity.class));
+                startActivity(new Intent(this, HeaderActivity.class));
                 break;
             case 7:
-                startActivity(new Intent(HomeActivity.this, FooterActivity.class));
+                startActivity(new Intent(this, FooterActivity.class));
                 break;
             case 8:
-                startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
+                startActivity(new Intent(this, FallbackActivity.class));
                 break;
         }
     }

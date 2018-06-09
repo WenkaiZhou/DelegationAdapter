@@ -20,8 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".multitype.news.common.MultiTypeActivity" />
-        <activity android:name=".multitype.news.binding.BindingMultiTypeActivity" />
+        <activity android:name=".multitype.news.common.NewsActivity" />
+        <activity android:name=".multitype.news.binding.BindingNewsActivity" />
         <activity android:name=".multitype.chat.binding.BindingChatActivity" />
         <activity android:name=".multitype.chat.common.ChatActivity" />
         <activity android:name=".fallback.FallbackActivity" />

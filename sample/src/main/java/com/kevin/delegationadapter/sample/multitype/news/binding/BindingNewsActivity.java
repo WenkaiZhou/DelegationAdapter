@@ -12,7 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.binding.BindingMultiTypeActivityBinding;
 import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.MorePicAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.OnePicAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.ThreePicAdapterDelegate;
@@ -22,7 +21,7 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 import java.util.List;
 
 /**
- * BindingMultiTypeActivity
+ * BindingNewsActivity
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-27 18:39:08
  *         Major Function：<b></b>
@@ -31,15 +30,15 @@ import java.util.List;
  * @author mender，Modified Date Modify Content:
  */
 
-public class BindingMultiTypeActivity extends AppCompatActivity {
+public class BindingNewsActivity extends AppCompatActivity {
 
-    BindingMultiTypeActivityBinding mBinding;
+    BindingNewsBinding mBinding;
     DelegationAdapter delegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = BindingMultiTypeActivityBinding.inflate(getLayoutInflater());
+        mBinding = BindingNewsBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         initRecyclerView();
         initData();

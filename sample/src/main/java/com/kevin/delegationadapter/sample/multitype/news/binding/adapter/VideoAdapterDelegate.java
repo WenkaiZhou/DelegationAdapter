@@ -27,7 +27,7 @@ public class VideoAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_binding_news_video;
+        return R.layout.item_news_video_binding;
     }
 
     @Override

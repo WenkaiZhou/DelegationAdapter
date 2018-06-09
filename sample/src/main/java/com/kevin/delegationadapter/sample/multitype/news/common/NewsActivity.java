@@ -21,7 +21,7 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 import java.util.List;
 
 /**
- * MultiTypeActivity
+ * NewsActivity
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-27 17:00:41
  *         Major Function：<b>多类型Activity</b>
@@ -30,7 +30,7 @@ import java.util.List;
  * @author mender，Modified Date Modify Content:
  */
 
-public class MultiTypeActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DelegationAdapter delegationAdapter;
@@ -38,7 +38,7 @@ public class MultiTypeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_type);
+        setContentView(R.layout.activity_news);
         initRecyclerView();
         initData();
     }
