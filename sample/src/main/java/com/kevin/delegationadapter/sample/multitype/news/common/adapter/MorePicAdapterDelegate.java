@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.multitype.adapter;
+package com.kevin.delegationadapter.sample.multitype.news.common.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
 
 /**
- * VideoAdapterDelegate
+ * MorePicAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-26 17:06:15
  *         Major Function：<b></b>
@@ -22,42 +22,42 @@ import com.kevin.delegationadapter.sample.bean.News;
  * @author mender，Modified Date Modify Content:
  */
 
-public class VideoAdapterDelegate extends AdapterDelegate<News, VideoAdapterDelegate.VideoViewHolder> {
+public class MorePicAdapterDelegate extends AdapterDelegate<News, MorePicAdapterDelegate.MorePicViewHolder> {
 
     @Override
     protected boolean isForViewType(News news, int position) {
-        // 我能处理视频类型
-        return news.type == 3;
+        // 我能处理多张图片
+        return news.type == 2;
     }
 
     @Override
-    protected VideoViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_video, parent, false);
-        VideoViewHolder holder = new VideoViewHolder(view);
+    protected MorePicViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_more_pic, parent, false);
+        MorePicViewHolder holder = new MorePicViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(VideoViewHolder holder, int position, News news) {
+    protected void onBindViewHolder(MorePicViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);
-        holder.tvDuration.setText(news.duration);
+        holder.tvCount.setText(news.count + " 图");
         Glide.with(holder.itemView.getContext()).load(news.imgUrls.get(0)).into(holder.ivPic);
     }
 
-    static class VideoViewHolder extends RecyclerView.ViewHolder {
+    static class MorePicViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPic;
         TextView tvContent;
-        TextView tvDuration;
+        TextView tvCount;
         TextView tvSource;
         TextView tvTime;
 
-        public VideoViewHolder(View view) {
+        public MorePicViewHolder(View view) {
             super(view);
             ivPic = view.findViewById(R.id.iv_pic);
             tvContent = view.findViewById(R.id.tv_content);
-            tvDuration = view.findViewById(R.id.tv_duration);
+            tvCount = view.findViewById(R.id.tv_count);
             tvSource = view.findViewById(R.id.tv_source);
             tvTime = view.findViewById(R.id.tv_time);
         }

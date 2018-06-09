@@ -10,12 +10,13 @@ import android.view.View;
 
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
-import com.kevin.delegationadapter.sample.binding.BindingMultiTypeActivity;
 import com.kevin.delegationadapter.sample.fallback.FallbackActivity;
 import com.kevin.delegationadapter.sample.footer.FooterActivity;
 import com.kevin.delegationadapter.sample.header.HeaderActivity;
 import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
-import com.kevin.delegationadapter.sample.multitype.MultiTypeActivity;
+import com.kevin.delegationadapter.sample.multitype.chat.BindingChatActivity;
+import com.kevin.delegationadapter.sample.multitype.news.binding.BindingMultiTypeActivity;
+import com.kevin.delegationadapter.sample.multitype.news.common.MultiTypeActivity;
 import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
 
 import java.util.Arrays;
@@ -67,7 +68,8 @@ public class HomeActivity extends AppCompatActivity {
                 "同一数据多种类型",
                 "带头部数据的不同数据类型多样式",
                 "带尾部数据的不同数据类型多样式",
-                "带兜底的委托Adapter(未注册委托时的处理)"
+                "带兜底的委托Adapter(未注册委托时的处理)",
+                "聊天界面"
         };
         List<String> titleList = Arrays.asList(titles);
         mDelegationAdapter.setDataItems(titleList);
@@ -95,6 +97,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case 6:
                 startActivity(new Intent(HomeActivity.this, FallbackActivity.class));
+                break;
+            case 7:
+                startActivity(new Intent(HomeActivity.this, BindingChatActivity.class));
                 break;
         }
     }

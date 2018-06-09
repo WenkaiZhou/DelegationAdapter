@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kevin.delegationadapter.sample.bean.Chat.TalkMsg" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            app:avatarUrl="@{model.user.avatar}"
+            app:error="@{@drawable/ic_launcher_background}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="65dp"
+            android:background="@drawable/ic_chat_other_bg"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="4dp"
+            android:text="@{model.text}"
+            android:textSize="15sp"
+            tools:text="我不听，我不听，我不听，我不听，我不听，我不听，我不听" />
+
+    </LinearLayout>
+</layout>

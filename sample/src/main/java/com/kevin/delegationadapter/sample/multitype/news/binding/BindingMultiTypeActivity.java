@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.binding;
+package com.kevin.delegationadapter.sample.multitype.news.binding;
 
 import android.databinding.BindingAdapter;
 import android.os.Bundle;
@@ -12,10 +12,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.binding.adapter.MorePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.binding.adapter.OnePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.binding.adapter.ThreePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.binding.adapter.VideoAdapterDelegate;
+import com.kevin.delegationadapter.sample.binding.BindingMultiTypeActivityBinding;
+import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.MorePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.OnePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.ThreePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.binding.adapter.VideoAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.List;

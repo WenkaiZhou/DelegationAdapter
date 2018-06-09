@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.multitype;
+package com.kevin.delegationadapter.sample.multitype.news.common;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,10 +12,10 @@ import com.google.gson.reflect.TypeToken;
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;
-import com.kevin.delegationadapter.sample.multitype.adapter.MorePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.multitype.adapter.OnePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.multitype.adapter.ThreePicAdapterDelegate;
-import com.kevin.delegationadapter.sample.multitype.adapter.VideoAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.common.adapter.MorePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.common.adapter.OnePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.common.adapter.ThreePicAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.news.common.adapter.VideoAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 import java.util.List;

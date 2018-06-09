@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.multitype.adapter;
+package com.kevin.delegationadapter.sample.multitype.news.common.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

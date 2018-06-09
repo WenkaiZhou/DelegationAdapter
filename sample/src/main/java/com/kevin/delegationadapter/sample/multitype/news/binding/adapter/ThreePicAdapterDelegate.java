@@ -1,4 +1,4 @@
-package com.kevin.delegationadapter.sample.binding.adapter;
+package com.kevin.delegationadapter.sample.multitype.news.binding.adapter;
 
 import android.databinding.ViewDataBinding;
 
