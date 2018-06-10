@@ -184,4 +184,24 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      */
     protected void onViewDetachedFromWindow(VH holder) {
     }
+
+    /**
+     * Called by RecyclerView when it starts observing this Adapter.
+     * <p>
+     * Keep in mind that same adapter may be observed by multiple RecyclerViews.
+     *
+     * @param recyclerView The RecyclerView instance which started observing this adapter.
+     * @see #onDetachedFromRecyclerView(RecyclerView)
+     */
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    }
+
+    /**
+     * Called by RecyclerView when it stops observing this Adapter.
+     *
+     * @param recyclerView The RecyclerView instance which stopped observing this adapter.
+     * @see #onAttachedToRecyclerView(RecyclerView)
+     */
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+    }
 }

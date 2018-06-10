@@ -33,7 +33,7 @@ import java.util.List;
 
 public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    private AdapterDelegatesManager<VH> delegatesManager;
+    protected AdapterDelegatesManager<VH> delegatesManager;
 
     public AbsDelegationAdapter() {
         this(new AdapterDelegatesManager());
@@ -110,6 +110,16 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
     @Override
     public void onViewDetachedFromWindow(VH holder) {
         delegatesManager.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        delegatesManager.onAttachedToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        delegatesManager.onDetachedFromRecyclerView(recyclerView);
     }
 
     protected abstract Object getItem(int position);

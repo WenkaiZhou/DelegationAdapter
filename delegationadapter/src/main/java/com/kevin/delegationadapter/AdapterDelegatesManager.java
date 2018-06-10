@@ -179,6 +179,20 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         }
     }
 
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        for (int i = 0; i < delegates.size(); i++) {
+            AdapterDelegate<Object, VH> delegate = delegates.get(delegates.keyAt(i));
+            delegate.onAttachedToRecyclerView(recyclerView);
+        }
+    }
+
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        for (int i = 0; i < delegates.size(); i++) {
+            AdapterDelegate<Object, VH> delegate = delegates.get(delegates.keyAt(i));
+            delegate.onDetachedFromRecyclerView(recyclerView);
+        }
+    }
+
     public AdapterDelegatesManager setFallbackDelegate(AdapterDelegate fallbackDelegate) {
         this.fallbackDelegate = fallbackDelegate;
         return this;
