@@ -27,7 +27,7 @@
 ```
 compile 'com.kevin:delegationadapter:1.0.3'
 // 扩展库，扩展支持了item click、item long click、databinding
-compile 'com.kevin:delegationadapter-extras:1.0.1'
+compile 'com.kevin:delegationadapter-extras:1.0.2'
 ```
 
 ## 用法

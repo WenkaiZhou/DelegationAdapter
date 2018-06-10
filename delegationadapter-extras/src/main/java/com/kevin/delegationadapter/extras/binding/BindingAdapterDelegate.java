@@ -21,9 +21,8 @@ import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
-
 import com.kevin.delegationadapter.ItemData;
+import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate;
 
 /**
  * BindingDelegationAdapter
@@ -35,7 +34,7 @@ import com.kevin.delegationadapter.ItemData;
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class BindingAdapterDelegate<T> extends ClickableAdapterDelegate<T, BindingViewHolder> {
+public abstract class BindingAdapterDelegate<T> extends SpanAdapterDelegate<T, BindingViewHolder> {
 
     public BindingAdapterDelegate() {
     }
