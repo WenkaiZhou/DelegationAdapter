@@ -31,6 +31,10 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 
 public abstract class SpanAdapterDelegate<T, VH extends RecyclerView.ViewHolder> extends ClickableAdapterDelegate<T, VH> {
 
-    protected abstract int getSpanSize();
+    public static final int DEFAULT_SPAN_SIZE = 1;
+
+    protected int getSpanSize() {
+        return DEFAULT_SPAN_SIZE;
+    }
 
 }

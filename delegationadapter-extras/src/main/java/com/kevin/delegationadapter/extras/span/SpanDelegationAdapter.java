@@ -47,7 +47,7 @@ public class SpanDelegationAdapter<VH extends RecyclerView.ViewHolder> extends D
                     if (null != delegate && delegate instanceof SpanAdapterDelegate) {
                         return ((SpanAdapterDelegate) delegate).getSpanSize();
                     }
-                    return 1;
+                    return SpanAdapterDelegate.DEFAULT_SPAN_SIZE;
                 }
             });
         }
