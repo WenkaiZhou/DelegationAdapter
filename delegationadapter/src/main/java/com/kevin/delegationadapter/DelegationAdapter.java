@@ -45,14 +45,14 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         super(delegatesManager);
     }
 
-    public void setHeaderItems(List headerItems) {
-        mHeaderItems = headerItems;
-        notifyDataSetChanged();
-    }
-
     public void setHeaderItem(Object headerItem) {
         mHeaderItems.clear();
         mHeaderItems.add(headerItem);
+        notifyDataSetChanged();
+    }
+
+    public void setHeaderItems(List headerItems) {
+        mHeaderItems = headerItems;
         notifyDataSetChanged();
     }
 
@@ -65,14 +65,23 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         notifyItemRangeInserted(position, 1);
     }
 
-    public void setFooterItems(List footerItems) {
-        mFooterItems = footerItems;
-        notifyDataSetChanged();
+    public void addHeaderItems(List headerItems) {
+        addHeaderItems(getHeaderCount(), headerItems);
+    }
+
+    private void addHeaderItems(int position, List headerItems) {
+        mHeaderItems.addAll(position, headerItems);
+        notifyItemRangeInserted(position, headerItems.size());
     }
 
     public void setFooterItem(Object footerItem) {
         mFooterItems.clear();
         mFooterItems.add(footerItem);
+        notifyDataSetChanged();
+    }
+
+    public void setFooterItems(List footerItems) {
+        mFooterItems = footerItems;
         notifyDataSetChanged();
     }
 
@@ -83,6 +92,15 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     public void addFooterItem(int position, Object footerItem) {
         mFooterItems.add(position, footerItem);
         notifyItemRangeInserted(getHeaderCount() + getDataCount() + position, 1);
+    }
+
+    public void addFooterItems(List footerItems) {
+        addFooterItems(getFooterCount(), footerItems);
+    }
+
+    private void addFooterItems(int position, List footerItems) {
+        mFooterItems.addAll(position, footerItems);
+        notifyItemRangeInserted(getHeaderCount() + getDataCount() + position, footerItems.size());
     }
 
     public void setDataItems(List dataItems) {
