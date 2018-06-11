@@ -42,6 +42,9 @@ compile 'com.kevin:delegationadapter-extras:1.0.2'
     <td>
     	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="300" />
 	</td>
+	<td>
+        <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/03.jpg" width="300" />
+    </td>
   </tr>
 </table>
 
