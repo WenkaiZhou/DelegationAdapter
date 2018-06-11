@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kevin.delegationadapter.sample.bean.Goods.TagItem" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@android:color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerHorizontal="true"
+            app:avatarUrl="@{model.img}"
+            app:error="@{@drawable/ic_launcher_background}"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_pic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="@{model.title}"
+            android:textSize="10sp"
+            tools:text="电脑数码" />
+
+    </RelativeLayout>
+
+</layout>

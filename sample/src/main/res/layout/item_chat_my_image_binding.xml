@@ -37,7 +37,7 @@
             android:padding="4dp"
             android:paddingRight="8dp"
             app:error="@{@drawable/ic_launcher_background}"
-            app:imageUrl="@{model.pic}" />
+            app:thumbnailUrl="@{model.pic}" />
 
     </RelativeLayout>
 </layout>

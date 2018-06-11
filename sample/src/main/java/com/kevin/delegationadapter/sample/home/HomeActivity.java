@@ -13,7 +13,7 @@ import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.fallback.FallbackActivity;
 import com.kevin.delegationadapter.sample.footer.FooterActivity;
 import com.kevin.delegationadapter.sample.header.HeaderActivity;
-import com.kevin.delegationadapter.sample.multidataandtype.MultiDataAndTypeActivity;
+import com.kevin.delegationadapter.sample.multidataandtype.binding.BindingGoodsActivity;
 import com.kevin.delegationadapter.sample.multitype.chat.binding.BindingChatActivity;
 import com.kevin.delegationadapter.sample.multitype.chat.common.ChatActivity;
 import com.kevin.delegationadapter.sample.multitype.news.binding.BindingNewsActivity;
@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, BindingChatActivity.class));
                 break;
             case 4:
-                startActivity(new Intent(this, MultiDataAndTypeActivity.class));
+                startActivity(new Intent(this, BindingGoodsActivity.class));
                 break;
             case 5:
                 startActivity(new Intent(this, SameDataActivity.class));

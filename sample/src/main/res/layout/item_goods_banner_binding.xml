@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kevin.loopview.internal.LoopData" />
+
+    </data>
+
+    <com.kevin.loopview.AdLoopView
+        android:id="@+id/loop_view"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        app:loopViewPager="@{model}"
+        app:loop_autoLoop="true"
+        app:loop_dotSelector="@drawable/banner_dots_selector"
+        app:loop_layout="@layout/banner_layout" />
+
+</layout>

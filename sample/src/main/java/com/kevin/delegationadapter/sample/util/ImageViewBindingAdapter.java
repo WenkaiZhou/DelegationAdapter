@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 /**
  * ImageViewBindingAdapter
@@ -18,13 +19,24 @@ import com.bumptech.glide.Glide;
 
 public class ImageViewBindingAdapter {
 
+    @BindingAdapter("imageUrl")
+    public static void loadImage(ImageView view, String url) {
+        Glide.with(view.getContext()).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(view);
+    }
+
+    @BindingAdapter({"imageUrl", "error"})
+    public static void loadImage(ImageView view, String url, Drawable error) {
+        Glide.with(view.getContext()).load(url).error(error)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(view);
+    }
+
     @BindingAdapter({"avatarUrl", "error"})
     public static void loadAvatarImage(ImageView view, String url, Drawable error) {
         Glide.with(view.getContext()).load(url).error(error).into(view);
     }
 
-    @BindingAdapter({"imageUrl", "error"})
-    public static void loadImage(ImageView view, String url, Drawable error) {
+    @BindingAdapter({"thumbnailUrl", "error"})
+    public static void loadThumbnailImage(ImageView view, String url, Drawable error) {
         Glide.with(view.getContext()).load(url).asBitmap().override(600, 600).into(view);
     }
 }
