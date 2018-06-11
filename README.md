@@ -6,6 +6,22 @@
 [![JCenter](https://img.shields.io/badge/%20JCenter%20-1.0.2-5bc0de.svg?style=flat-square)](https://bintray.com/xuehuayous/maven/DelegationAdapter/_latestVersion)
 [![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
 
+## 示例图片
+
+<table>
+  <tr>
+    <td>
+    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.jpg" width="300" />
+    </td>
+    <td>
+    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="300" />
+	</td>
+	<td>
+        <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/03.jpg" width="300" />
+    </td>
+  </tr>
+</table>
+
 ## 核心思想
 
 　　想必大家都遇到过，在一个列表中显示不同样式的需求。在RecyclerView中可以通过ViewType进行区分，如果样式特别多的时候就会使得代码非常冗余，不利于开发及维护。那么有没有一种优雅的方法解决这个问题呢？
@@ -34,86 +50,19 @@ compile 'com.kevin:delegationadapter-extras:1.0.2'
 
 ### 同一数据类型多种样式
 
-<table>
-  <tr>
-    <td>
-    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.jpg" width="300" />
-    </td>
-    <td>
-    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="300" />
-	</td>
-	<td>
-        <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/03.jpg" width="300" />
-    </td>
-  </tr>
-</table>
-
-
-1. 为RecyclerView设置DelegationAdapter的实例
 
 ```
+// 设置LayoutManager
+LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+recyclerView.setLayoutManager(layoutManager);
 // 设置Adapter
 delegationAdapter = new DelegationAdapter();
-recyclerView.setAdapter(delegationAdapter);
-```
-
-2. 创建委托Adapter
-
-```
-public class ChatItemMyTextAdapterDelegate extends AdapterDelegate<Chat.TalkMsg, ChatItemMyTextAdapterDelegate.ViewHolder> {
-
-    @Override
-    protected boolean isForViewType(Chat.TalkMsg item, int position) {
-        // 用户类型为1(自己)，条目类型1(文本)
-        return item.user.type == 1 && item.type == 1;
-    }
-
-    @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_text, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
-        Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
-        holder.tvContent.setText(item.text);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivAvatar;
-        TextView tvContent;
-
-        public ViewHolder(View view) {
-            super(view);
-            ivAvatar = view.findViewById(R.id.iv_avatar);
-            tvContent = view.findViewById(R.id.tv_content);
-        }
-    }
-}
-```
-
-3. 添加委托Adapter
-
-```
 // 添加委托Adapter
-delegationAdapter.addDelegate(new ChatItemOtherTextAdapterDelegate());
-delegationAdapter.addDelegate(new ChatItemMyTextAdapterDelegate());
-delegationAdapter.addDelegate(new ChatItemMyImageAdapterDelegate());
-```
-
-4. 设置数据
-
-```
-// 设置一组数据
-delegationAdapter.setDataItems(chat.msgs);
-// 添加一组数据
-delegationAdapter.setDataItems(chat.msgs);
-// 添加单个数据
-delegationAdapter.setDataItem(chat.msgs.get(0));
-// 清空数据
-delegationAdapter.clearData();
+delegationAdapter.addDelegate(new OnePicDelegateAdapter());
+delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
+delegationAdapter.addDelegate(new MorePicDelegateAdapter());
+delegationAdapter.addDelegate(new VideoDelegateAdapter());
+recyclerView.setAdapter(delegationAdapter);
 ```
 
 ### 不同数据类型多种样式
