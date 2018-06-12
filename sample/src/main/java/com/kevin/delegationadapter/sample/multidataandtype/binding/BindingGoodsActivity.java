@@ -64,6 +64,7 @@ public class BindingGoodsActivity extends AppCompatActivity {
         delegationAdapter.addHeaderItems(goods.tags);
         delegationAdapter.addHeaderItem(new BlankParameters(13, 0xFFFFFFFF));
         delegationAdapter.addDataItems(goods.articles);
+//        delegationAdapter.addHeaderItem(goods.banner);
     }
 
 }

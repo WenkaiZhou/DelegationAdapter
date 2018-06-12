@@ -10,11 +10,11 @@
 
     </data>
 
-    <com.kevin.loopview.AdLoopView
+    <com.kevin.loopview.BannerView
         android:id="@+id/loop_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:loopViewPager="@{model}"
+        app:data="@{model}"
         app:loop_autoLoop="true"
         app:loop_dotSelector="@drawable/banner_dots_selector"
         app:loop_layout="@layout/banner_layout" />

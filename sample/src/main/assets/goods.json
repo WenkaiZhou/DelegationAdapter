@@ -3,32 +3,32 @@
     "items": [
       {
         "id": "5397",
-        "imgUrl": "https://eimg.smzdm.com/201806/08/5b1a71b82ce299430.png",
-        "title": "给爱书一个安身之地 300元以下书架推荐榜",
+        "img": "https://eimg.smzdm.com/201806/08/5b1a71b82ce299430.png",
+        "desc": "给爱书一个安身之地 300元以下书架推荐榜",
         "link": "https://m.smzdm.com/list/2615?from=app"
       },
       {
         "id": "5398",
-        "imgUrl": "https://eimg.smzdm.com/201806/08/5b1a71eead3419410.png",
-        "title": "性能颜值兼具 三大品牌经典鞋款推荐榜",
+        "img": "https://eimg.smzdm.com/201806/08/5b1a71eead3419410.png",
+        "desc": "性能颜值兼具 三大品牌经典鞋款推荐榜",
         "link": "https://m.smzdm.com/list/2468?from=app"
       },
       {
         "id": "5271",
-        "imgUrl": "https://eimg.smzdm.com/201806/08/5b19df3fe4b9c4179.jpg",
-        "title": "618好物热卖榜",
+        "img": "https://eimg.smzdm.com/201806/08/5b19df3fe4b9c4179.jpg",
+        "desc": "618好物热卖榜",
         "link": "https://m.smzdm.com/ge/tag/434212/"
       },
       {
         "id": "5269",
-        "imgUrl": "https://eimg.smzdm.com/201806/08/5b19ddeceeb8e2917.png",
-        "title": "远离过万传说 618之显示屏必买榜",
+        "img": "https://eimg.smzdm.com/201806/08/5b19ddeceeb8e2917.png",
+        "desc": "远离过万传说 618之显示屏必买榜",
         "link": "https://m.smzdm.com/list/2740?from=app"
       },
       {
         "id": "5270",
-        "imgUrl": "https://eimg.smzdm.com/201806/08/5b19de30b39538048.png",
-        "title": "拒做油腻中年人 绿茶助你刮肠胃",
+        "img": "https://eimg.smzdm.com/201806/08/5b19de30b39538048.png",
+        "desc": "拒做油腻中年人 绿茶助你刮肠胃",
         "link": "https://m.smzdm.com/list/3035?from=app"
       }
     ]

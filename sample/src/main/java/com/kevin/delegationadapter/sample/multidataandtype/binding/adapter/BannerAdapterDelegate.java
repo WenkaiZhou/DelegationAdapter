@@ -1,16 +1,18 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
 import android.databinding.ViewDataBinding;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.databinding.ItemGoodsBannerBindingBinding;
-import com.kevin.loopview.AdLoopView;
+import com.kevin.loopview.BannerView;
 import com.kevin.loopview.internal.BaseLoopAdapter;
+import com.kevin.loopview.internal.ImageLoader;
 import com.kevin.loopview.internal.LoopData;
 
 /**
@@ -32,13 +34,24 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
 
     @Override
     public void setVariable(ViewDataBinding binding, final LoopData item, int position) {
-        binding.setVariable(BR.model, item);
 
-        AdLoopView loopView = ((ItemGoodsBannerBindingBinding) binding).loopView;
-        // 设置轮转大图点击监听
-        loopView.setOnClickListener(new BaseLoopAdapter.OnItemClickListener() {
+        BannerView bannerView = ((ItemGoodsBannerBindingBinding) binding).loopView;
+        LoopData data = bannerView.getData();
+        if (item != data) {
+            binding.setVariable(BR.model, item);
+        }
+
+        bannerView.setImageLoader(new ImageLoader() {
             @Override
-            public void onItemClick(PagerAdapter parent, View view, int position, int realPosition) {
+            public void loadImage(ImageView imageView, String url, int placeholder) {
+                Glide.with(imageView.getContext()).load(url).into(imageView);
+            }
+        });
+
+        // 设置轮转大图点击监听
+        bannerView.setOnItemClickListener(new BaseLoopAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, LoopData.ItemData itemData, int position) {
                 Toast.makeText(view.getContext(), item.items.get(position).link, Toast.LENGTH_SHORT).show();
             }
         });
