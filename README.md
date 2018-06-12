@@ -24,7 +24,7 @@
 
 ## 下载体验
 
-<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/qrcode.png" width="100" />
+<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/qrcode.png" width="200" />
 
 ## 核心思想
 
