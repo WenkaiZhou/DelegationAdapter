@@ -20,12 +20,11 @@
         <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/03.jpg" width="300" />
     </td>
   </tr>
-  <tr>
-    <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/qrcode.jpg" width="100" />
-  </tr>
 </table>
 
 ## 下载体验
+
+<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/qrcode.png" width="100" />
 
 ## 核心思想
 
