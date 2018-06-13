@@ -22,10 +22,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.kevin.delegationadapter.ItemData;
-import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
+import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate;
 
 /**
- * BindingDelegationAdapter
+ * BindingSpanAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-11 10:29:52
  *         Major Function：<b>Binding Delegation Adapter</b>
@@ -34,12 +34,12 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class BindingAdapterDelegate<T> extends ClickableAdapterDelegate<T, BindingViewHolder> {
+public abstract class BindingSpanAdapterDelegate<T> extends SpanAdapterDelegate<T, BindingViewHolder> {
 
-    public BindingAdapterDelegate() {
+    public BindingSpanAdapterDelegate() {
     }
 
-    public BindingAdapterDelegate(String tag) {
+    public BindingSpanAdapterDelegate(String tag) {
         super(tag);
     }
 

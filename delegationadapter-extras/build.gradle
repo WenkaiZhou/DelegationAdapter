@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 4
-        versionName "1.0.2"
+        versionCode 5
+        versionName "1.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,8 +39,8 @@ dependencies {
 // -------
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
-setProperty "VERSION_CODE", "4"
-setProperty "VERSION_NAME", "1.0.2"
+setProperty "VERSION_CODE", "5"
+setProperty "VERSION_NAME", "1.0.3"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
