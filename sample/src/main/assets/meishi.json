@@ -19,7 +19,6 @@
   ],
   "sancan": {
     "title": "每日三餐",
-    "meal": "下午茶",
     "select": 2,
     "items": [
       {

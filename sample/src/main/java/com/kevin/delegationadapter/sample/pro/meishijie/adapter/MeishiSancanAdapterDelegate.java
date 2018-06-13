@@ -1,16 +1,17 @@
 package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
+import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.databinding.ViewDataBinding;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
-import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.databinding.ItemMeishiSancanBinding;
@@ -30,7 +31,6 @@ import java.util.List;
 
 public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.Sancan> {
 
-    public ObservableField<String> titleMeal = new ObservableField<>();
     public ObservableInt selected = new ObservableInt();
 
     @Override
@@ -44,19 +44,48 @@ public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.S
         binding.setVariable(BR.view, this);
         ItemMeishiSancanBinding sancanBinding = (ItemMeishiSancanBinding) binding;
 
+        // 未初始化过ViewPager
         if (null == sancanBinding.vpMeal.getAdapter()) {
             selected.set(sancan.select);
-            titleMeal.set(sancan.meal);
             MealPageAdapter adapter = new MealPageAdapter(sancan.items);
             sancanBinding.vpMeal.setAdapter(adapter);
+            sancanBinding.vpMeal.setOffscreenPageLimit(sancan.items.size() - 1); // 设置最多预加载
             sancanBinding.vpMeal.setCurrentItem(sancan.select, false);
+            sancanBinding.vpMeal.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    selected.set(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
         }
     }
 
-
-    public void onMealTitleClick(View view, String meal, int index) {
-        titleMeal.set(meal);
+    /**
+     * 底部图标点击的监听回调
+     *
+     * @param view
+     * @param index
+     */
+    public void onMealTitleClick(View view, int index) {
         selected.set(index);
+    }
+
+    /**
+     * "更多"被点击的监听回调
+     *
+     * @param view
+     */
+    public void onMoreClick(View view) {
+        Toast.makeText(view.getContext(), "更多", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -75,23 +104,27 @@ public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.S
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == object;
+            ViewDataBinding binding = (ViewDataBinding) object;
+            return binding.getRoot() == view;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            View view = LayoutInflater.from(container.getContext()).inflate(R.layout.layout_meishi_sancan, container, false);
-            ImageView ivMeal1 = view.findViewById(R.id.iv_meal_item1);
-            ImageView ivMeal2 = view.findViewById(R.id.iv_meal_item2);
-            Glide.with(ivMeal1.getContext()).load(itemList.get(position).items.get(0).img).into(ivMeal1);
-            Glide.with(ivMeal1.getContext()).load(itemList.get(position).items.get(1).img).into(ivMeal2);
-            container.addView(view);
-            return view;
+            LayoutInflater inflater = LayoutInflater.from(container.getContext());
+            return DataBindingUtil.inflate(inflater, R.layout.layout_meishi_sancan, container, true);
+        }
+
+        @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            ViewDataBinding binding = (ViewDataBinding) object;
+            binding.setVariable(BR.model, itemList.get(position));
+            binding.executePendingBindings();
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
+            ViewDataBinding dataBinding = (ViewDataBinding) object;
+            container.removeView(dataBinding.getRoot());
         }
 
     }

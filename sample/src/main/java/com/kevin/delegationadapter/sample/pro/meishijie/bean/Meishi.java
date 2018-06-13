@@ -23,7 +23,6 @@ public class Meishi {
 
     public static class Sancan {
         public String title;
-        public String meal;
         public int select;
         public List<SancanItem> items;
     }
