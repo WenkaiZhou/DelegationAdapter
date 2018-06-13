@@ -55,7 +55,7 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
      */
     public AdapterDelegatesManager addDelegate(AdapterDelegate<Object, VH> delegate, String tag) {
         Type superclass = delegate.getClass().getGenericSuperclass();
-        if (superclass instanceof ParameterizedType) {
+        try {
             Class<?> clazz = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
             String typeWithTag = getTypeWithTag(clazz, tag);
 
@@ -64,8 +64,8 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
             delegates.put(viewType, delegate);
             // Save the index of the delegate to the collection;
             dataTypeWithTags.put(viewType, typeWithTag);
-        } else {
-            // Has no generics.
+        } catch (Exception e) {
+            // Has no generics or generics not correct.
             throw new IllegalArgumentException(
                     String.format("Please set the correct generic parameters on %s.", delegate.getClass().getName()));
         }
