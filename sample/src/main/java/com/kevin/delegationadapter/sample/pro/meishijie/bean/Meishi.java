@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Meishi
  *
- * @author zhouwenkai@baidu.com, Created on 2018-06-13 11:02:21
+ * @author zwenkai@foxmail.com, Created on 2018-06-13 11:02:21
  *         Major Function：<b></b>
  *         <p/>
  *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
