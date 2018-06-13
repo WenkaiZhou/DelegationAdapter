@@ -39,9 +39,7 @@ public class SpanDelegationAdapter<VH extends RecyclerView.ViewHolder> extends D
 
         final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
-
             final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-            final GridLayoutManager.SpanSizeLookup originalSpanSizeLookup = gridLayoutManager.getSpanSizeLookup();
 
             gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
@@ -49,8 +47,6 @@ public class SpanDelegationAdapter<VH extends RecyclerView.ViewHolder> extends D
                     AdapterDelegate delegate = delegatesManager.getDelegate(getItemViewType(position));
                     if (null != delegate && delegate instanceof SpanAdapterDelegate) {
                         return ((SpanAdapterDelegate) delegate).getSpanSize();
-                    } else if (null != originalSpanSizeLookup) {
-                        return originalSpanSizeLookup.getSpanSize(position);
                     } else {
                         return gridLayoutManager.getSpanCount();
                     }
