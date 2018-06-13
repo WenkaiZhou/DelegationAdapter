@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kevin.delegationadapter.sample.pro.meishijie.bean.Meishi.Sancan" />
+
+        <variable
+            name="view"
+            type="com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiSancanAdapterDelegate" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_meal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{model.title}"
+            android:textColor="#FF333333"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="每日三餐" />
+
+        <View
+            android:id="@+id/meal_title_dot"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/round_meal_dot"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_title"
+            app:layout_constraintLeft_toRightOf="@+id/tv_meal_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_meal_title" />
+
+        <TextView
+            android:id="@+id/tv_meal_title_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@{view.titleMeal}"
+            android:textColor="#FF333333"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/meal_title_dot"
+            app:layout_constraintLeft_toRightOf="@+id/meal_title_dot"
+            app:layout_constraintTop_toTopOf="@+id/meal_title_dot"
+            tools:text="晚餐" />
+
+        <TextView
+            android:id="@+id/tv_meal_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="更多"
+            android:textColor="#ff787878"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/meal_title_dot"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/meal_title_dot" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_meal"
+            android:layout_width="0dp"
+            android:layout_height="166dp"
+            android:layout_marginTop="19dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:currentItem="@{view.selected}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_meal_title" />
+
+        <TextView
+            android:id="@+id/tv_meal_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:onClick="@{(textView) -> view.onMealTitleClick(textView, `早餐`, 0)}"
+            android:text="早餐"
+            android:textColor="@drawable/draw_selector_meal_tv"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_meal_lunch"
+            app:layout_constraintTop_toBottomOf="@+id/vp_meal"
+            app:selected="@{view.selected == 0}" />
+
+        <ImageView
+            android:id="@+id/iv_meal_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/draw_selector_meal_breakfast"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_breakfast"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_meal_breakfast"
+            app:selected="@{view.selected == 0}" />
+
+        <TextView
+            android:id="@+id/tv_meal_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="@{(textView) -> view.onMealTitleClick(textView, `午餐`, 1)}"
+            android:text="午餐"
+            android:textColor="@drawable/draw_selector_meal_tv"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/tv_meal_breakfast"
+            app:layout_constraintRight_toLeftOf="@+id/tv_meal_afternoon_tea"
+            app:layout_constraintTop_toTopOf="@+id/tv_meal_breakfast"
+            app:selected="@{view.selected == 1}" />
+
+        <ImageView
+            android:id="@+id/iv_meal_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/draw_selector_meal_lunch"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_lunch"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_meal_lunch"
+            app:selected="@{view.selected == 1}" />
+
+        <TextView
+            android:id="@+id/tv_meal_afternoon_tea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="@{(textView) -> view.onMealTitleClick(textView, `下午茶`, 2)}"
+            android:text="下午茶"
+            android:textColor="@drawable/draw_selector_meal_tv"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/tv_meal_lunch"
+            app:layout_constraintRight_toLeftOf="@+id/tv_meal_supper"
+            app:layout_constraintTop_toTopOf="@+id/tv_meal_breakfast"
+            app:selected="@{view.selected == 2}" />
+
+        <ImageView
+            android:id="@+id/iv_meal_afternoon_tea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="32dp"
+            android:src="@drawable/draw_selector_meal_afternoon_tea"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_afternoon_tea"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_meal_afternoon_tea"
+            app:selected="@{view.selected == 2}" />
+
+        <TextView
+            android:id="@+id/tv_meal_supper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="@{(textView) -> view.onMealTitleClick(textView, `晚餐`, 3)}"
+            android:text="晚餐"
+            android:textColor="@drawable/draw_selector_meal_tv"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/tv_meal_afternoon_tea"
+            app:layout_constraintRight_toLeftOf="@+id/tv_meal_food_night"
+            app:layout_constraintTop_toTopOf="@+id/tv_meal_breakfast"
+            app:selected="@{view.selected == 3}" />
+
+        <ImageView
+            android:id="@+id/iv_meal_supper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="21dp"
+            android:src="@drawable/draw_selector_meal_supper"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_supper"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_meal_supper"
+            app:selected="@{view.selected == 3}" />
+
+        <TextView
+            android:id="@+id/tv_meal_food_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="@{(textView) -> view.onMealTitleClick(textView, `宵夜`, 4)}"
+            android:text="宵夜"
+            android:textColor="@drawable/draw_selector_meal_tv"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@+id/tv_meal_supper"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_meal_breakfast"
+            app:selected="@{view.selected == 4}" />
+
+        <ImageView
+            android:id="@+id/iv_meal_food_night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/draw_selector_meal_food_night"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_meal_food_night"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_meal_food_night"
+            app:selected="@{view.selected == 4}" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

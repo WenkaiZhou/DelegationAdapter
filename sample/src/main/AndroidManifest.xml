@@ -30,6 +30,7 @@
         <activity android:name=".header.HeaderActivity" />
         <activity android:name=".footer.FooterActivity" />
         <activity android:name=".samedata.SameDataActivity" />
+        <activity android:name=".pro.meishijie.MeishijieActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,132 @@
+{
+  "channel": [
+    {
+      "title": "智能组菜",
+      "img": "https://s1.c.meishij.net/app/images/zhineng@3x.png"
+    },
+    {
+      "title": "当季食材",
+      "img": "https://s1.c.meishij.net/app/images/dangji@3x.png"
+    },
+    {
+      "title": "我的足迹",
+      "img": "https://s1.c.meishij.net/app/images/zuji@3x.png"
+    },
+    {
+      "title": "菜谱分类",
+      "img": "https://s1.c.meishij.net/app/images/caipu@3x.png"
+    }
+  ],
+  "sancan": {
+    "title": "每日三餐",
+    "meal": "下午茶",
+    "select": 2,
+    "items": [
+      {
+        "title": "早餐",
+        "items": [
+          {
+            "id": "1890442",
+            "title": "茄汁肉丸饭",
+            "img": "http://s1.ig.meishij.net/p/20180612/0977d4d2fa67eaa48931e8919f2fa5cd.jpg"
+          },
+          {
+            "id": "1890311",
+            "title": "淡奶马拉糕",
+            "img": "http://s1.ig.meishij.net/p/20180612/5f736e6bd482b96552a7b586ec5a80a3.jpg"
+          },
+          {
+            "id": "1890463",
+            "title": "南瓜豆沙包",
+            "img": "http://s1.ig.meishij.net/p/20180612/b7765e3f73793efd69cf90ab3a477ddb.jpg"
+          }
+        ],
+        "type": "1"
+      },
+      {
+        "title": "午餐",
+        "items": [
+          {
+            "id": "1890308",
+            "title": "煮带鱼",
+            "img": "http://s1.ig.meishij.net/p/20180612/11992c88aac9c3e0cd13bdef2d686e5e.jpg"
+          },
+          {
+            "id": "1890172",
+            "title": "莲藕肉丁",
+            "img": "http://s1.ig.meishij.net/p/20180612/b43120b68a679a5b4167b0cc4889289a.jpg"
+          },
+          {
+            "id": "1890409",
+            "title": "黄瓜木耳炒肉片",
+            "img": "http://s1.ig.meishij.net/p/20180612/27501dc5d3837b214d1f0e52eb37d277.jpg"
+          }
+        ],
+        "type": "2"
+      },
+      {
+        "title": "下午茶",
+        "items": [
+          {
+            "id": "1890031",
+            "title": "狮子肉松小贝",
+            "img": "http://s1.ig.meishij.net/p/20180612/cdb1ed52dc89a149cb0825ce11b727fc.jpg"
+          },
+          {
+            "id": "1889988",
+            "title": "香蕉芒果冰激凌",
+            "img": "http://s1.ig.meishij.net/p/20180612/11cd7042013293413256999781aac13f.jpg"
+          },
+          {
+            "id": "1890424",
+            "title": "樱花土豆饼",
+            "img": "http://s1.ig.meishij.net/p/20180612/a9ef2cb4baaf14ff60e3221e6d049d23.jpg"
+          }
+        ],
+        "type": "3"
+      },
+      {
+        "title": "晚餐",
+        "items": [
+          {
+            "id": "1889898",
+            "title": "咸蛋黄焗三文鱼",
+            "img": "http://s1.ig.meishij.net/p/20180612/c8283c2734cf8cfdc2faa0d7eab3f706.jpg"
+          },
+          {
+            "id": "1890318",
+            "title": "香菇鸡块",
+            "img": "http://s1.ig.meishij.net/p/20180612/1a400de00d2a323f02bc3d132cb91c13.jpg"
+          },
+          {
+            "id": "1890257",
+            "title": "蒜泥茄子",
+            "img": "http://s1.ig.meishij.net/p/20180612/8f12a3255e9a811f025cdbb5597ec460.jpg"
+          }
+        ],
+        "type": "4"
+      },
+      {
+        "title": "夜宵",
+        "items": [
+          {
+            "id": "1890275",
+            "title": "风味卤豆干",
+            "img": "http://s1.ig.meishij.net/p/20180612/d6cb99ff9d7671586d898f4f77282575.jpg"
+          },
+          {
+            "id": "1890426",
+            "title": "茄汁鹌鹑蛋",
+            "img": "http://s1.ig.meishij.net/p/20180612/d1dfd14c368319bb4eb65ca364d2c5c8.jpg"
+          },
+          {
+            "id": "1890314",
+            "title": "新奥尔良烤翅",
+            "img": "http://s1.ig.meishij.net/p/20180612/f1d98ea39117313dcda0ed53391f0948.jpg"
+          }
+        ],
+        "type": "5"
+      }
+    ]
+  }
+}

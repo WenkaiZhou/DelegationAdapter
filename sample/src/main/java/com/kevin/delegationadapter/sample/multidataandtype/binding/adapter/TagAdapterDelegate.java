@@ -4,11 +4,10 @@ import android.databinding.ViewDataBinding;
 import android.view.View;
 import android.widget.Toast;
 
-import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
+import com.kevin.delegationadapter.extras.binding.BindingSpanAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.Goods;
-import com.kevin.loopview.internal.LoopData;
 
 /**
  * TagAdapterDelegate
@@ -20,7 +19,7 @@ import com.kevin.loopview.internal.LoopData;
  * @author mender，Modified Date Modify Content:
  */
 
-public class TagAdapterDelegate extends BindingAdapterDelegate<Goods.TagItem> {
+public class TagAdapterDelegate extends BindingSpanAdapterDelegate<Goods.TagItem> {
 
     @Override
     public int getLayoutRes() {

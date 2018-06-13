@@ -29,8 +29,4 @@ public class BlankAdapterDelegate extends BindingAdapterDelegate<BlankParameters
         binding.setVariable(BR.params, item);
     }
 
-    @Override
-    protected int getSpanSize() {
-        return 5;
-    }
 }

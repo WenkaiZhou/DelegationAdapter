@@ -29,8 +29,4 @@ public class ArticleAdapterDelegate extends BindingAdapterDelegate<Goods.Article
         binding.setVariable(BR.model, item);
     }
 
-    @Override
-    protected int getSpanSize() {
-        return 5;
-    }
 }

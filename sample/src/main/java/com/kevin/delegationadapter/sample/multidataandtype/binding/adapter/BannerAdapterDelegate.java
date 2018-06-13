@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
+import com.kevin.delegationadapter.extras.binding.BindingSpanAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.databinding.ItemGoodsBannerBindingBinding;
@@ -58,8 +59,4 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
 
     }
 
-    @Override
-    protected int getSpanSize() {
-        return 5;
-    }
 }
