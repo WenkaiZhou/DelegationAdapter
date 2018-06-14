@@ -15,6 +15,7 @@ import java.util.List;
 public class Meishi {
     public List<Channel> channel;
     public Sancan sancan;
+    public Zhuanti zhuanti;
 
     public class Channel {
         public String img;
@@ -36,6 +37,16 @@ public class Meishi {
     public static class SancanSubItem {
         public String img;
         public String id;
+        public String title;
+    }
+
+    public static class Zhuanti {
+        public String title;
+        public List<ZhuantiItem> items;
+    }
+
+    public static class ZhuantiItem {
+        public String img;
         public String title;
     }
 
@@ -62,7 +73,6 @@ public class Meishi {
 //        public String id;
 //        public String title;
 //    }
-
 
 
 }

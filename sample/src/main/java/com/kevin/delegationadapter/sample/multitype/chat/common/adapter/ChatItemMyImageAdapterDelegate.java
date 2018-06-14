@@ -1,13 +1,16 @@
 package com.kevin.delegationadapter.sample.multitype.chat.common.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.AdapterDelegate;
+import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.Chat;
 
@@ -21,7 +24,7 @@ import com.kevin.delegationadapter.sample.bean.Chat;
  * @author mender，Modified Date Modify Content:
  */
 
-public class ChatItemMyImageAdapterDelegate extends AdapterDelegate<Chat.TalkMsg, ChatItemMyImageAdapterDelegate.ViewHolder> {
+public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Chat.TalkMsg, ChatItemMyImageAdapterDelegate.ViewHolder> {
 
     @Override
     protected boolean isForViewType(Chat.TalkMsg item, int position) {
@@ -31,9 +34,15 @@ public class ChatItemMyImageAdapterDelegate extends AdapterDelegate<Chat.TalkMsg
 
     @Override
     protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+        Log.e("fuck", "ChatItemMyImageAdapterDelegate : BindingViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_image, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
+    }
+
+    @Override
+    public void onItemClick(View view, Chat.TalkMsg item, int position) {
+        Toast.makeText(view.getContext(), "position = " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override

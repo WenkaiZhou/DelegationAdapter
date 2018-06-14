@@ -13,6 +13,8 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiChannelAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiSancanAdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiAdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiTitleAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.bean.Meishi;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
@@ -49,13 +51,17 @@ public class MeishijieActivity extends AppCompatActivity {
         // 添加委托Adapter
         delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate());
         delegationAdapter.addDelegate(new MeishiSancanAdapterDelegate());
+        delegationAdapter.addDelegate(new MeishiZhuantiTitleAdapterDelegate());
+        delegationAdapter.addDelegate(new MeishiZhuantiAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
     }
 
     private void initData() {
         String meishiStr = LocalFileUtils.getStringFormAsset(this, "meishi.json");
         Meishi meishi = new Gson().fromJson(meishiStr, Meishi.class);
-        delegationAdapter.addHeaderItems(meishi.channel);
-        delegationAdapter.addHeaderItem(meishi.sancan);
+        delegationAdapter.addDataItems(meishi.channel);
+        delegationAdapter.addDataItem(meishi.sancan);
+        delegationAdapter.addDataItem(meishi.zhuanti);
+        delegationAdapter.addDataItems(meishi.zhuanti.items);
     }
 }
