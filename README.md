@@ -11,7 +11,7 @@
 <table>
   <tr>
     <td>
-    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/01.jpg" width="300" />
+    	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/04.jpg" width="300" />
     </td>
     <td>
     	<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.jpg" width="300" />

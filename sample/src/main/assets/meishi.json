@@ -32,7 +32,7 @@
           {
             "id": "1890311",
             "title": "淡奶马拉糕",
-            "img": "http://s1.ig.meishij.net/p/20180612/5f736e6bd482b96552a7b586ec5a80a3.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/dnmdg.jpg"
           }
         ],
         "type": "1"
@@ -43,12 +43,12 @@
           {
             "id": "1890308",
             "title": "煮带鱼",
-            "img": "http://s1.ig.meishij.net/p/20180612/11992c88aac9c3e0cd13bdef2d686e5e.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/zdy.jpg"
           },
           {
             "id": "1890172",
             "title": "莲藕肉丁",
-            "img": "http://s1.ig.meishij.net/p/20180612/b43120b68a679a5b4167b0cc4889289a.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/lord.jpg"
           }
         ],
         "type": "2"
@@ -59,12 +59,12 @@
           {
             "id": "1890031",
             "title": "狮子肉松小贝",
-            "img": "http://s1.ig.meishij.net/p/20180612/cdb1ed52dc89a149cb0825ce11b727fc.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/ssrsxb.jpg"
           },
           {
             "id": "1889988",
             "title": "香蕉芒果冰激凌",
-            "img": "http://s1.ig.meishij.net/p/20180612/11cd7042013293413256999781aac13f.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/xjmgbjl.jpg"
           }
         ],
         "type": "3"
@@ -75,12 +75,12 @@
           {
             "id": "1889898",
             "title": "咸蛋黄焗三文鱼",
-            "img": "http://s1.ig.meishij.net/p/20180612/c8283c2734cf8cfdc2faa0d7eab3f706.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/xdhjswy.jpg"
           },
           {
             "id": "1890318",
             "title": "香菇鸡块",
-            "img": "http://s1.ig.meishij.net/p/20180612/1a400de00d2a323f02bc3d132cb91c13.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/xgjk.jpg"
           }
         ],
         "type": "4"
@@ -91,12 +91,12 @@
           {
             "id": "1890275",
             "title": "风味卤豆干",
-            "img": "http://s1.ig.meishij.net/p/20180612/d6cb99ff9d7671586d898f4f77282575.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/fwldg.jpg"
           },
           {
             "id": "1890426",
             "title": "茄汁鹌鹑蛋",
-            "img": "http://s1.ig.meishij.net/p/20180612/d1dfd14c368319bb4eb65ca364d2c5c8.jpg"
+            "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/qzacd.jpg"
           }
         ],
         "type": "5"
@@ -107,12 +107,12 @@
     "title": "热门专题",
     "items": [
       {
-        "img": "https://s1.st.meishij.net/p2/20180608/20180608151214_805.jpg",
-        "title": "世界杯告别深夜大排档，在家自己做一样嗨到爆"
+        "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/nd.jpg",
+        "title": "牛肚吃了这么多年，正确吃法你可能还不知道"
       },
       {
-        "img": "https://s1.st.meishij.net/p2/20180612/20180612155645_735.jpg",
-        "title": "牛肚吃了这么多年，正确吃法你可能还不知道"
+        "img": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/meishi/sjb.jpg",
+        "title": "世界杯告别深夜大排档，在家自己做一样嗨到爆"
       }
     ]
   }

@@ -30,6 +30,12 @@ public class ImageViewBindingAdapter {
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(view);
     }
 
+    @BindingAdapter({"imageUrl", "placeholder", "error"})
+    public static void loadImage(ImageView view, String url, Drawable placeholder, Drawable error) {
+        Glide.with(view.getContext()).load(url).placeholder(placeholder).error(error)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(view);
+    }
+
     @BindingAdapter({"avatarUrl", "error"})
     public static void loadAvatarImage(ImageView view, String url, Drawable error) {
         Glide.with(view.getContext()).load(url).error(error).into(view);
