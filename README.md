@@ -224,6 +224,7 @@ delegationAdapter.addDelegate(new USCompanyAdapterDelegate());
 
 <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/company_02.jpg" width="300" />
 
+### 更多请看示例
 
 ## THANKS TO
 
