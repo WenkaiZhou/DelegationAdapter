@@ -83,16 +83,20 @@ compile 'com.kevin:delegationadapter-extras:1.0.3'
 	Adapter为DelegationAdapter，然后向DelegationAdapter中注册委托Adapter。
 
 	```
-	mRecyclerView = findViewById(R.id.recycler_view);
-	// ① 设置 LayoutManager
-	LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-	mRecyclerView.setLayoutManager(layoutManager);
-	// ② 创建 DelegationAdapter 对象
-	mDelegationAdapter = new DelegationAdapter();
-	// ③ 向Adapter中注册委托Adapter
-	mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
-	// ④ 设置Adapter
-	mRecyclerView.setAdapter(mDelegationAdapter);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        // ① 设置 LayoutManager
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        // ② 创建 DelegationAdapter 对象
+        DelegationAdapter delegationAdapter = new DelegationAdapter();
+        // ③ 向Adapter中注册委托Adapter
+        delegationAdapter.addDelegate(new CompanyAdapterDelegate());
+        // ④ 设置Adapter
+        recyclerView.setAdapter(delegationAdapter);
+    }
 	```
 
 3. 委托Adapter编写
@@ -100,42 +104,44 @@ compile 'com.kevin:delegationadapter-extras:1.0.3'
 	委托Adapter继承自AdapterDelegate，需要两个泛型，第一个为该委托Adapter可处理数据的数据类型(这里为String)，第二个参数为ViewHolder。剩下的就按照之前怎么写Adapter来写委托Adapter就可以啦。比如：在onCreateViewHolder创建ViewHolder，在onBindViewHolder中绑定数据到视图控件。
 
 	```
-	public class HomeAdapterDelegate extends AdapterDelegate<String, HomeAdapterDelegate.ViewHolder> {
-
-	    @Override
-	    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
-	        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home, parent, false);
-	        ViewHolder holder = new ViewHolder(view);
-	        return holder;
-	    }
-	
-	    @Override
-	    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
-	        holder.tvContent.setText(item);
-	    }
-	
-	    static class ViewHolder extends RecyclerView.ViewHolder {
-	
-	        public TextView tvContent;
-	
-	        public ViewHolder(View itemView) {
-	            super(itemView);
-	            tvContent = itemView.findViewById(R.id.tv_content);
-	        }
-	    }
-	}
+    public class CompanyAdapterDelegate extends AdapterDelegate<String, CompanyAdapterDelegate.ViewHolder> {
+    
+        protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
+        }
+    
+        protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+            holder.tvName.setText(item);
+        }
+    
+        static class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView tvName;
+    
+            public ViewHolder(View itemView) {
+                super(itemView);
+                tvName = itemView.findViewById(android.R.id.text1);
+            }
+        }
+    }
 	```
 
 4. 设置数据
 
 	```
-	String[] companies = {
-	    "Baidu",
-	    "Alibaba",
-	    "Tencent"
-	};
-	List<String> companyList = Arrays.asList(companies);
-	mDelegationAdapter.setDataItems(companyList);
+    protected void onCreate(Bundle savedInstanceState) {
+        // ... ...
+    
+        String[] companies = {
+                "Baidu",
+                "Alibaba",
+                "Tencent"
+        };
+        List<String> companyList = Arrays.asList(companies);
+        // ⑤ 设置数据
+        delegationAdapter.setDataItems(companyList);
+    }
 	```
 
 ## THANKS TO
