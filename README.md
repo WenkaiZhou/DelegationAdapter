@@ -58,7 +58,7 @@ compile 'com.kevin:delegationadapter:1.0.4'
 compile 'com.kevin:delegationadapter-extras:1.0.3'
 ```
 
-## 用法
+## 如何使用
 
 ### 简单用法
 
@@ -88,7 +88,8 @@ compile 'com.kevin:delegationadapter-extras:1.0.3'
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         // ① 设置 LayoutManager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
         // ② 创建 DelegationAdapter 对象
         DelegationAdapter delegationAdapter = new DelegationAdapter();
@@ -133,16 +134,96 @@ compile 'com.kevin:delegationadapter-extras:1.0.3'
     protected void onCreate(Bundle savedInstanceState) {
         // ... ...
     
-        String[] companies = {
-                "Baidu",
-                "Alibaba",
-                "Tencent"
-        };
-        List<String> companyList = Arrays.asList(companies);
+        List<String> companies = new ArrayList<>();
+        companies.add("🇨🇳 Baidu");
+        companies.add("🇨🇳 Alibaba");
+        companies.add("🇨🇳 Tencent");
+        companies.add("🇺🇸 Google");
+        companies.add("🇺🇸 Facebook");
+        companies.add("🇺🇸 Microsoft");
         // ⑤ 设置数据
-        delegationAdapter.setDataItems(companyList);
+        delegationAdapter.setDataItems(companies);
     }
 	```
+	
+<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/company_01.jpg" width="300" />
+	
+### 复杂用法
+
+如果想区分🇨🇳公司为红色，美国公司为蓝色，怎么办呢？
+
+1. 编写CNCompanyAdapterDelegate
+
+```
+public class CNCompanyAdapterDelegate extends AdapterDelegate<String, CNCompanyAdapterDelegate.ViewHolder> {
+
+    protected boolean isForViewType(String item, int position) {
+        return item.contains("🇨🇳");
+    }
+
+    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+        holder.tvName.setText(item);
+        holder.tvName.setTextColor(Color.RED);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(android.R.id.text1);
+        }
+    }
+}
+```
+
+2. 编写USCompanyAdapterDelegate
+
+```
+public class USCompanyAdapterDelegate extends AdapterDelegate<String, USCompanyAdapterDelegate.ViewHolder> {
+
+    protected boolean isForViewType(String item, int position) {
+        return item.contains("🇺🇸");
+    }
+
+    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+
+    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+        holder.tvName.setText(item);
+        holder.tvName.setTextColor(Color.BLUE);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tvName;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(android.R.id.text1);
+        }
+    }
+}
+```
+
+3. 注册委托Adapter
+
+```
+// 向Adapter中注册委托Adapter
+delegationAdapter.addDelegate(new CNCompanyAdapterDelegate());
+delegationAdapter.addDelegate(new USCompanyAdapterDelegate());
+```
+
+<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/company_02.jpg" width="300" />
+
 
 ## THANKS TO
 
