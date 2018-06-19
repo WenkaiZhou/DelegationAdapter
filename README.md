@@ -60,124 +60,83 @@ compile 'com.kevin:delegationadapter-extras:1.0.3'
 
 ## 用法
 
-### 同一数据类型多种样式
+### 简单用法
 
+1. 带RecyclerView的布局
 
-```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-recyclerView.setLayoutManager(layoutManager);
-// 设置Adapter
-delegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-delegationAdapter.addDelegate(new OnePicDelegateAdapter());
-delegationAdapter.addDelegate(new ThreePicDelegateAdapter());
-delegationAdapter.addDelegate(new MorePicDelegateAdapter());
-delegationAdapter.addDelegate(new VideoDelegateAdapter());
-recyclerView.setAdapter(delegationAdapter);
-```
+	```
+	<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent">
+	
+	    <android.support.v7.widget.RecyclerView
+	        android:id="@+id/recycler_view"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" />
+	
+	</LinearLayout>
+	```
 
-### 不同数据类型多种样式
+2. 初始化RecyclerView
 
-```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-mRecyclerView.setLayoutManager(layoutManager);
-// 设置Adapter
-mDelegationAdapter = new DelegationAdapter();
-mDelegationAdapter.addDelegate(new StringAdapterDelegate());
-mDelegationAdapter.addDelegate(new IntegerAdapterDelegate());
-mDelegationAdapter.addDelegate(new FloatAdapterDelegate());
-mDelegationAdapter.addDelegate(new DoubleAdapterDelegate());
-// 添加委托Adapter
-mRecyclerView.setAdapter(mDelegationAdapter);
+	Adapter为DelegationAdapter，然后向DelegationAdapter中注册委托Adapter。
 
-// 设置数据
-List<Object> dataList = new ArrayList<>();
-dataList.add("今天天气怎么样？");  // 添加一个String类型数据
-dataList.add("大晴天，有点热。");  // 添加一个String类型数据
-dataList.add("温度多少度呢？");    // 添加一个String类型数据
-dataList.add(29);                // 添加一个int类型数据
-dataList.add("具体是多少？");      // 添加一个String类型数据
-dataList.add(29.5F);             // 添加一个Float类型数据
-dataList.add(29.527921364978D);  // 添加一个Double类型数据
-mDelegationAdapter.setDataItems(dataList);
-```
+	```
+	mRecyclerView = findViewById(R.id.recycler_view);
+	// ① 设置 LayoutManager
+	LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+	mRecyclerView.setLayoutManager(layoutManager);
+	// ② 创建 DelegationAdapter 对象
+	mDelegationAdapter = new DelegationAdapter();
+	// ③ 向Adapter中注册委托Adapter
+	mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
+	// ④ 设置Adapter
+	mRecyclerView.setAdapter(mDelegationAdapter);
+	```
 
-### 同一数据多种类型
+3. 委托Adapter编写
 
-<img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.png" width="320" />
+	委托Adapter继承自AdapterDelegate，需要两个泛型，第一个为该委托Adapter可处理数据的数据类型(这里为String)，第二个参数为ViewHolder。剩下的就按照之前怎么写Adapter来写委托Adapter就可以啦。比如：在onCreateViewHolder创建ViewHolder，在onBindViewHolder中绑定数据到视图控件。
 
-```
-// 设置LayoutManager
-mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-// 设置LayoutManager
-mDelegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-mDelegationAdapter.addDelegate(new ServiceInfoAdapterDelegate());
-mDelegationAdapter.addDelegate(new BillItemAdapterDelegate());
-mDelegationAdapter.addDelegate(new ChargeInfoAdapterDelegate());
-mBinding.recyclerView.setAdapter(mDelegationAdapter);
+	```
+	public class HomeAdapterDelegate extends AdapterDelegate<String, HomeAdapterDelegate.ViewHolder> {
 
-// 设置数据
-String newsListStr = LocalFileUtils.getStringFormAsset(this, "bill.json");
-Bill bill = new Gson().fromJson(newsListStr, Bill.class);
+	    @Override
+	    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+	        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home, parent, false);
+	        ViewHolder holder = new ViewHolder(view);
+	        return holder;
+	    }
+	
+	    @Override
+	    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+	        holder.tvContent.setText(item);
+	    }
+	
+	    static class ViewHolder extends RecyclerView.ViewHolder {
+	
+	        public TextView tvContent;
+	
+	        public ViewHolder(View itemView) {
+	            super(itemView);
+	            tvContent = itemView.findViewById(R.id.tv_content);
+	        }
+	    }
+	}
+	```
 
-List<Object> dataList = new ArrayList<>();
-dataList.add(new ItemData(bill, ServiceInfoDelegateAdapter.TAG));
-dataList.addAll(bill.details);
-dataList.add(new ItemData(bill, ChargeInfoDelegateAdapter.TAG));
-mDelegationAdapter.setDataItems(dataList);
-```
+4. 设置数据
 
-### 添加头部
-
-```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-mRecyclerView.setLayoutManager(layoutManager);
-// 设置Adapter
-mDelegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
-mRecyclerView.setAdapter(mDelegationAdapter);
-
-// 添加头部
-mDelegationAdapter.addHeaderItem("这是添加的添加的头部数据");
-```
-
-### 添加尾部
-
-```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-mRecyclerView.setLayoutManager(layoutManager);
-// 设置Adapter
-mDelegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-mDelegationAdapter.addDelegate(new BannerAdapterDelegate());
-mRecyclerView.setAdapter(mDelegationAdapter);
-
-// 添加尾部
-mDelegationAdapter.addFotterItem("这是添加的添加的尾部数据");
-```
-
-### 带兜底的委托Adapter
-
-```
-// 设置LayoutManager
-LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-mRecyclerView.setLayoutManager(layoutManager);
-// 设置Adapter
-mDelegationAdapter = new DelegationAdapter();
-// 添加委托Adapter
-mDelegationAdapter.addDelegate(new TextAdapterDelegate());
-// 添加兜底的委托Adapter
-mDelegationAdapter.setFallbackDelegate(new FallbackAdapterDelegate());
-mRecyclerView.setAdapter(mDelegationAdapter);
-```
+	```
+	String[] companies = {
+	    "Baidu",
+	    "Alibaba",
+	    "Tencent"
+	};
+	List<String> companyList = Arrays.asList(companies);
+	mDelegationAdapter.setDataItems(companyList);
+	```
 
 ## THANKS TO
 
