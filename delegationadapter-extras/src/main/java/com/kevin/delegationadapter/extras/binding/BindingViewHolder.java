@@ -29,7 +29,7 @@ import android.view.View;
  * @author mender，Modified Date Modify Content:
  */
 
-final class BindingViewHolder extends RecyclerView.ViewHolder {
+public final class BindingViewHolder extends RecyclerView.ViewHolder {
 
     private ViewDataBinding binding;
 
@@ -37,8 +37,8 @@ final class BindingViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public ViewDataBinding getBinding() {
-        return binding;
+    public <T extends ViewDataBinding> T getBinding() {
+        return (T) binding;
     }
 
     public void setBinding(ViewDataBinding binding) {

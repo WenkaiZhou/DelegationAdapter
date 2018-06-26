@@ -52,6 +52,7 @@ public abstract class BindingAdapterDelegate<T> extends ClickableAdapterDelegate
                 false);
         BindingViewHolder holder = new BindingViewHolder(binding.getRoot());
         holder.setBinding(binding);
+        configureViewHolder(holder);
         return holder;
     }
 
@@ -73,6 +74,15 @@ public abstract class BindingAdapterDelegate<T> extends ClickableAdapterDelegate
      */
     @LayoutRes
     public abstract int getLayoutRes();
+
+    /**
+     * configure ViewHolder
+     *
+     * @param holder
+     */
+    public void configureViewHolder(BindingViewHolder holder) {
+
+    }
 
     /**
      * Set variable data
