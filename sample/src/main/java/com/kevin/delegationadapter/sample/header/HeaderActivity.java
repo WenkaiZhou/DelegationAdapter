@@ -67,7 +67,7 @@ public class HeaderActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String loopStr = LocalFileUtils.getStringFormAsset(this, "loop.json");
+        String loopStr = LocalFileUtils.getStringFormAsset(this, "banner.json");
         LoopData loopData = new Gson().fromJson(loopStr, LoopData.class);
         mDelegationAdapter.addHeaderItem(loopData); // 添加Banner头部数据
 

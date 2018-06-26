@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "0",
+      "img": "http://i8.mifile.cn/b2c-mimall-media/03321be3287684fa142b9ba3e47a8042.jpg",
+      "link": "ShopPlugin://com.xiaomi.shop.plugin.productchannel.ui.RootFragment?pluginId=15101"
+    },
+    {
+      "id": "1",
+      "img": "http://i8.mifile.cn/b2c-mimall-media/66d17164a4e048afa5cb0b1482975025.jpg",
+      "link": "ShopPlugin://com.xiaomi.shop2.plugin.webview.RootFragment?pluginId=111"
+    },
+    {
+      "id": "2",
+      "img": "http://i8.mifile.cn/b2c-mimall-media/b35794b657d327974ee44489431bf9f9.jpg",
+      "link": "ShopPlugin://com.xiaomi.shop2.plugin.goodsdetail.GoodsDetailFragment?pluginId=101"
+    },
+    {
+      "id": "3",
+      "img": "http://i8.mifile.cn/b2c-mimall-media/1afba8663cd0642d43f3f2859d620dfc.jpg",
+      "link": "ShopPlugin://com.xiaomi.shop2.plugin.goodsdetail.GoodsDetailFragment?pluginId=101"
+    }
+  ]
+}

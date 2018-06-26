@@ -39,6 +39,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.kevin:loopview:1.1.0'
-    implementation project(':delegationadapter')
-    implementation project(':delegationadapter-extras')
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+//    implementation project(':delegationadapter')
+//    implementation project(':delegationadapter-extras')
+    implementation 'com.kevin:delegationadapter:1.0.4'
+    implementation 'com.kevin:delegationadapter-extras:1.0.4'
 }

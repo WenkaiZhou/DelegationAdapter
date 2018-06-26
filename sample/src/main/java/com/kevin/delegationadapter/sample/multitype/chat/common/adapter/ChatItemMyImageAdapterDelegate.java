@@ -1,7 +1,6 @@
 package com.kevin.delegationadapter.sample.multitype.chat.common.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.kevin.delegationadapter.AdapterDelegate;
 import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.Chat;
@@ -34,7 +32,6 @@ public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Cha
 
     @Override
     protected ViewHolder onCreateViewHolder(ViewGroup parent) {
-        Log.e("fuck", "ChatItemMyImageAdapterDelegate : BindingViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_image, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;

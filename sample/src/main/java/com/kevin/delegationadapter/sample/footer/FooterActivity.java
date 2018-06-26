@@ -70,7 +70,7 @@ public class FooterActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String loopStr = LocalFileUtils.getStringFormAsset(this, "loop.json");
+        String loopStr = LocalFileUtils.getStringFormAsset(this, "banner.json");
         LoopData loopData = new Gson().fromJson(loopStr, LoopData.class);
         mDelegationAdapter.addFooterItem(loopData);
         String[] datas = {"1", "2", "3", "4", "5"};
