@@ -31,7 +31,7 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
     @Override
     public void configureViewHolder(BindingViewHolder holder) {
         BannerAdapterBinding binding = holder.getBinding();
-        binding.loopView.setImageLoader(new ImageLoader() {
+        binding.bannerView.setImageLoader(new ImageLoader() {
             @Override
             public void loadImage(ImageView imageView, String url, int placeholder) {
                 Glide.with(imageView.getContext()).load(url).into(imageView);
