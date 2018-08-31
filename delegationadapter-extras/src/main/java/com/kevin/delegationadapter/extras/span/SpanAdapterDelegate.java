@@ -25,7 +25,7 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
  * @author zwenkai@foxmail.com, Created on 2018-06-10 10:00:34
  *         Major Function：<b>AdapterDelegate with span</b>
  *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
