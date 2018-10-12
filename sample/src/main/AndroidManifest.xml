@@ -31,6 +31,7 @@
         <activity android:name=".footer.FooterActivity" />
         <activity android:name=".samedata.SameDataActivity" />
         <activity android:name=".pro.meishijie.MeishijieActivity" />
+        <activity android:name=".refreshload.RefreshLoadActivity" />
     </application>
 
 </manifest>

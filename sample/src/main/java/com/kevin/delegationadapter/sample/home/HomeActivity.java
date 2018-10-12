@@ -19,6 +19,7 @@ import com.kevin.delegationadapter.sample.multitype.chat.common.ChatActivity;
 import com.kevin.delegationadapter.sample.multitype.news.binding.BindingNewsActivity;
 import com.kevin.delegationadapter.sample.multitype.news.common.NewsActivity;
 import com.kevin.delegationadapter.sample.pro.meishijie.MeishijieActivity;
+import com.kevin.delegationadapter.sample.refreshload.RefreshLoadActivity;
 import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
 
 import java.util.Arrays;
@@ -74,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 "带尾部数据的不同数据类型多样式",
                 "带兜底的委托Adapter(未注册委托时的处理)",
                 "美食杰",
+                "刷新加载",
         };
         List<String> titleList = Arrays.asList(titles);
         mDelegationAdapter.setDataItems(titleList);
@@ -110,6 +112,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case 9:
                 startActivity(new Intent(this, MeishijieActivity.class));
+                break;
+            case 10:
+                startActivity(new Intent(this, RefreshLoadActivity.class));
                 break;
         }
     }
