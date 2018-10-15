@@ -53,7 +53,7 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
         bannerView.setOnItemClickListener(new BaseLoopAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, LoopData.ItemData itemData, int position) {
-                Toast.makeText(view.getContext(), item.items.get(position).link, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), itemData.link, Toast.LENGTH_SHORT).show();
             }
         });
 
