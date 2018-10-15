@@ -158,7 +158,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         return mHeaderItems;
     }
 
-    public List<Object> getFooterItems() {
+    public List<Object> getFooterList() {
         return mFooterItems;
     }
 
