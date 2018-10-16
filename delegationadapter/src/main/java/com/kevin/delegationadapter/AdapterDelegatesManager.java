@@ -44,9 +44,9 @@ import java.util.List;
 
 public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
 
-    private SparseArray<String> dataTypeWithTags = new SparseArray<>();
-    private SparseArrayCompat<AdapterDelegate<Object, VH>> delegates = new SparseArrayCompat();
-    protected AdapterDelegate fallbackDelegate;
+    private SparseArray<String> mDataTypeWithTags = new SparseArray<>();
+    private SparseArrayCompat<AdapterDelegate<Object, VH>> mDelegates = new SparseArrayCompat();
+    protected AdapterDelegate mFallbackDelegate;
 
     /**
      * Add a Delegate
@@ -59,11 +59,11 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
             Class<?> clazz = (Class<?>) ((ParameterizedType) superclass).getActualTypeArguments()[0];
             String typeWithTag = getTypeWithTag(clazz, tag);
 
-            int viewType = delegates.size();
+            int viewType = mDelegates.size();
             // Save the delegate to the collection;
-            delegates.put(viewType, delegate);
+            mDelegates.put(viewType, delegate);
             // Save the index of the delegate to the collection;
-            dataTypeWithTags.put(viewType, typeWithTag);
+            mDataTypeWithTags.put(viewType, typeWithTag);
         } catch (Exception e) {
             // Has no generics or generics not correct.
             throw new IllegalArgumentException(
@@ -129,10 +129,10 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         String tag = getTargetTag(item);
 
         String typeWithTag = getTypeWithTag(clazz, tag);
-        ArrayList<Integer> indexList = indexListOfValue(dataTypeWithTags, typeWithTag);
+        ArrayList<Integer> indexList = indexListOfValue(mDataTypeWithTags, typeWithTag);
         if (indexList.size() > 0) {
             for (Integer index : indexList) {
-                AdapterDelegate<Object, VH> delegate = delegates.valueAt(index);
+                AdapterDelegate<Object, VH> delegate = mDelegates.valueAt(index);
                 if (null != delegate
                         && delegate.getTag().equals(tag)
                         && delegate.isForViewType(item, position)) {
@@ -142,8 +142,8 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         }
 
         // If has not add the AdapterDelegate for data type, returns the largest viewType + 1.
-        if (fallbackDelegate != null) {
-            return delegates.size();
+        if (mFallbackDelegate != null) {
+            return mDelegates.size();
         }
 
         throw new NullPointerException("No AdapterDelegate added that matches position="
@@ -180,21 +180,21 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
     }
 
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        for (int i = 0; i < delegates.size(); i++) {
-            AdapterDelegate<Object, VH> delegate = delegates.get(delegates.keyAt(i));
+        for (int i = 0; i < mDelegates.size(); i++) {
+            AdapterDelegate<Object, VH> delegate = mDelegates.get(mDelegates.keyAt(i));
             delegate.onAttachedToRecyclerView(recyclerView);
         }
     }
 
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        for (int i = 0; i < delegates.size(); i++) {
-            AdapterDelegate<Object, VH> delegate = delegates.get(delegates.keyAt(i));
+        for (int i = 0; i < mDelegates.size(); i++) {
+            AdapterDelegate<Object, VH> delegate = mDelegates.get(mDelegates.keyAt(i));
             delegate.onDetachedFromRecyclerView(recyclerView);
         }
     }
 
     public AdapterDelegatesManager setFallbackDelegate(AdapterDelegate fallbackDelegate) {
-        this.fallbackDelegate = fallbackDelegate;
+        this.mFallbackDelegate = fallbackDelegate;
         return this;
     }
 
@@ -206,12 +206,12 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
      */
     @Nullable
     public AdapterDelegate getFallbackDelegate() {
-        return fallbackDelegate;
+        return mFallbackDelegate;
     }
 
 
     public AdapterDelegate<Object, VH> getDelegate(int viewType) {
-        return delegates.get(viewType, fallbackDelegate);
+        return mDelegates.get(viewType, mFallbackDelegate);
     }
 
     /**

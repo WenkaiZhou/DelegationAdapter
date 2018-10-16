@@ -33,7 +33,7 @@ import java.util.List;
 
 public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    protected AdapterDelegatesManager<VH> delegatesManager;
+    protected AdapterDelegatesManager<VH> mDelegatesManager;
 
     public AbsDelegationAdapter() {
         this(new AdapterDelegatesManager());
@@ -43,7 +43,7 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
         if (delegatesManager == null) {
             throw new NullPointerException("AdapterDelegatesManager is null.");
         }
-        this.delegatesManager = delegatesManager;
+        this.mDelegatesManager = delegatesManager;
     }
 
     /**
@@ -64,62 +64,62 @@ public abstract class AbsDelegationAdapter<VH extends RecyclerView.ViewHolder> e
      */
     public void addDelegate(AdapterDelegate delegate, String tag) {
         delegate.setTag(tag);
-        delegatesManager.addDelegate(delegate, tag);
+        mDelegatesManager.addDelegate(delegate, tag);
     }
 
     public void setFallbackDelegate(AdapterDelegate delegate) {
-        delegatesManager.setFallbackDelegate(delegate);
+        mDelegatesManager.setFallbackDelegate(delegate);
     }
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        return delegatesManager.onCreateViewHolder(parent, viewType);
+        return mDelegatesManager.onCreateViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(VH holder, int position) {
-        delegatesManager.onBindViewHolder(holder, position, getItem(position));
+        mDelegatesManager.onBindViewHolder(holder, position, getItem(position));
     }
 
     @Override
     public void onBindViewHolder(VH holder, int position, List<Object> payloads) {
         onBindViewHolder(holder, position);
-        delegatesManager.onBindViewHolder(holder, position, payloads, getItem(position));
+        mDelegatesManager.onBindViewHolder(holder, position, payloads, getItem(position));
     }
 
     @Override
     public int getItemViewType(int position) {
-        return delegatesManager.getItemViewType(getItem(position), position);
+        return mDelegatesManager.getItemViewType(getItem(position), position);
     }
 
     @Override
     public void onViewRecycled(VH holder) {
-        delegatesManager.onViewRecycled(holder);
+        mDelegatesManager.onViewRecycled(holder);
     }
 
     @Override
     public boolean onFailedToRecycleView(VH holder) {
-        return delegatesManager.onFailedToRecycleView(holder);
+        return mDelegatesManager.onFailedToRecycleView(holder);
     }
 
     @Override
     public void onViewAttachedToWindow(VH holder) {
-        delegatesManager.onViewAttachedToWindow(holder);
+        mDelegatesManager.onViewAttachedToWindow(holder);
     }
 
     @Override
     public void onViewDetachedFromWindow(VH holder) {
-        delegatesManager.onViewDetachedFromWindow(holder);
+        mDelegatesManager.onViewDetachedFromWindow(holder);
     }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        delegatesManager.onAttachedToRecyclerView(recyclerView);
+        mDelegatesManager.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
-        delegatesManager.onDetachedFromRecyclerView(recyclerView);
+        mDelegatesManager.onDetachedFromRecyclerView(recyclerView);
     }
 
     protected abstract Object getItem(int position);

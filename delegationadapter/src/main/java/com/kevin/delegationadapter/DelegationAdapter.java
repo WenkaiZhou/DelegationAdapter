@@ -52,7 +52,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     }
 
     public void setHeaderItems(List headerItems) {
-        mHeaderItems = headerItems;
+        this.mHeaderItems = headerItems;
         notifyDataSetChanged();
     }
 
@@ -123,7 +123,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
 
     public void addDataItems(int position, List dataItems) {
         mDataItems.addAll(position, dataItems);
-        notifyItemRangeInserted(getHeaderCount() + position , dataItems.size());
+        notifyItemRangeInserted(getHeaderCount() + position, dataItems.size());
     }
 
     public void moveDataItem(int fromPosition, int toPosition) {
@@ -147,7 +147,7 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         for (int i = 0; i < itemCount; i++) {
             mDataItems.remove(position);
         }
-        notifyItemRangeRemoved(getHeaderCount() + position , itemCount);
+        notifyItemRangeRemoved(getHeaderCount() + position, itemCount);
     }
 
     public List<Object> getDataList() {
