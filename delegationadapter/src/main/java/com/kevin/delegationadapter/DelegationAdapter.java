@@ -38,7 +38,6 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
     private List<Object> mFooterItems = new ArrayList<>();
 
     public DelegationAdapter() {
-        super();
     }
 
     public DelegationAdapter(@NonNull AdapterDelegatesManager delegatesManager) {
@@ -150,31 +149,31 @@ public class DelegationAdapter<VH extends RecyclerView.ViewHolder> extends AbsDe
         notifyItemRangeRemoved(getHeaderCount() + position, itemCount);
     }
 
-    public List<Object> getDataList() {
+    public List<Object> getDataItems() {
         return mDataItems;
     }
 
-    public List<Object> getHeaderList() {
+    public List<Object> getHeaderItems() {
         return mHeaderItems;
     }
 
-    public List<Object> getFooterList() {
+    public List<Object> getFooterItems() {
         return mFooterItems;
     }
 
     @Override
     protected Object getItem(int position) {
-        if (position < mHeaderItems.size()) {
+        if (position < getHeaderCount()) {
             return mHeaderItems.get(position);
         }
 
-        position -= mHeaderItems.size();
+        position -= getHeaderCount();
         if (position < getDataCount()) {
             return mDataItems.get(position);
         }
 
-        position -= mDataItems.size();
-        if (position < mFooterItems.size()) {
+        position -= getDataCount();
+        if (position < getFooterCount()) {
             return mFooterItems.get(position);
         }
 
