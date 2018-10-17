@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.kevin:loopview:1.4.1'
 //    implementation project(':delegationadapter')
 //    implementation project(':delegationadapter-extras')
-    implementation 'com.kevin:delegationadapter:1.0.4'
-    implementation 'com.kevin:delegationadapter-extras:1.0.4'
+    implementation 'com.kevin:delegationadapter:1.0.5'
+    implementation 'com.kevin:delegationadapter-extras:1.0.5'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-6'
 }
