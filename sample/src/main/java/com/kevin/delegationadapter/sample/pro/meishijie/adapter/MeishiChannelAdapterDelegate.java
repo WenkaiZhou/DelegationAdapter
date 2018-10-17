@@ -26,14 +26,14 @@ import com.kevin.delegationadapter.sample.pro.meishijie.bean.Meishi;
 public class MeishiChannelAdapterDelegate extends SpanAdapterDelegate<Meishi.Channel, MeishiChannelAdapterDelegate.ViewHolder> {
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_meishi_channel, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Meishi.Channel item) {
+    public void onBindViewHolder(ViewHolder holder, int position, Meishi.Channel item) {
         super.onBindViewHolder(holder, position, item);
         Glide.with(holder.itemView.getContext()).load(item.img).into(holder.ivImg);
         holder.tvTitle.setText(item.title);

@@ -44,7 +44,7 @@ public abstract class BindingSpanAdapterDelegate<T> extends SpanAdapterDelegate<
     }
 
     @Override
-    protected final BindingViewHolder onCreateViewHolder(ViewGroup parent) {
+    public final BindingViewHolder onCreateViewHolder(ViewGroup parent) {
         ViewDataBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 getLayoutRes(),
@@ -56,7 +56,7 @@ public abstract class BindingSpanAdapterDelegate<T> extends SpanAdapterDelegate<
     }
 
     @Override
-    protected void onBindViewHolder(BindingViewHolder holder, int position, T item) {
+    public void onBindViewHolder(BindingViewHolder holder, int position, T item) {
         super.onBindViewHolder(holder, position, item);
         if (item instanceof ItemData) {
             setVariable(holder.getBinding(), (T) ((ItemData) item).getData(), position);

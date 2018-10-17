@@ -28,14 +28,14 @@ public class HomeAdapterDelegate extends ClickableAdapterDelegate<String, HomeAd
     }
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
         super.onBindViewHolder(holder, position, item);
         holder.tvContent.setText(item);
     }

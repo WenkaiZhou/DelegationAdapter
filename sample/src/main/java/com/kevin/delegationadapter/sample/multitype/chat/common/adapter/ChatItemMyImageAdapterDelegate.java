@@ -25,13 +25,13 @@ import com.kevin.delegationadapter.sample.bean.Chat;
 public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Chat.TalkMsg, ChatItemMyImageAdapterDelegate.ViewHolder> {
 
     @Override
-    protected boolean isForViewType(Chat.TalkMsg item, int position) {
+    public boolean isForViewType(Chat.TalkMsg item, int position) {
         // 用户类型为1(自己)，条目类型1(图片)
         return item.user.type == 1 && item.type == 2;
     }
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_image, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -43,7 +43,7 @@ public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Cha
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
+    public void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
         Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
         Glide.with(holder.itemView.getContext()).load(item.pic).asBitmap().override(600, 600).into(holder.ivPic);
     }

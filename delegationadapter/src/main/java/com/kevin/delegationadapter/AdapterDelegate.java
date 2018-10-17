@@ -66,7 +66,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * @param position The position in the datasource
      * @return true, if this item is responsible,  otherwise false
      */
-    protected boolean isForViewType(T item, int position) {
+    public boolean isForViewType(T item, int position) {
         return true;
     }
 
@@ -76,7 +76,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * @param parent The ViewGroup parent of the given datasource
      * @return The new instantiated {@link RecyclerView.ViewHolder}
      */
-    protected abstract VH onCreateViewHolder(ViewGroup parent);
+    public abstract VH onCreateViewHolder(ViewGroup parent);
 
     /**
      * Called to bind the {@link RecyclerView.ViewHolder} to the item of the datas source set
@@ -85,7 +85,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * @param position The position in the datasource
      * @param item     The data source
      */
-    protected abstract void onBindViewHolder(VH holder, int position, T item);
+    public abstract void onBindViewHolder(VH holder, int position, T item);
 
     /**
      * Called to bind the {@link RecyclerView.ViewHolder} to the item of the datas source set
@@ -95,7 +95,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full update.
      * @param item     The data source
      */
-    protected void onBindViewHolder(VH holder, int position, List<Object> payloads, T item) {
+    public void onBindViewHolder(VH holder, int position, List<Object> payloads, T item) {
     }
 
     /**
@@ -116,7 +116,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      *
      * @param holder The ViewHolder for the view being recycled
      */
-    protected void onViewRecycled(VH holder) {
+    public void onViewRecycled(VH holder) {
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * RecyclerView will check the View's transient state again before giving a final decision.
      * Default implementation returns false.
      */
-    protected boolean onFailedToRecycleView(VH holder) {
+    public boolean onFailedToRecycleView(VH holder) {
         return false;
     }
 
@@ -170,7 +170,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being attached
      */
-    protected void onViewAttachedToWindow(VH holder) {
+    public void onViewAttachedToWindow(VH holder) {
     }
 
     /**
@@ -182,7 +182,7 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being detached
      */
-    protected void onViewDetachedFromWindow(VH holder) {
+    public void onViewDetachedFromWindow(VH holder) {
     }
 
     /**

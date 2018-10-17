@@ -25,20 +25,20 @@ import com.kevin.delegationadapter.sample.bean.News;
 public class MorePicAdapterDelegate extends AdapterDelegate<News, MorePicAdapterDelegate.MorePicViewHolder> {
 
     @Override
-    protected boolean isForViewType(News news, int position) {
+    public boolean isForViewType(News news, int position) {
         // 我能处理多张图片
         return news.type == 2;
     }
 
     @Override
-    protected MorePicViewHolder onCreateViewHolder(ViewGroup parent) {
+    public MorePicViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_more_pic, parent, false);
         MorePicViewHolder holder = new MorePicViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(MorePicViewHolder holder, int position, News news) {
+    public void onBindViewHolder(MorePicViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);

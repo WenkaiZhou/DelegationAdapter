@@ -20,7 +20,7 @@ import com.kevin.delegationadapter.sample.bean.News;
 public class ThreePicAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
-    protected boolean isForViewType(News news, int position) {
+    public boolean isForViewType(News news, int position) {
         // 我能处理三张图片
         return news.type == 1;
     }

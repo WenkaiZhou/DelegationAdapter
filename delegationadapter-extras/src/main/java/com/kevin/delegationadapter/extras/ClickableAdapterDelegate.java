@@ -41,7 +41,7 @@ public abstract class ClickableAdapterDelegate<T, VH extends RecyclerView.ViewHo
     }
 
     @Override
-    protected void onBindViewHolder(final VH holder, int position, final T item) {
+    public void onBindViewHolder(final VH holder, int position, final T item) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,20 +26,20 @@ import com.kevin.delegationadapter.sample.bean.News;
 public class ThreePicAdapterDelegate extends AdapterDelegate<News, ThreePicAdapterDelegate.ThreePicViewHolder> {
 
     @Override
-    protected boolean isForViewType(News item, int position) {
+    public boolean isForViewType(News item, int position) {
         // 我能处理三张图片
         return item.type == 1;
     }
 
     @Override
-    protected ThreePicViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ThreePicViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_three_pic, parent, false);
         ThreePicViewHolder holder = new ThreePicViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(ThreePicViewHolder holder, int position, News news) {
+    public void onBindViewHolder(ThreePicViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);

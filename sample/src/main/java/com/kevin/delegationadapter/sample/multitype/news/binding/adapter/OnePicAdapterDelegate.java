@@ -22,7 +22,7 @@ import com.kevin.delegationadapter.sample.bean.News;
 public class OnePicAdapterDelegate extends BindingAdapterDelegate<News> {
 
     @Override
-    protected boolean isForViewType(News news, int position) {
+    public boolean isForViewType(News news, int position) {
         // 我能处理一张图片
         return news.type == 0;
     }

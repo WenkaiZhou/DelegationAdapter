@@ -22,14 +22,14 @@ import com.kevin.delegationadapter.sample.R;
 public class TextAdapterDelegate extends AdapterDelegate<String, TextAdapterDelegate.ViewHolder> {
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
         holder.tvContent.setText(item);
     }
 

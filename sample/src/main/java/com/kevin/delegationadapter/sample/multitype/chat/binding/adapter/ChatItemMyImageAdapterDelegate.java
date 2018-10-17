@@ -20,7 +20,7 @@ import com.kevin.delegationadapter.sample.bean.Chat;
 public class ChatItemMyImageAdapterDelegate extends BindingAdapterDelegate<Chat.TalkMsg> {
 
     @Override
-    protected boolean isForViewType(Chat.TalkMsg item, int position) {
+    public boolean isForViewType(Chat.TalkMsg item, int position) {
         // 用户类型为1(自己)，条目类型1(图片)
         return item.user.type == 1 && item.type == 2;
     }

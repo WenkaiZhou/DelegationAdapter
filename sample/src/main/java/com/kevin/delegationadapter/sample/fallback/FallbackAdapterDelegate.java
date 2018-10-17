@@ -23,14 +23,14 @@ import com.kevin.delegationadapter.sample.R;
 public class FallbackAdapterDelegate extends AdapterDelegate<Object, FallbackAdapterDelegate.ViewHolder> {
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fallback, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Object item) {
+    public void onBindViewHolder(ViewHolder holder, int position, Object item) {
 
         String content = "No delegate found for "
                 + item

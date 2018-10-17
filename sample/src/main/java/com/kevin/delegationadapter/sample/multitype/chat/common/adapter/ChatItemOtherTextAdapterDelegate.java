@@ -25,20 +25,20 @@ import com.kevin.delegationadapter.sample.bean.Chat;
 public class ChatItemOtherTextAdapterDelegate extends AdapterDelegate<Chat.TalkMsg, ChatItemOtherTextAdapterDelegate.ViewHolder> {
 
     @Override
-    protected boolean isForViewType(Chat.TalkMsg item, int position) {
+    public boolean isForViewType(Chat.TalkMsg item, int position) {
         // 用户类型为1(他人)，条目类型1(文本)
         return item.user.type == 2 && item.type == 1;
     }
 
     @Override
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_other_text, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
+    public void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
         Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
         holder.tvContent.setText(item.text);
     }

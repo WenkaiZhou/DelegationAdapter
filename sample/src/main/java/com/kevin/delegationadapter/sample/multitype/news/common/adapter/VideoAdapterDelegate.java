@@ -25,20 +25,20 @@ import com.kevin.delegationadapter.sample.bean.News;
 public class VideoAdapterDelegate extends AdapterDelegate<News, VideoAdapterDelegate.VideoViewHolder> {
 
     @Override
-    protected boolean isForViewType(News news, int position) {
+    public boolean isForViewType(News news, int position) {
         // 我能处理视频类型
         return news.type == 3;
     }
 
     @Override
-    protected VideoViewHolder onCreateViewHolder(ViewGroup parent) {
+    public VideoViewHolder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_video, parent, false);
         VideoViewHolder holder = new VideoViewHolder(view);
         return holder;
     }
 
     @Override
-    protected void onBindViewHolder(VideoViewHolder holder, int position, News news) {
+    public void onBindViewHolder(VideoViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);
