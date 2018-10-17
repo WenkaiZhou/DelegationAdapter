@@ -3,13 +3,11 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 26
         versionCode 6
-        versionName "1.0.4"
+        versionName "1.0.5"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,8 +37,8 @@ dependencies {
 // -------
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
-setProperty "VERSION_CODE", "6"
-setProperty "VERSION_NAME", "1.0.4"
+setProperty "VERSION_CODE", "7"
+setProperty "VERSION_NAME", "1.0.5"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
