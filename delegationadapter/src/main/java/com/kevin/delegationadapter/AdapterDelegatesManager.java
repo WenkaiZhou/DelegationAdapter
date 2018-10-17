@@ -129,7 +129,7 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
         String tag = getTargetTag(item);
 
         String typeWithTag = getTypeWithTag(clazz, tag);
-        ArrayList<Integer> indexList = indexListOfValue(mDataTypeWithTags, typeWithTag);
+        ArrayList<Integer> indexList = indexesOfValue(mDataTypeWithTags, typeWithTag);
         if (indexList.size() > 0) {
             for (Integer index : indexList) {
                 AdapterDelegate<Object, VH> delegate = mDelegates.valueAt(index);
@@ -255,14 +255,14 @@ public class AdapterDelegatesManager<VH extends RecyclerView.ViewHolder> {
      * @param value
      * @return
      */
-    private ArrayList<Integer> indexListOfValue(SparseArray<String> array, String value) {
-        ArrayList<Integer> indexList = new ArrayList<>();
+    private ArrayList<Integer> indexesOfValue(SparseArray<String> array, String value) {
+        ArrayList<Integer> indexes = new ArrayList<>();
 
         for (int i = 0; i < array.size(); i++) {
             if (value.equals(array.valueAt(i))) {
-                indexList.add(i);
+                indexes.add(i);
             }
         }
-        return indexList;
+        return indexes;
     }
 }
