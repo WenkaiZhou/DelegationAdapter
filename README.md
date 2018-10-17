@@ -107,13 +107,15 @@ compile 'com.kevin:delegationadapter-extras:1.0.5'
 	```
     public class CompanyAdapterDelegate extends AdapterDelegate<String, CompanyAdapterDelegate.ViewHolder> {
     
-        protected ViewHolder onCreateViewHolder(ViewGroup parent) {
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent) {
             View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
         }
     
-        protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
             holder.tvName.setText(item);
         }
     
@@ -154,65 +156,71 @@ compile 'com.kevin:delegationadapter-extras:1.0.5'
 
 1. 编写CNCompanyAdapterDelegate
 
-```
-public class CNCompanyAdapterDelegate extends AdapterDelegate<String, CNCompanyAdapterDelegate.ViewHolder> {
-
-    protected boolean isForViewType(String item, int position) {
-        return item.contains("🇨🇳");
-    }
-
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
-        holder.tvName.setText(item);
-        holder.tvName.setTextColor(Color.RED);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            tvName = itemView.findViewById(android.R.id.text1);
+    ```
+    public class CNCompanyAdapterDelegate extends AdapterDelegate<String, CNCompanyAdapterDelegate.ViewHolder> {
+    
+        @Override
+        public boolean isForViewType(String item, int position) {
+            return item.contains("🇨🇳");
+        }
+    
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
+        }
+    
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+            holder.tvName.setText(item);
+            holder.tvName.setTextColor(Color.RED);
+        }
+        
+        static class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView tvName;
+    
+            public ViewHolder(View itemView) {
+                super(itemView);
+                tvName = itemView.findViewById(android.R.id.text1);
+            }
         }
     }
-}
-```
+    ```
 
 2. 编写USCompanyAdapterDelegate
 
-```
-public class USCompanyAdapterDelegate extends AdapterDelegate<String, USCompanyAdapterDelegate.ViewHolder> {
-
-    protected boolean isForViewType(String item, int position) {
-        return item.contains("🇺🇸");
-    }
-
-    protected ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    protected void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
-        holder.tvName.setText(item);
-        holder.tvName.setTextColor(Color.BLUE);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvName;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            tvName = itemView.findViewById(android.R.id.text1);
+    ```
+    public class USCompanyAdapterDelegate extends AdapterDelegate<String, USCompanyAdapterDelegate.ViewHolder> {
+    
+        @Override
+        public boolean isForViewType(String item, int position) {
+            return item.contains("🇺🇸");
+        }
+    
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
+        }
+    
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+            holder.tvName.setText(item);
+            holder.tvName.setTextColor(Color.BLUE);
+        }
+    
+        static class ViewHolder extends RecyclerView.ViewHolder {
+            public TextView tvName;
+    
+            public ViewHolder(View itemView) {
+                super(itemView);
+                tvName = itemView.findViewById(android.R.id.text1);
+            }
         }
     }
-}
-```
+    ```
 
 3. 注册委托Adapter
 
