@@ -13,42 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kevin.delegationadapter;
+package com.kevin.delegationadapter.extras.binding
+
+import android.databinding.ViewDataBinding
+import android.support.v7.widget.RecyclerView
+import android.view.View
 
 /**
- * ItemData
+ * BindingViewHolder
  *
- * @author zwenkai@foxmail.com, Created on 2018-04-06 13:47:09
- *         Major Function：<b>For the same data object corresponding to multiple Delegate
- *         are indistinguishable.</b>
+ * @author zwenkai@foxmail.com, Created on 2018-04-03 17:51:49
+ *         Major Function：<b>Binding ViewHolder</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
-public class ItemData {
+class BindingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private Object data;
-    private String tag;
+    private var binding: ViewDataBinding? = null
 
-    public ItemData(Object data, String tag) {
-        this.data = data;
-        this.tag = tag;
+    fun <T : ViewDataBinding> getBinding(): T {
+        return binding as T
     }
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
+    fun setBinding(binding: ViewDataBinding) {
+        this.binding = binding
     }
 }

@@ -32,7 +32,7 @@ public class TagAdapterDelegate extends BindingSpanAdapterDelegate<Goods.TagItem
     }
 
     @Override
-    protected int getSpanSize() {
+    public int getSpanSize() {
         return 1;
     }
 

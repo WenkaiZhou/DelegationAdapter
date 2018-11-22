@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kevin.delegationadapter;
+package com.kevin.delegationadapter
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
-
-import java.util.List;
+import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
 
 /**
  * AdapterDelegate
@@ -32,30 +29,19 @@ import java.util.List;
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
+abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
 
-    public static final String DEFAULT_TAG = "";
+    var tag = DEFAULT_TAG
 
-    private String mTag = DEFAULT_TAG;
+    constructor()
 
-    public AdapterDelegate() {
-    }
-
-    public AdapterDelegate(@NonNull String tag) {
-        if (null == tag || tag.length() == 0) {
-            throw new NullPointerException("The tag of "
-                    + this
-                    + " is null.");
+    constructor(tag: String) {
+        if (tag.isEmpty()) {
+            throw NullPointerException("The tag of "
+                    + AdapterDelegate::class.java.name
+                    + " is null.")
         }
-        this.setTag(tag);
-    }
-
-    public String getTag() {
-        return mTag;
-    }
-
-    public void setTag(String tag) {
-        this.mTag = tag;
+        this.tag = tag
     }
 
     /**
@@ -66,142 +52,149 @@ public abstract class AdapterDelegate<T, VH extends RecyclerView.ViewHolder> {
      * @param position The position in the datasource
      * @return true, if this item is responsible,  otherwise false
      */
-    public boolean isForViewType(T item, int position) {
-        return true;
+    open fun isForViewType(item: T, position: Int): Boolean {
+        return true
     }
 
     /**
-     * Creates the  {@link RecyclerView.ViewHolder} for the given data source item
+     * Creates the  [RecyclerView.ViewHolder] for the given data source item
      *
      * @param parent The ViewGroup parent of the given datasource
-     * @return The new instantiated {@link RecyclerView.ViewHolder}
+     * @return The new instantiated [RecyclerView.ViewHolder]
      */
-    public abstract VH onCreateViewHolder(ViewGroup parent);
+    abstract fun onCreateViewHolder(parent: ViewGroup): VH
 
     /**
-     * Called to bind the {@link RecyclerView.ViewHolder} to the item of the datas source set
+     * Called to bind the [RecyclerView.ViewHolder] to the item of the datas source set
      *
-     * @param holder   The {@link RecyclerView.ViewHolder} to bind
+     * @param holder   The [RecyclerView.ViewHolder] to bind
      * @param position The position in the datasource
      * @param item     The data source
      */
-    public abstract void onBindViewHolder(VH holder, int position, T item);
+    abstract fun onBindViewHolder(holder: VH, position: Int, item: T)
 
     /**
-     * Called to bind the {@link RecyclerView.ViewHolder} to the item of the datas source set
+     * Called to bind the [RecyclerView.ViewHolder] to the item of the datas source set
      *
-     * @param holder   The {@link RecyclerView.ViewHolder} to bind
+     * @param holder   The [RecyclerView.ViewHolder] to bind
      * @param position The position in the datasource
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full update.
      * @param item     The data source
      */
-    public void onBindViewHolder(VH holder, int position, List<Object> payloads, T item) {
-    }
+    fun onBindViewHolder(holder: VH, position: Int, payloads: List<Any>?, item: T) {}
 
     /**
      * Called when a view created by this adapter has been recycled.
-     * <p>
-     * <p>A view is recycled when a {@link RecyclerView.LayoutManager} decides that it no longer
-     * needs to be attached to its parent {@link RecyclerView}. This can be because it has
+     *
+     *
+     *
+     * A view is recycled when a [RecyclerView.LayoutManager] decides that it no longer
+     * needs to be attached to its parent [RecyclerView]. This can be because it has
      * fallen out of visibility or a set of cached views represented by views still
      * attached to the parent RecyclerView. If an item view has large or expensive data
      * bound to it such as large bitmaps, this may be a good place to release those
-     * resources.</p>
-     * <p>
+     * resources.
+     *
+     *
      * RecyclerView calls this method right before clearing ViewHolder's internal data and
      * sending it to RecycledViewPool. This way, if ViewHolder was holding valid information
-     * before being recycled, you can call {@link RecyclerView.ViewHolder#getAdapterPosition()} to
+     * before being recycled, you can call [RecyclerView.ViewHolder.getAdapterPosition] to
      * get
      * its adapter position.
      *
      * @param holder The ViewHolder for the view being recycled
      */
-    public void onViewRecycled(VH holder) {
-    }
+    fun onViewRecycled(holder: VH) {}
 
     /**
      * Called by the RecyclerView if a ViewHolder created by this Adapter cannot be recycled
      * due to its transient state. Upon receiving this callback, Adapter can clear the
-     * animation(s) that effect the View's transient state and return <code>true</code> so that
+     * animation(s) that effect the View's transient state and return `true` so that
      * the View can be recycled. Keep in mind that the View in question is already removed from
      * the RecyclerView.
-     * <p>
+     *
+     *
      * In some cases, it is acceptable to recycle a View although it has transient state. Most
      * of the time, this is a case where the transient state will be cleared in
-     * {@link RecyclerView.Adapter#onBindViewHolder(RecyclerView.ViewHolder, int)} call when View is
+     * [RecyclerView.Adapter.onBindViewHolder] call when View is
      * rebound to a new position.
      * For this reason, RecyclerView leaves the decision to the Adapter and uses the return
      * value of this method to decide whether the View should be recycled or not.
-     * <p>
-     * Note that when all animations are created by {@link RecyclerView.ItemAnimator}, you
+     *
+     *
+     * Note that when all animations are created by [RecyclerView.ItemAnimator], you
      * should never receive this callback because RecyclerView keeps those Views as children
      * until their animations are complete. This callback is useful when children of the item
-     * views create animations which may not be easy to implement using an {@link
-     * RecyclerView.ItemAnimator}.
-     * <p>
-     * You should <em>never</em> fix this issue by calling
-     * <code>holder.itemView.setHasTransientState(false);</code> unless you've previously called
-     * <code>holder.itemView.setHasTransientState(true);</code>. Each
-     * <code>View.setHasTransientState(true)</code> call must be matched by a
-     * <code>View.setHasTransientState(false)</code> call, otherwise, the state of the View
+     * views create animations which may not be easy to implement using an [ ].
+     *
+     *
+     * You should *never* fix this issue by calling
+     * `holder.itemView.setHasTransientState(false);` unless you've previously called
+     * `holder.itemView.setHasTransientState(true);`. Each
+     * `View.setHasTransientState(true)` call must be matched by a
+     * `View.setHasTransientState(false)` call, otherwise, the state of the View
      * may become inconsistent. You should always prefer to end or cancel animations that are
      * triggering the transient state instead of handling it manually.
      *
      * @param holder The ViewHolder containing the View that could not be recycled due to its
-     *               transient state.
+     * transient state.
      * @return True if the View should be recycled, false otherwise. Note that if this method
-     * returns <code>true</code>, RecyclerView <em>will ignore</em> the transient state of
-     * the View and recycle it regardless. If this method returns <code>false</code>,
+     * returns `true`, RecyclerView *will ignore* the transient state of
+     * the View and recycle it regardless. If this method returns `false`,
      * RecyclerView will check the View's transient state again before giving a final decision.
      * Default implementation returns false.
      */
-    public boolean onFailedToRecycleView(VH holder) {
-        return false;
+    fun onFailedToRecycleView(holder: VH): Boolean {
+        return false
     }
 
     /**
      * Called when a view created by this adapter has been attached to a window.
-     * <p>
-     * <p>This can be used as a reasonable signal that the view is about to be seen
+     *
+     *
+     *
+     * This can be used as a reasonable signal that the view is about to be seen
      * by the user. If the adapter previously freed any resources in
-     * {@link RecyclerView.Adapter#onViewDetachedFromWindow(RecyclerView.ViewHolder)
-     * onViewDetachedFromWindow}
-     * those resources should be restored here.</p>
+     * [ onViewDetachedFromWindow][RecyclerView.Adapter.onViewDetachedFromWindow]
+     * those resources should be restored here.
      *
      * @param holder Holder of the view being attached
      */
-    public void onViewAttachedToWindow(VH holder) {
-    }
+    fun onViewAttachedToWindow(holder: VH) {}
 
     /**
      * Called when a view created by this adapter has been detached from its window.
-     * <p>
-     * <p>Becoming detached from the window is not necessarily a permanent condition;
+     *
+     *
+     *
+     * Becoming detached from the window is not necessarily a permanent condition;
      * the consumer of an Adapter's views may choose to cache views offscreen while they
-     * are not visible, attaching an detaching them as appropriate.</p>
+     * are not visible, attaching an detaching them as appropriate.
      *
      * @param holder Holder of the view being detached
      */
-    public void onViewDetachedFromWindow(VH holder) {
-    }
+    fun onViewDetachedFromWindow(holder: VH) {}
 
     /**
      * Called by RecyclerView when it starts observing this Adapter.
-     * <p>
+     *
+     *
      * Keep in mind that same adapter may be observed by multiple RecyclerViews.
      *
      * @param recyclerView The RecyclerView instance which started observing this adapter.
-     * @see #onDetachedFromRecyclerView(RecyclerView)
+     * @see .onDetachedFromRecyclerView
      */
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-    }
+    fun onAttachedToRecyclerView(recyclerView: RecyclerView) {}
 
     /**
      * Called by RecyclerView when it stops observing this Adapter.
      *
      * @param recyclerView The RecyclerView instance which stopped observing this adapter.
-     * @see #onAttachedToRecyclerView(RecyclerView)
+     * @see .onAttachedToRecyclerView
      */
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+    fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {}
+
+    companion object {
+        val DEFAULT_TAG = ""
     }
 }

@@ -13,33 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kevin.delegationadapter.extras.span;
+package com.kevin.delegationadapter.extras.span
 
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView
 
-import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
+import com.kevin.delegationadapter.extras.ClickableAdapterDelegate
 
 /**
  * SpanAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-06-10 10:00:34
- *         Major Function：<b>AdapterDelegate with span</b>
- *         <p/>
- *         Note: If you modify this class please fill in the following content as a record.
+ * Major Function：**AdapterDelegate with span**
+ *
+ *
+ * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
-public abstract class SpanAdapterDelegate<T, VH extends RecyclerView.ViewHolder> extends ClickableAdapterDelegate<T, VH> {
+abstract class SpanAdapterDelegate<T, VH : RecyclerView.ViewHolder> : ClickableAdapterDelegate<T, VH> {
 
-    public SpanAdapterDelegate() {
-    }
+    open var spanSize: Int = 1
 
-    public SpanAdapterDelegate(String tag) {
-        super(tag);
-    }
+    constructor()
 
-    protected int getSpanSize() {
-        return 1;
-    }
+    constructor(tag: String) : super(tag)
 
 }
