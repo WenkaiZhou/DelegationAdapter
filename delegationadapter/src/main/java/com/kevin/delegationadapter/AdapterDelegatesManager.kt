@@ -74,6 +74,7 @@ class AdapterDelegatesManager {
         val delegate = getDelegate(viewType)
                 ?: throw NullPointerException("No AdapterDelegate added for ViewType $viewType")
 
+        // It`s can be null when in Java.
         return delegate.onCreateViewHolder(parent)
                 ?: throw NullPointerException("ViewHolder returned from AdapterDelegate ${delegate.javaClass}"
                         + " for ViewType = $viewType is null!")

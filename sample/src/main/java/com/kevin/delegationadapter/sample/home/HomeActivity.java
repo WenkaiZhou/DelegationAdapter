@@ -116,6 +116,9 @@ public class HomeActivity extends AppCompatActivity {
             case 10:
                 startActivity(new Intent(this, RefreshLoadActivity.class));
                 break;
+            default:
+                // Can't reach;
+                break;
         }
     }
 }
