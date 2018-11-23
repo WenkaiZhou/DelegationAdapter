@@ -81,7 +81,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param payloads A non-null list of merged payloads. Can be empty list if requires full update.
      * @param item     The data source
      */
-    fun onBindViewHolder(holder: VH, position: Int, payloads: List<Any>?, item: T) {}
+    open fun onBindViewHolder(holder: VH, position: Int, payloads: List<Any>?, item: T) {}
 
     /**
      * Called when a view created by this adapter has been recycled.
@@ -104,7 +104,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder The ViewHolder for the view being recycled
      */
-    fun onViewRecycled(holder: VH) {}
+    open fun onViewRecycled(holder: VH) {}
 
     /**
      * Called by the RecyclerView if a ViewHolder created by this Adapter cannot be recycled
@@ -144,7 +144,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * RecyclerView will check the View's transient state again before giving a final decision.
      * Default implementation returns false.
      */
-    fun onFailedToRecycleView(holder: VH): Boolean {
+    open fun onFailedToRecycleView(holder: VH): Boolean {
         return false
     }
 
@@ -160,7 +160,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being attached
      */
-    fun onViewAttachedToWindow(holder: VH) {}
+    open fun onViewAttachedToWindow(holder: VH) {}
 
     /**
      * Called when a view created by this adapter has been detached from its window.
@@ -173,7 +173,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being detached
      */
-    fun onViewDetachedFromWindow(holder: VH) {}
+    open fun onViewDetachedFromWindow(holder: VH) {}
 
     /**
      * Called by RecyclerView when it starts observing this Adapter.
@@ -184,7 +184,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param recyclerView The RecyclerView instance which started observing this adapter.
      * @see .onDetachedFromRecyclerView
      */
-    fun onAttachedToRecyclerView(recyclerView: RecyclerView) {}
+    open fun onAttachedToRecyclerView(recyclerView: RecyclerView) {}
 
     /**
      * Called by RecyclerView when it stops observing this Adapter.
@@ -192,7 +192,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param recyclerView The RecyclerView instance which stopped observing this adapter.
      * @see .onAttachedToRecyclerView
      */
-    fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {}
+    open fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {}
 
     companion object {
         val DEFAULT_TAG = ""

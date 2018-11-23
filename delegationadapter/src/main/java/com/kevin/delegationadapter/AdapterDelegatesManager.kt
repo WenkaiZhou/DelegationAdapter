@@ -123,9 +123,9 @@ class AdapterDelegatesManager {
         if (indexList.size > 0) {
             for (index in indexList) {
                 val delegate = delegates.valueAt(index)
-                if (null != delegate
-                        && delegate!!.tag == tag
-                        && delegate!!.isForViewType(item, position)) {
+                if (delegate != null
+                        && delegate.tag == tag
+                        && delegate.isForViewType(item, position)) {
                     return index
                 }
             }
@@ -174,22 +174,6 @@ class AdapterDelegatesManager {
         }
     }
 
-//    fun setFallbackDelegate(fallbackDelegate: AdapterDelegate<Any, RecyclerView.ViewHolder>): AdapterDelegatesManager {
-//        this.fallbackDelegate = fallbackDelegate
-//        return this
-//    }
-
-//    /**
-//     * Get the fallback delegate
-//     *
-//     * @return The fallback delegate or `null` if no fallback delegate has been set
-//     * @see .setFallbackDelegate
-//     */
-//    fun getFallbackDelegate(): AdapterDelegate<Any, RecyclerView.ViewHolder>? {
-//        return fallbackDelegate
-//    }
-
-
     fun getDelegate(viewType: Int): AdapterDelegate<Any, RecyclerView.ViewHolder>? {
         return delegates.get(viewType, fallbackDelegate)
     }
@@ -202,11 +186,10 @@ class AdapterDelegatesManager {
      * @return
      */
     private fun getTypeWithTag(clazz: Class<*>, tag: String): String {
-        return if (tag.length == 0) {
+        return if (tag.isEmpty())
             clazz.name
-        } else {
+        else
             clazz.name + ":" + tag
-        }
     }
 
     /**
@@ -215,7 +198,10 @@ class AdapterDelegatesManager {
      * @return
      */
     private fun getTargetClass(data: Any): Class<*> {
-        return if (data is ItemData) data.data!!.javaClass else data.javaClass
+        return if (data is ItemData)
+            data.data!!.javaClass
+        else
+            data.javaClass
     }
 
     /**
@@ -225,7 +211,9 @@ class AdapterDelegatesManager {
      * @return
      */
     private fun getTargetTag(data: Any): String? {
-        return if (data is ItemData) data.tag else AdapterDelegate.DEFAULT_TAG
+        return if (data is ItemData)
+            data.tag
+        else AdapterDelegate.DEFAULT_TAG
     }
 
     /**

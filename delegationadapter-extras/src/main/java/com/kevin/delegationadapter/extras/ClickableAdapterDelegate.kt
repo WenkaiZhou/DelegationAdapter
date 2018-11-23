@@ -34,9 +34,9 @@ import com.kevin.delegationadapter.ItemData
 
 abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : AdapterDelegate<T, VH> {
 
-    constructor() {}
+    constructor()
 
-    constructor(tag: String) : super(tag) {}
+    constructor(tag: String) : super(tag)
 
     override fun onBindViewHolder(holder: VH, position: Int, item: T) {
         holder.itemView.setOnClickListener { v ->
@@ -44,7 +44,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
             // If the item can click
             if (clickable(position)) {
                 if (item is ItemData) {
-                    onItemClick(v, (item as ItemData).data as T, getPosition(holder))
+                    onItemClick(v, item.data as T, getPosition(holder))
                 } else {
                     onItemClick(v, item, getPosition(holder))
                 }
@@ -56,7 +56,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
             // If the item can long click
             if (longClickable(position)) {
                 return@OnLongClickListener if (item is ItemData) {
-                    onItemLongClick(v, (item as ItemData).data as T, getPosition(holder))
+                    onItemLongClick(v, item.data as T, getPosition(holder))
                 } else {
                     onItemLongClick(v, item, getPosition(holder))
                 }
@@ -71,7 +71,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param position
      * @return
      */
-    protected fun clickable(position: Int): Boolean {
+    open fun clickable(position: Int): Boolean {
         return true
     }
 
@@ -81,7 +81,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param position
      * @return
      */
-    protected fun longClickable(position: Int): Boolean {
+    open fun longClickable(position: Int): Boolean {
         return true
     }
 
@@ -115,7 +115,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param holder
      * @return
      */
-    fun getPosition(holder: VH): Int {
+    private fun getPosition(holder: VH): Int {
         return holder.adapterPosition
     }
 }

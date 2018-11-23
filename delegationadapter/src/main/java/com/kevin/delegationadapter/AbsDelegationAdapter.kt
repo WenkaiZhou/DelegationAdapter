@@ -95,5 +95,5 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
         delegatesManager.onDetachedFromRecyclerView(recyclerView!!)
     }
 
-    protected abstract fun getItem(position: Int): Any
+    abstract fun getItem(position: Int): Any
 }
