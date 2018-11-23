@@ -64,8 +64,7 @@ class AdapterDelegatesManager {
             dataTypeWithTags.put(viewType, typeWithTag)
         } catch (e: Exception) {
             // Has no generics or generics not correct.
-            throw IllegalArgumentException(
-                    String.format("Please set the correct generic parameters on %s.", delegate.javaClass.name))
+            throw IllegalArgumentException("Please set the correct generic parameters on ${delegate.javaClass.name}.")
         }
 
         return this
@@ -76,11 +75,8 @@ class AdapterDelegatesManager {
                 ?: throw NullPointerException("No AdapterDelegate added for ViewType $viewType")
 
         return delegate.onCreateViewHolder(parent)
-                ?: throw NullPointerException("ViewHolder returned from AdapterDelegate "
-                        + delegate
-                        + " for ViewType ="
-                        + viewType
-                        + " is null!")
+                ?: throw NullPointerException("ViewHolder returned from AdapterDelegate ${delegate.javaClass}"
+                        + " for ViewType = $viewType is null!")
     }
 
     fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, item: Any) {
@@ -136,8 +132,7 @@ class AdapterDelegatesManager {
             return delegates.size()
         }
 
-        throw NullPointerException("No AdapterDelegate added that matches position="
-                + position + " item=" + item + " in data source.")
+        throw NullPointerException("No AdapterDelegate added that matches position = $position item = $item in data source.")
     }
 
     fun onViewRecycled(holder: RecyclerView.ViewHolder) {
