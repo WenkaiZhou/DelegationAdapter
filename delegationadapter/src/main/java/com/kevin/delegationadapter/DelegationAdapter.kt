@@ -163,18 +163,17 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     override fun getItem(position: Int): Any {
-        var position = position
         if (position < headerCount) {
             return headerItems[position]
         }
 
-        position -= headerCount
-        if (position < dataCount) {
-            return dataItems[position]
+        var offsetPosition = position - headerCount
+        if (offsetPosition < dataCount) {
+            return dataItems[offsetPosition]
         }
 
-        position -= dataCount
-        return footerItems[position]
+        offsetPosition -= dataCount
+        return footerItems[offsetPosition]
     }
 
     override fun getItemCount(): Int {

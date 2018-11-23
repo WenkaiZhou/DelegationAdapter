@@ -64,6 +64,7 @@ abstract class BindingAdapterDelegate<T> : ClickableAdapterDelegate<T, BindingVi
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int, item: T) {
         super.onBindViewHolder(holder, position, item)
         if (item is ItemData) {
+            @Suppress("UNCHECKED_CAST")
             setVariable(holder.getBinding(), (item as ItemData).data as T, position)
         } else {
             setVariable(holder.getBinding(), item, position)

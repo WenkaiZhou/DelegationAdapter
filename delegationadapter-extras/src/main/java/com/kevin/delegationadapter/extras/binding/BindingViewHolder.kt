@@ -34,6 +34,7 @@ class BindingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var binding: ViewDataBinding? = null
 
     fun <T : ViewDataBinding> getBinding(): T {
+        @Suppress("UNCHECKED_CAST")
         return binding as T
     }
 

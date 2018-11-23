@@ -40,25 +40,27 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
 
     override fun onBindViewHolder(holder: VH, position: Int, item: T) {
         holder.itemView.setOnClickListener { v ->
-            val position = getPosition(holder)
+            val currentPosition = getPosition(holder)
             // If the item can click
-            if (clickable(position)) {
+            if (clickable(currentPosition)) {
                 if (item is ItemData) {
-                    onItemClick(v, item.data as T, getPosition(holder))
+                    @Suppress("UNCHECKED_CAST")
+                    onItemClick(v, item.data as T, currentPosition)
                 } else {
-                    onItemClick(v, item, getPosition(holder))
+                    onItemClick(v, item, currentPosition)
                 }
             }
         }
 
         holder.itemView.setOnLongClickListener(View.OnLongClickListener { v ->
-            val position = getPosition(holder)
+            val currentPosition = getPosition(holder)
             // If the item can long click
-            if (longClickable(position)) {
+            if (longClickable(currentPosition)) {
                 return@OnLongClickListener if (item is ItemData) {
-                    onItemLongClick(v, item.data as T, getPosition(holder))
+                    @Suppress("UNCHECKED_CAST")
+                    onItemLongClick(v, item.data as T, currentPosition)
                 } else {
-                    onItemLongClick(v, item, getPosition(holder))
+                    onItemLongClick(v, item, currentPosition)
                 }
             }
             false
