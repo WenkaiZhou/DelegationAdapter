@@ -70,7 +70,7 @@ class AdapterDelegatesManager {
         return this
     }
 
-    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         val delegate = getDelegate(viewType)
                 ?: throw NullPointerException("No AdapterDelegate added for ViewType $viewType")
 

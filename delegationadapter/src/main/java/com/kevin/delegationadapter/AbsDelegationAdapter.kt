@@ -54,7 +54,7 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
         delegatesManager.fallbackDelegate = delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return delegatesManager.onCreateViewHolder(parent, viewType)
     }
 
@@ -62,7 +62,7 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
         delegatesManager.onBindViewHolder(holder, position, getItem(position))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>?) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>?) {
         onBindViewHolder(holder, position)
         delegatesManager.onBindViewHolder(holder, position, payloads, getItem(position))
     }

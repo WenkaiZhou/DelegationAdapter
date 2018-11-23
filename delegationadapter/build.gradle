@@ -23,7 +23,6 @@ android {
 }
 
 dependencies {
-//    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -42,4 +41,4 @@ setProperty "POM_DESCRIPTION", "Delegation Adapter"
 ext {
     kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
 }
-//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -62,7 +62,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param parent The ViewGroup parent of the given datasource
      * @return The new instantiated [RecyclerView.ViewHolder]
      */
-    abstract fun onCreateViewHolder(parent: ViewGroup): VH
+    abstract fun onCreateViewHolder(parent: ViewGroup?): VH
 
     /**
      * Called to bind the [RecyclerView.ViewHolder] to the item of the datas source set
