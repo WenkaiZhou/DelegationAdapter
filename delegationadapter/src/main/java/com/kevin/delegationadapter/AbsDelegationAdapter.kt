@@ -22,20 +22,12 @@ import android.view.ViewGroup
  * AbsDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
- * Major Function：**The base DelegationAdapter**
- *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         Major Function：**The base DelegationAdapter**
+ *         <p/>
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var delegatesManager: AdapterDelegatesManager = AdapterDelegatesManager()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    init {
-        if (delegatesManager == null) {
-            throw NullPointerException("AdapterDelegatesManager is null.")
-        }
-    }
 
     /**
      * Add an Adapter Delegate with tag, the role of tag is to distinguish Adapters with the
@@ -54,7 +46,7 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
         delegatesManager.fallbackDelegate = delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return delegatesManager.onCreateViewHolder(parent, viewType)
     }
 
@@ -72,27 +64,27 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
     }
 
     override fun onViewRecycled(holder: RecyclerView.ViewHolder?) {
-        delegatesManager.onViewRecycled(holder!!)
+        delegatesManager.onViewRecycled(holder)
     }
 
     override fun onFailedToRecycleView(holder: RecyclerView.ViewHolder?): Boolean {
-        return delegatesManager.onFailedToRecycleView(holder!!)
+        return delegatesManager.onFailedToRecycleView(holder)
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
-        delegatesManager.onViewAttachedToWindow(holder!!)
+        delegatesManager.onViewAttachedToWindow(holder)
     }
 
     override fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder?) {
-        delegatesManager.onViewDetachedFromWindow(holder!!)
+        delegatesManager.onViewDetachedFromWindow(holder)
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
-        delegatesManager.onAttachedToRecyclerView(recyclerView!!)
+        delegatesManager.onAttachedToRecyclerView(recyclerView)
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
-        delegatesManager.onDetachedFromRecyclerView(recyclerView!!)
+        delegatesManager.onDetachedFromRecyclerView(recyclerView)
     }
 
     abstract fun getItem(position: Int): Any

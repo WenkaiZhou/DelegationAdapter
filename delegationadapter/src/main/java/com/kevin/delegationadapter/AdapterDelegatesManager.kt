@@ -27,19 +27,16 @@ import java.util.ArrayList
  * AdapterDelegatesManager
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:24:58
- * Major Function：**This class is the element that ties [RecyclerView.Adapter]
- * together with [AdapterDelegate].
+ *         Major Function：**This class is the element that ties [RecyclerView.Adapter]
+ *         together with [AdapterDelegate].
  *
+ *         So you have to add / register your [AdapterDelegate]s to this manager by calling
+ *         [.addDelegate]
+ *         /b>
  *
- * So you have to add / register your [AdapterDelegate]s to this manager by calling
- * [.addDelegate]
- * /b>
- *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
- ** */
-
+ */
 class AdapterDelegatesManager {
 
     private val dataTypeWithTags = SparseArray<String>()
@@ -55,10 +52,10 @@ class AdapterDelegatesManager {
         val superclass = delegate.javaClass.genericSuperclass
         try {
             val clazz = (superclass as ParameterizedType).actualTypeArguments[0] as Class<*>
-            val typeWithTag = getTypeWithTag(clazz, tag)
-
+            val typeWithTag = typeWithTag(clazz, tag)
             val viewType = delegates.size()
             // Save the delegate to the collection;
+            @Suppress("UNCHECKED_CAST")
             delegates.put(viewType, delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?)
             // Save the index of the delegate to the collection;
             dataTypeWithTags.put(viewType, typeWithTag)
@@ -70,7 +67,7 @@ class AdapterDelegatesManager {
         return this
     }
 
-    fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val delegate = getDelegate(viewType)
                 ?: throw NullPointerException("No AdapterDelegate added for ViewType $viewType")
 
@@ -93,10 +90,7 @@ class AdapterDelegatesManager {
     fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>?, item: Any) {
         val viewType = holder.itemViewType
         val delegate = getDelegate(viewType)
-                ?: throw NullPointerException("No delegate found for item at position = "
-                        + position
-                        + " for viewType = "
-                        + viewType)
+                ?: throw NullPointerException("No delegate found for item at position = $position for viewType = $viewType")
         delegate.onBindViewHolder(holder, position, payloads, item)
     }
 
@@ -108,23 +102,20 @@ class AdapterDelegatesManager {
      * @return
      */
     fun getItemViewType(item: Any, position: Int): Int {
+        // It`s can be null when in Java.
         if (item == null) {
             throw NullPointerException("Item data source is null.")
         }
 
-        val clazz = getTargetClass(item)
-        val tag = getTargetTag(item)
+        val clazz = targetClass(item)
+        val tag = targetTag(item)
 
-        val typeWithTag = getTypeWithTag(clazz, tag!!)
+        val typeWithTag = typeWithTag(clazz, tag)
         val indexList = indexesOfValue(dataTypeWithTags, typeWithTag)
-        if (indexList.size > 0) {
-            for (index in indexList) {
-                val delegate = delegates.valueAt(index)
-                if (delegate != null
-                        && delegate.tag == tag
-                        && delegate.isForViewType(item, position)) {
-                    return index
-                }
+        indexList.forEach {
+            val delegate = delegates.valueAt(it)
+            if (delegate?.tag == tag && delegate.isForViewType(item, position)) {
+                return it
             }
         }
 
@@ -136,80 +127,56 @@ class AdapterDelegatesManager {
         throw NullPointerException("No AdapterDelegate added that matches position = $position item = $item in data source.")
     }
 
-    fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        val delegate = getDelegate(holder.itemViewType)
+    fun onViewRecycled(holder: RecyclerView.ViewHolder?) {
+        val itemViewType = holder?.itemViewType ?: return
+        val delegate = getDelegate(itemViewType)
         delegate?.onViewRecycled(holder)
     }
 
-    fun onFailedToRecycleView(holder: RecyclerView.ViewHolder): Boolean {
-        val delegate = getDelegate(holder.itemViewType)
+    fun onFailedToRecycleView(holder: RecyclerView.ViewHolder?): Boolean {
+        val itemViewType = holder?.itemViewType ?: return false
+        val delegate = getDelegate(itemViewType)
         return delegate?.onFailedToRecycleView(holder) ?: false
     }
 
-    fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
-        val delegate = getDelegate(holder.itemViewType)
+    fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
+        val itemViewType = holder?.itemViewType ?: return
+        val delegate = getDelegate(itemViewType)
         delegate?.onViewAttachedToWindow(holder)
     }
 
-    fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
-        val delegate = getDelegate(holder.itemViewType)
+    fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder?) {
+        val itemViewType = holder?.itemViewType ?: return
+        val delegate = getDelegate(itemViewType)
         delegate?.onViewDetachedFromWindow(holder)
     }
 
-    fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+    fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
             delegate.onAttachedToRecyclerView(recyclerView)
         }
     }
 
-    fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+    fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
             delegate.onDetachedFromRecyclerView(recyclerView)
         }
     }
 
-    fun getDelegate(viewType: Int): AdapterDelegate<Any, RecyclerView.ViewHolder>? {
-        return delegates.get(viewType, fallbackDelegate)
+    fun getDelegate(viewType: Int): AdapterDelegate<Any, RecyclerView.ViewHolder>? = delegates.get(viewType, fallbackDelegate)
+
+    private val typeWithTag = { clazz: Class<*>, tag: String ->
+        if (tag.isEmpty()) clazz.name else clazz.name + ":" + tag
     }
 
-    /**
-     * Returns the class name with tag;
-     *
-     * @param clazz
-     * @param tag
-     * @return
-     */
-    private fun getTypeWithTag(clazz: Class<*>, tag: String): String {
-        return if (tag.isEmpty())
-            clazz.name
-        else
-            clazz.name + ":" + tag
+    private val targetClass = { data: Any ->
+        if (data is ItemData) data.data.javaClass else data.javaClass
     }
 
-    /**
-     * Returns the target class name
-     *
-     * @return
-     */
-    private fun getTargetClass(data: Any): Class<*> {
-        return if (data is ItemData)
-            data.data!!.javaClass
-        else
-            data.javaClass
-    }
-
-    /**
-     * Returns the target tag
-     *
-     * @param data
-     * @return
-     */
-    private fun getTargetTag(data: Any): String? {
-        return if (data is ItemData)
-            data.tag
-        else AdapterDelegate.DEFAULT_TAG
+    private val targetTag = { data: Any ->
+        if (data is ItemData) data.tag else AdapterDelegate.DEFAULT_TAG
     }
 
     /**

@@ -21,10 +21,10 @@ import java.util.ArrayList
  * DelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
- * Major Function：**Delegation Adapter**
+ *         Major Function：**Delegation Adapter**
  *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         <p/>
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
@@ -58,20 +58,14 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyDataSetChanged()
     }
 
-    fun addHeaderItem(headerItem: Any) {
-        addHeaderItem(headerCount, headerItem)
-    }
-
-    fun addHeaderItem(position: Int, headerItem: Any) {
+    @JvmOverloads
+    fun addHeaderItem(position: Int = headerCount, headerItem: Any) {
         headerItems.add(position, headerItem)
         notifyItemRangeInserted(position, 1)
     }
 
-    fun addHeaderItems(headerItems: MutableList<Nothing>) {
-        addHeaderItems(headerCount, headerItems)
-    }
-
-    fun addHeaderItems(position: Int, headerItems: MutableList<Nothing>) {
+    @JvmOverloads
+    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<Nothing>) {
         this.headerItems.addAll(position, headerItems)
         notifyItemRangeInserted(position, headerItems.size)
     }
@@ -87,20 +81,14 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyDataSetChanged()
     }
 
-    fun addFooterItem(footerItem: Any) {
-        addFooterItem(footerCount, footerItem)
-    }
-
-    fun addFooterItem(position: Int, footerItem: Any) {
+    @JvmOverloads
+    fun addFooterItem(position: Int = footerCount, footerItem: Any) {
         footerItems.add(position, footerItem)
         notifyItemRangeInserted(headerCount + dataCount + position, 1)
     }
 
-    fun addFooterItems(footerItems: MutableList<Nothing>) {
-        addFooterItems(footerCount, footerItems)
-    }
-
-    fun addFooterItems(position: Int, footerItems: MutableList<Nothing>) {
+    @JvmOverloads
+    fun addFooterItems(position: Int = footerCount, footerItems: MutableList<Nothing>) {
         this.footerItems.addAll(position, listOf(footerItems))
         notifyItemRangeInserted(headerCount + dataCount + position, footerItems.size)
     }
@@ -110,20 +98,14 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyDataSetChanged()
     }
 
-    fun addDataItem(item: Any) {
-        addDataItem(dataCount, item)
-    }
-
-    fun addDataItem(position: Int, item: Any) {
+    @JvmOverloads
+    fun addDataItem(position: Int = dataCount, item: Any) {
         dataItems.add(position, item)
         notifyItemRangeInserted(headerCount + position, 1)
     }
 
-    fun addDataItems(dataItems: MutableList<Nothing>) {
-        addDataItems(dataCount, dataItems)
-    }
-
-    fun addDataItems(position: Int, dataItems: MutableList<Nothing>) {
+    @JvmOverloads
+    fun addDataItems(position: Int = dataCount, dataItems: MutableList<Nothing>) {
         this.dataItems.addAll(position, dataItems)
         notifyItemRangeInserted(headerCount + position, dataItems.size)
     }
@@ -138,29 +120,23 @@ open class DelegationAdapter : AbsDelegationAdapter {
     fun removeDataItem(dataItem: Any) {
         val index = dataItems.indexOf(dataItem)
         if (index != -1 && index <= dataCount) {
-            removeDataItem(index)
+            removeDataItemAt(index)
         }
     }
 
     @JvmOverloads
-    fun removeDataItem(position: Int, itemCount: Int = 1) {
+    fun removeDataItemAt(position: Int, itemCount: Int = 1) {
         for (i in 0 until itemCount) {
             dataItems.removeAt(position)
         }
         notifyItemRangeRemoved(headerCount + position, itemCount)
     }
 
-    fun getDataItems(): List<Any> {
-        return dataItems
-    }
+    fun getDataItems() = dataItems
 
-    fun getHeaderItems(): List<Any> {
-        return headerItems
-    }
+    fun getHeaderItems() = headerItems
 
-    fun getFooterItems(): List<Any> {
-        return footerItems
-    }
+    fun getFooterItems() = footerItems
 
     override fun getItem(position: Int): Any {
         if (position < headerCount) {
@@ -176,21 +152,13 @@ open class DelegationAdapter : AbsDelegationAdapter {
         return footerItems[offsetPosition]
     }
 
-    override fun getItemCount(): Int {
-        return headerCount + dataCount + footerCount
-    }
+    override fun getItemCount() = headerCount + dataCount + footerCount
 
-    fun clearData() {
-        dataItems.clear()
-    }
+    fun clearData() = dataItems.clear()
 
-    fun clearHeader() {
-        headerItems.clear()
-    }
+    fun clearHeader() = headerItems.clear()
 
-    fun clearFooter() {
-        footerItems.clear()
-    }
+    fun clearFooter() = footerItems.clear()
 
     fun clearAllData() {
         clearData()

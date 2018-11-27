@@ -25,13 +25,11 @@ import com.kevin.delegationadapter.ItemData
  * ClickableAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-06 23:28:37
- * Major Function：**Clickable ViewHolder Delegate**
- *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         Major Function：**Clickable ViewHolder Delegate**
+ *         <p/>
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : AdapterDelegate<T, VH> {
 
     constructor()
@@ -73,9 +71,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param position
      * @return
      */
-    open fun clickable(position: Int): Boolean {
-        return true
-    }
+    open fun clickable(position: Int) = true
 
     /**
      * Whether the adapter item can long click
@@ -83,9 +79,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param position
      * @return
      */
-    open fun longClickable(position: Int): Boolean {
-        return true
-    }
+    open fun longClickable(position: Int) = true
 
     /**
      * Called when a item view has been clicked.
@@ -106,10 +100,7 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param position
      * @return
      */
-    open fun onItemLongClick(view: View, item: T, position: Int): Boolean {
-        // do nothing
-        return false
-    }
+    open fun onItemLongClick(view: View, item: T, position: Int) = false
 
     /**
      * Get the position of ViewHolder
@@ -117,7 +108,5 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @param holder
      * @return
      */
-    private fun getPosition(holder: VH): Int {
-        return holder.adapterPosition
-    }
+    private fun getPosition(holder: VH) = holder.adapterPosition
 }

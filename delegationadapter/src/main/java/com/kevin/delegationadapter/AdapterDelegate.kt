@@ -28,7 +28,6 @@ import android.view.ViewGroup
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
 
     var tag = DEFAULT_TAG
@@ -37,9 +36,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
 
     constructor(tag: String) {
         if (tag.isEmpty()) {
-            throw NullPointerException("The tag of "
-                    + AdapterDelegate::class.java.name
-                    + " is null.")
+            throw NullPointerException("The tag of ${javaClass.name} is null.")
         }
         this.tag = tag
     }
@@ -52,9 +49,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param position The position in the datasource
      * @return true, if this item is responsible,  otherwise false
      */
-    open fun isForViewType(item: T, position: Int): Boolean {
-        return true
-    }
+    open fun isForViewType(item: T, position: Int) = true
 
     /**
      * Creates the  [RecyclerView.ViewHolder] for the given data source item
@@ -62,7 +57,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param parent The ViewGroup parent of the given datasource
      * @return The new instantiated [RecyclerView.ViewHolder]
      */
-    abstract fun onCreateViewHolder(parent: ViewGroup?): VH
+    abstract fun onCreateViewHolder(parent: ViewGroup): VH
 
     /**
      * Called to bind the [RecyclerView.ViewHolder] to the item of the datas source set
@@ -104,7 +99,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder The ViewHolder for the view being recycled
      */
-    open fun onViewRecycled(holder: VH) {}
+    open fun onViewRecycled(holder: VH?) {}
 
     /**
      * Called by the RecyclerView if a ViewHolder created by this Adapter cannot be recycled
@@ -144,9 +139,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * RecyclerView will check the View's transient state again before giving a final decision.
      * Default implementation returns false.
      */
-    open fun onFailedToRecycleView(holder: VH): Boolean {
-        return false
-    }
+    open fun onFailedToRecycleView(holder: VH) = false
 
     /**
      * Called when a view created by this adapter has been attached to a window.
@@ -160,7 +153,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being attached
      */
-    open fun onViewAttachedToWindow(holder: VH) {}
+    open fun onViewAttachedToWindow(holder: VH?) {}
 
     /**
      * Called when a view created by this adapter has been detached from its window.
@@ -173,7 +166,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      *
      * @param holder Holder of the view being detached
      */
-    open fun onViewDetachedFromWindow(holder: VH) {}
+    open fun onViewDetachedFromWindow(holder: VH?) {}
 
     /**
      * Called by RecyclerView when it starts observing this Adapter.
@@ -184,7 +177,7 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param recyclerView The RecyclerView instance which started observing this adapter.
      * @see .onDetachedFromRecyclerView
      */
-    open fun onAttachedToRecyclerView(recyclerView: RecyclerView) {}
+    open fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {}
 
     /**
      * Called by RecyclerView when it stops observing this Adapter.
@@ -192,9 +185,9 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @param recyclerView The RecyclerView instance which stopped observing this adapter.
      * @see .onAttachedToRecyclerView
      */
-    open fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {}
+    open fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {}
 
     companion object {
-        val DEFAULT_TAG = ""
+        const val DEFAULT_TAG = ""
     }
 }

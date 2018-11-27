@@ -25,4 +25,4 @@ package com.kevin.delegationadapter
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-class ItemData(var data: Any?, var tag: String?)
+class ItemData(var data: Any, var tag: String)

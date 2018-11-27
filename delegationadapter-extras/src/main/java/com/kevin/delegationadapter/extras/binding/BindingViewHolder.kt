@@ -28,7 +28,6 @@ import android.view.View
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 class BindingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private var binding: ViewDataBinding? = null

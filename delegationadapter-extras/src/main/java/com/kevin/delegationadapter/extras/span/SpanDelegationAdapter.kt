@@ -18,17 +18,15 @@ package com.kevin.delegationadapter.extras.span
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 
-import com.kevin.delegationadapter.AdapterDelegate
 import com.kevin.delegationadapter.DelegationAdapter
 
 /**
  * SpanDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-06-10 11:08:37
- * Major Function：**DelegationAdapter with span**
- *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         Major Function：**DelegationAdapter with span**
+ *         <p/>
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 
@@ -37,13 +35,14 @@ class SpanDelegationAdapter : DelegationAdapter() {
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
         super.onAttachedToRecyclerView(recyclerView)
 
-        val layoutManager = recyclerView!!.layoutManager
+        val layoutManager = recyclerView?.layoutManager
         if (layoutManager is GridLayoutManager) {
 
             layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     val delegate = delegatesManager.getDelegate(getItemViewType(position))
-                    return if (null != delegate && delegate is SpanAdapterDelegate<*, *>) {
+                    return if (null != delegate
+                            && delegate is SpanAdapterDelegate<Any, out RecyclerView.ViewHolder>) {
                         delegate.spanSize
                     } else {
                         layoutManager.spanCount

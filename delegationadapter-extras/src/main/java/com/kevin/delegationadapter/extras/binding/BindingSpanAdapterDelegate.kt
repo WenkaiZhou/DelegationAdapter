@@ -28,13 +28,11 @@ import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate
  * BindingSpanAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-11 10:29:52
- * Major Function：**Binding Delegation Adapter**
- *
- *
- * Note: If you modify this class please fill in the following content as a record.
+ *         Major Function：**Binding Delegation Adapter**
+ *         <p/>
+ *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 abstract class BindingSpanAdapterDelegate<T> : SpanAdapterDelegate<T, BindingViewHolder> {
 
     /**
@@ -45,9 +43,9 @@ abstract class BindingSpanAdapterDelegate<T> : SpanAdapterDelegate<T, BindingVie
     @get:LayoutRes
     abstract val layoutRes: Int
 
-    constructor() {}
+    constructor()
 
-    constructor(tag: String) : super(tag) {}
+    constructor(tag: String) : super(tag)
 
     override fun onCreateViewHolder(parent: ViewGroup): BindingViewHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
@@ -63,7 +61,8 @@ abstract class BindingSpanAdapterDelegate<T> : SpanAdapterDelegate<T, BindingVie
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int, item: T) {
         super.onBindViewHolder(holder, position, item)
         if (item is ItemData) {
-            setVariable(holder.getBinding(), (item as ItemData).data as T, position)
+            @Suppress("UNCHECKED_CAST")
+            setVariable(holder.getBinding(), item.data as T, position)
         } else {
             setVariable(holder.getBinding(), item, position)
         }
