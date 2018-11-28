@@ -43,6 +43,7 @@ abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var dele
     }
 
     fun setFallbackDelegate(delegate: AdapterDelegate<*, *>) {
+        @Suppress("UNCHECKED_CAST")
         delegatesManager.fallbackDelegate = delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?
     }
 

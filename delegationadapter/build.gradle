@@ -23,22 +23,45 @@ android {
 }
 
 dependencies {
+    compileOnly 'com.android.support:recyclerview-v7:26.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 
-// -------
+//------
+apply plugin: 'org.jetbrains.dokka-android'
+
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    options.encoding = "UTF-8"
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = javadoc.destinationDir
+}
+
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+//------
+
+// Release jcenter configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter"
 setProperty "PROJECT_NAME", "DelegationAdapter"
-setProperty "VERSION_CODE", "7"
-setProperty "VERSION_NAME", "1.0.5"
+setProperty "VERSION_CODE", "8"
+setProperty "VERSION_NAME", "1.1.0"
 setProperty "POM_DESCRIPTION", "Delegation Adapter"
 
 ext {
     kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
 }
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

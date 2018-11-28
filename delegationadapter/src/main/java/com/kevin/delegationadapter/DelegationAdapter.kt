@@ -131,10 +131,10 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun moveDataItem(fromPosition: Int, toPosition: Int) {
-        var toPosition = toPosition
-        toPosition = if (fromPosition < toPosition) toPosition - 1 else toPosition
-        dataItems.add(toPosition, dataItems.removeAt(fromPosition))
-        notifyItemMoved(fromPosition, toPosition)
+        var moveToPosition = toPosition
+        moveToPosition = if (fromPosition < moveToPosition) moveToPosition - 1 else moveToPosition
+        dataItems.add(moveToPosition, dataItems.removeAt(fromPosition))
+        notifyItemMoved(fromPosition, moveToPosition)
     }
 
     fun removeDataItem(dataItem: Any) {

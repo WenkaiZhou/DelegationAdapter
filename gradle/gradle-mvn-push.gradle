@@ -85,6 +85,7 @@ bintray {
     }
 }
 
-kevinSourceDocFiles.each {
-    apply from: it
+artifacts {
+    archives generateJavadoc
+    archives generateSourcesJar
 }

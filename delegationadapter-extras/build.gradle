@@ -20,26 +20,46 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    dataBinding {
-        enabled true
-    }
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation project(':delegationadapter')
+    compileOnly 'com.android.support:recyclerview-v7:26.1.0'
+    compileOnly 'com.android.databinding:library:3.2.1'
+    compileOnly project(':delegationadapter')
 }
 
-// -------
+//------
+apply plugin: 'org.jetbrains.dokka-android'
+
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    options.encoding = "UTF-8"
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = javadoc.destinationDir
+}
+
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+//------
+
+// Release jcenter configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
-setProperty "VERSION_CODE", "7"
-setProperty "VERSION_NAME", "1.0.5"
+setProperty "VERSION_CODE", "8"
+setProperty "VERSION_NAME", "1.1.0"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
