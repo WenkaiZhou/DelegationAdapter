@@ -27,7 +27,6 @@ import java.util.ArrayList
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-
 open class DelegationAdapter : AbsDelegationAdapter {
 
     private var dataItems: MutableList<Any> = ArrayList()
@@ -53,20 +52,27 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyDataSetChanged()
     }
 
-    fun setHeaderItems(headerItems: MutableList<Nothing>) {
-        this.headerItems = headerItems.toMutableList()
+    fun setHeaderItems(headerItems: MutableList<*>) {
+        this.headerItems.clear()
+        this.headerItems.addAll(headerItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    @JvmOverloads
+    fun addHeaderItem(headerItem: Any) {
+        addHeaderItem(headerCount, headerItem)
+    }
+
     fun addHeaderItem(position: Int = headerCount, headerItem: Any) {
         headerItems.add(position, headerItem)
         notifyItemRangeInserted(position, 1)
     }
 
-    @JvmOverloads
-    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<Nothing>) {
-        this.headerItems.addAll(position, headerItems)
+    fun addHeaderItems(headerItems: MutableList<*>) {
+        addHeaderItems(headerCount, headerItems)
+    }
+
+    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<*>) {
+        this.headerItems.addAll(position, headerItems.filterNotNull())
         notifyItemRangeInserted(position, headerItems.size)
     }
 
@@ -76,37 +82,51 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyDataSetChanged()
     }
 
-    fun setFooterItems(footerItems: MutableList<Nothing>) {
-        this.footerItems = footerItems.toMutableList()
+    fun setFooterItems(footerItems: MutableList<*>) {
+        this.footerItems.clear()
+        this.footerItems.addAll(footerItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    @JvmOverloads
-    fun addFooterItem(position: Int = footerCount, footerItem: Any) {
+    fun addFooterItem(footerItem: Any) {
+        addFooterItem(footerCount, footerItem)
+    }
+
+    fun addFooterItem(position: Int, footerItem: Any) {
         footerItems.add(position, footerItem)
         notifyItemRangeInserted(headerCount + dataCount + position, 1)
     }
 
-    @JvmOverloads
-    fun addFooterItems(position: Int = footerCount, footerItems: MutableList<Nothing>) {
-        this.footerItems.addAll(position, listOf(footerItems))
+    fun addFooterItems(footerItems: MutableList<*>) {
+        addFooterItems(footerCount, footerItems)
+    }
+
+    fun addFooterItems(position: Int, footerItems: MutableList<*>) {
+        this.footerItems.addAll(position, footerItems.filterNotNull())
         notifyItemRangeInserted(headerCount + dataCount + position, footerItems.size)
     }
 
-    fun setDataItems(dataItems: MutableList<Nothing>) {
-        this.dataItems = dataItems.toMutableList()
+    fun setDataItems(dataItems: MutableList<*>) {
+        this.dataItems.clear()
+        this.dataItems.addAll(dataItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    @JvmOverloads
+    fun addDataItem(item: Any) {
+        addDataItem(dataCount, item)
+    }
+
     fun addDataItem(position: Int = dataCount, item: Any) {
         dataItems.add(position, item)
         notifyItemRangeInserted(headerCount + position, 1)
     }
 
-    @JvmOverloads
-    fun addDataItems(position: Int = dataCount, dataItems: MutableList<Nothing>) {
-        this.dataItems.addAll(position, dataItems)
+    fun addDataItems(dataItems: MutableList<*>) {
+        addDataItems(dataCount, dataItems)
+    }
+
+    fun addDataItems(position: Int = dataCount, dataItems: MutableList<*>) {
+        this.dataItems.addAll(position, dataItems.filterNotNull())
         notifyItemRangeInserted(headerCount + position, dataItems.size)
     }
 

@@ -102,11 +102,6 @@ class AdapterDelegatesManager {
      * @return
      */
     fun getItemViewType(item: Any, position: Int): Int {
-        // It`s can be null when in Java.
-        if (item == null) {
-            throw NullPointerException("Item data source is null.")
-        }
-
         val clazz = targetClass(item)
         val tag = targetTag(item)
 
