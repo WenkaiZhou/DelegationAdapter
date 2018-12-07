@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.kevin.delegationadapter.sample.bean.Chat.TalkMsg" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            app:avatarUrl="@{model.user.avatar}"
+            app:error="@{@drawable/ic_launcher_background}"
+            tools:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/iv_avatar"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_chat_my_bg"
+            android:padding="4dp"
+            android:paddingRight="8dp"
+            app:error="@{@drawable/ic_launcher_background}"
+            app:thumbnailUrl="@{model.pic}" />
+
+    </RelativeLayout>
+</layout>

@@ -10,6 +10,7 @@ import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.bean.Chat;
 import com.kevin.delegationadapter.sample.multitype.chat.binding.adapter.ChatItemMyImageAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.binding.adapter.ChatItemMyTextAdapterDelegate;
+import com.kevin.delegationadapter.sample.multitype.chat.binding.adapter.ChatItemOtherImageAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.binding.adapter.ChatItemOtherTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
@@ -48,6 +49,7 @@ public class BindingChatActivity extends AppCompatActivity {
         delegationAdapter.addDelegate(new ChatItemOtherTextAdapterDelegate());
         delegationAdapter.addDelegate(new ChatItemMyTextAdapterDelegate());
         delegationAdapter.addDelegate(new ChatItemMyImageAdapterDelegate());
+        delegationAdapter.addDelegate(new ChatItemOtherImageAdapterDelegate());
         mBinding.recyclerView.setAdapter(delegationAdapter);
     }
 
