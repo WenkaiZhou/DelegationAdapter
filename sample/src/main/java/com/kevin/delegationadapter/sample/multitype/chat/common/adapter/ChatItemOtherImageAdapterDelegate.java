@@ -22,17 +22,17 @@ import com.kevin.delegationadapter.sample.bean.Chat;
  * @author mender，Modified Date Modify Content:
  */
 
-public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Chat.TalkMsg, ChatItemMyImageAdapterDelegate.ViewHolder> {
+public class ChatItemOtherImageAdapterDelegate extends ClickableAdapterDelegate<Chat.TalkMsg, ChatItemOtherImageAdapterDelegate.ViewHolder> {
 
     @Override
     public boolean isForViewType(Chat.TalkMsg item, int position) {
-        // 用户类型为1(自己)，条目类型2(图片)
-        return item.user.type == 1 && item.type == 2;
+        // 用户类型为2(别人)，条目类型2(图片)
+        return item.user.type == 2 && item.type == 2;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_image, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_other_image, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

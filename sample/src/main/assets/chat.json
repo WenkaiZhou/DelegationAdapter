@@ -133,8 +133,17 @@
         "avatar": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/zzb.png"
       },
       "type": 1,
-      "text": "他好像条狗啊！",
+      "text": "他好像条狗啊！再来看一下这条狗长什么样子！",
       "pic": ""
+    },
+    {
+      "user": {
+        "type": 2,
+        "avatar": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/zxxz.png"
+      },
+      "type": 2,
+      "text": "http://wx4.sinaimg.cn/wap720/69cc290fly1fkci073wfxj218g0qoq6y.jpg",
+      "pic": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/ngrhxytg.jpg"
     }
   ]
 }
