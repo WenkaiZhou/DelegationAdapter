@@ -25,17 +25,18 @@ public class LocalFileUtils {
 
     /**
      * 获取Asset下文本内容
+     *
      * @param context
      * @param str
      * @return
      */
     public final static String getStringFormAsset(Context context, String str) {
-        BufferedReader in = null;
+        BufferedReader br = null;
         try {
-            in = new BufferedReader(new InputStreamReader(context.getAssets().open(str)));
+            br = new BufferedReader(new InputStreamReader(context.getAssets().open(str)));
             String line;
             StringBuilder buffer = new StringBuilder();
-            while ((line = in.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 buffer.append(line).append('\n');
             }
             return buffer.toString();
@@ -43,10 +44,10 @@ public class LocalFileUtils {
             e.printStackTrace();
             return "";
         } finally {
-            if (in != null) {
+            if (br != null) {
                 try {
-                    in.close();
-                    in = null;
+                    br.close();
+                    br = null;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -93,12 +94,12 @@ public class LocalFileUtils {
      */
     public final static String getStringFormRaw(Context context, int rawId) {
         ByteArrayOutputStream baos = null;
-        InputStream in = context.getResources().openRawResource(rawId);
+        InputStream is = context.getResources().openRawResource(rawId);
         try {
             baos = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
             int len = 0;
-            while ((len = in.read(buffer)) != -1) {
+            while ((len = is.read(buffer)) != -1) {
                 baos.write(buffer, 0, len);
             }
             baos.close();
