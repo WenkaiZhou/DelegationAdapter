@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
+import com.kevin.delegationadapter.sample.WrapDelegationAdapter;
 import com.kevin.delegationadapter.sample.fallback.FallbackActivity;
 import com.kevin.delegationadapter.sample.footer.FooterActivity;
 import com.kevin.delegationadapter.sample.header.HeaderActivity;
@@ -38,7 +39,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
-    DelegationAdapter mDelegationAdapter;
+    WrapDelegationAdapter mDelegationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         // 设置Adapter
-        mDelegationAdapter = new DelegationAdapter();
+        mDelegationAdapter = new WrapDelegationAdapter();
         // 向Adapter中注册委托Adapter
         mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
         mRecyclerView.setAdapter(mDelegationAdapter);
