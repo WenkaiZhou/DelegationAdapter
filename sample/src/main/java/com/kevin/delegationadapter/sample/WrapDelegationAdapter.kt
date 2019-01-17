@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -48,7 +49,7 @@ class WrapDelegationAdapter : DelegationAdapter {
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, item: ViewWrapper) {
-            if (holder.itemView is FrameLayout) {
+            if (holder.itemView is FrameLayout && holder.itemView != item.view.parent) {
                 if (item.view.parent != null) {
                     (item.view.parent as ViewGroup).removeView(item.view)
                 }
