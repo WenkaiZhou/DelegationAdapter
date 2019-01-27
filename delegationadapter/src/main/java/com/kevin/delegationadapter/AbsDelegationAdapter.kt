@@ -27,7 +27,7 @@ import android.view.ViewGroup
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-abstract class AbsDelegationAdapter @JvmOverloads constructor(protected var delegatesManager: AdapterDelegatesManager = AdapterDelegatesManager()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class AbsDelegationAdapter (protected var delegatesManager: AdapterDelegatesManager) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /**
      * Add an Adapter Delegate with tag, the role of tag is to distinguish Adapters with the

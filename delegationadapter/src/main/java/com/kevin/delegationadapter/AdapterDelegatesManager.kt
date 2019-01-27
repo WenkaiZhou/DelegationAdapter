@@ -37,7 +37,7 @@ import java.util.ArrayList
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-class AdapterDelegatesManager {
+open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
 
     private val dataTypeWithTags = SparseArray<String>()
     private val delegates = SparseArrayCompat<AdapterDelegate<Any, RecyclerView.ViewHolder>>()
@@ -53,7 +53,11 @@ class AdapterDelegatesManager {
         try {
             val clazz = (superclass as ParameterizedType).actualTypeArguments[0] as Class<*>
             val typeWithTag = typeWithTag(clazz, tag)
-            val viewType = delegates.size()
+            val viewType = if (hasConsistItemType) {
+                delegate.getItemViewType()
+            } else {
+                delegates.size()
+            }
             // Save the delegate to the collection;
             @Suppress("UNCHECKED_CAST")
             delegates.put(viewType, delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?)
@@ -107,10 +111,14 @@ class AdapterDelegatesManager {
 
         val typeWithTag = typeWithTag(clazz, tag)
         val indexList = indexesOfValue(dataTypeWithTags, typeWithTag)
-        indexList.forEach {
-            val delegate = delegates.valueAt(it)
+        indexList.forEach { index ->
+            val delegate = delegates.valueAt(index)
             if (delegate?.tag == tag && delegate.isForViewType(item, position)) {
-                return it
+                return if (hasConsistItemType) {
+                    delegate.getItemViewType()
+                } else {
+                    index
+                }
             }
         }
 

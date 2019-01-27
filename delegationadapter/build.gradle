@@ -58,10 +58,10 @@ task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
 setProperty "POM_ARTIFACT_ID", "delegationadapter"
 setProperty "PROJECT_NAME", "DelegationAdapter"
 setProperty "VERSION_CODE", "8"
-setProperty "VERSION_NAME", "1.1.0"
+setProperty "VERSION_NAME", "1.1.1beta2"
 setProperty "POM_DESCRIPTION", "Delegation Adapter"
 
 ext {
     kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
 }
-//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

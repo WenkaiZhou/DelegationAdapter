@@ -187,6 +187,12 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      */
     open fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {}
 
+    /**
+     * Called by RecyclerView When sub adapters itemTypes are consistent.
+     *
+     */
+    open fun getItemViewType() = 0
+
     companion object {
         const val DEFAULT_TAG = ""
     }

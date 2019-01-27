@@ -42,7 +42,8 @@ open class DelegationAdapter : AbsDelegationAdapter {
     val footerCount: Int
         get() = footerItems.size
 
-    constructor()
+    @JvmOverloads
+    constructor(hasConsistItemType: Boolean = false): super(AdapterDelegatesManager(hasConsistItemType))
 
     constructor(delegatesManager: AdapterDelegatesManager) : super(delegatesManager)
 
