@@ -22,9 +22,9 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
  * MeishijieActivity
  *
  * @author zwenkai@foxmail.com, Created on 2018-06-13 10:59:25
- *         Major Function：<b></b>
- *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ * Major Function：<b></b>
+ * <p/>
+ * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * @author mender，Modified Date Modify Content:
  */
 
@@ -49,10 +49,10 @@ public class MeishijieActivity extends AppCompatActivity {
         // 设置Adapter
         delegationAdapter = new SpanDelegationAdapter();
         // 添加委托Adapter
-        delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate());
-        delegationAdapter.addDelegate(new MeishiSancanAdapterDelegate());
-        delegationAdapter.addDelegate(new MeishiZhuantiTitleAdapterDelegate());
-        delegationAdapter.addDelegate(new MeishiZhuantiAdapterDelegate());
+        delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate())
+                .addDelegate(new MeishiSancanAdapterDelegate())
+                .addDelegate(new MeishiZhuantiTitleAdapterDelegate())
+                .addDelegate(new MeishiZhuantiAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
     }
 

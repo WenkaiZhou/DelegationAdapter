@@ -37,9 +37,10 @@ abstract class AbsDelegationAdapter (protected var delegatesManager: AdapterDele
      * @param tag
      */
     @JvmOverloads
-    fun addDelegate(delegate: AdapterDelegate<*, *>, tag: String = delegate.tag) {
+    fun addDelegate(delegate: AdapterDelegate<*, *>, tag: String = delegate.tag): AbsDelegationAdapter {
         delegate.tag = tag
         delegatesManager.addDelegate(delegate, tag)
+        return this;
     }
 
     fun setFallbackDelegate(delegate: AdapterDelegate<*, *>) {
