@@ -113,7 +113,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         val indexList = indexesOfValue(dataTypeWithTags, typeWithTag)
         indexList.forEach { index ->
             val delegate = delegates.valueAt(index)
-            if (delegate?.tag == tag && delegate.isForViewType(item, position)) {
+            if (delegate?.tag == tag && delegate.isForViewType(if (item is ItemData) item.data else item, position)) {
                 return if (hasConsistItemType) {
                     delegate.getItemViewType()
                 } else {
