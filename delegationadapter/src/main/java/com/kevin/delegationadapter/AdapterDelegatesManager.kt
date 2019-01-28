@@ -88,14 +88,14 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
                         + position
                         + " for viewType = "
                         + viewType)
-        delegate.onBindViewHolder(holder, position, item)
+        delegate.onBindViewHolder(holder, position, targetItem(item))
     }
 
     fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>?, item: Any) {
         val viewType = holder.itemViewType
         val delegate = getDelegate(viewType)
                 ?: throw NullPointerException("No delegate found for item at position = $position for viewType = $viewType")
-        delegate.onBindViewHolder(holder, position, payloads, item)
+        delegate.onBindViewHolder(holder, position, payloads, targetItem(item))
     }
 
     /**
@@ -106,14 +106,14 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
      * @return
      */
     fun getItemViewType(item: Any, position: Int): Int {
-        val clazz = targetClass(item)
+        val clazz = targetItem(item).javaClass
         val tag = targetTag(item)
 
         val typeWithTag = typeWithTag(clazz, tag)
         val indexList = indexesOfValue(dataTypeWithTags, typeWithTag)
         indexList.forEach { index ->
             val delegate = delegates.valueAt(index)
-            if (delegate?.tag == tag && delegate.isForViewType(if (item is ItemData) item.data else item, position)) {
+            if (delegate?.tag == tag && delegate.isForViewType(targetItem(item), position)) {
                 return if (hasConsistItemType) {
                     delegate.getItemViewType()
                 } else {
@@ -174,10 +174,16 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         if (tag.isEmpty()) clazz.name else clazz.name + ":" + tag
     }
 
-    private val targetClass = { data: Any ->
-        if (data is ItemData) data.data.javaClass else data.javaClass
+    /**
+     * Returns the target item data.
+     */
+    private val targetItem = { data: Any ->
+        if (data is ItemData) data.data else data
     }
 
+    /**
+     * Returns the target item tag.
+     */
     private val targetTag = { data: Any ->
         if (data is ItemData) data.tag else AdapterDelegate.DEFAULT_TAG
     }
