@@ -127,7 +127,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
             return delegates.size()
         }
 
-        throw NullPointerException("No AdapterDelegate added that matches position = $position item = $item in data source.")
+        throw NullPointerException("No AdapterDelegate added that matches position = $position item = ${targetItem(item)} in data source.")
     }
 
     fun onViewRecycled(holder: RecyclerView.ViewHolder?) {
