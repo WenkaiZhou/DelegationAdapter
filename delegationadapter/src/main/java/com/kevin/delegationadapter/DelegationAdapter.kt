@@ -43,90 +43,123 @@ open class DelegationAdapter : AbsDelegationAdapter {
         get() = footerItems.size
 
     @JvmOverloads
-    constructor(hasConsistItemType: Boolean = false): super(AdapterDelegatesManager(hasConsistItemType))
+    constructor(hasConsistItemType: Boolean = false) : super(AdapterDelegatesManager(hasConsistItemType))
 
     constructor(delegatesManager: AdapterDelegatesManager) : super(delegatesManager)
 
-    fun setHeaderItem(headerItem: Any) {
+    fun setHeaderItem(headerItem: Any?) {
+        if (headerItem == null) {
+            return
+        }
         headerItems.clear()
         headerItems.add(headerItem)
         notifyDataSetChanged()
     }
 
-    fun setHeaderItems(headerItems: MutableList<*>) {
+    fun setHeaderItems(headerItems: MutableList<*>?) {
+        if (headerItems == null || headerItems.isEmpty()) {
+            return
+        }
         this.headerItems.clear()
         this.headerItems.addAll(headerItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    fun addHeaderItem(headerItem: Any) {
+    fun addHeaderItem(headerItem: Any?) {
         addHeaderItem(headerCount, headerItem)
     }
 
-    fun addHeaderItem(position: Int = headerCount, headerItem: Any) {
+    fun addHeaderItem(position: Int = headerCount, headerItem: Any?) {
+        if (headerItem == null) {
+            return
+        }
         headerItems.add(position, headerItem)
         notifyItemRangeInserted(position, 1)
     }
 
-    fun addHeaderItems(headerItems: MutableList<*>) {
+    fun addHeaderItems(headerItems: MutableList<*>?) {
         addHeaderItems(headerCount, headerItems)
     }
 
-    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<*>) {
+    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<*>?) {
+        if (headerItems == null || headerItems.isEmpty()) {
+            return
+        }
         this.headerItems.addAll(position, headerItems.filterNotNull())
         notifyItemRangeInserted(position, headerItems.size)
     }
 
-    fun setFooterItem(footerItem: Any) {
+    fun setFooterItem(footerItem: Any?) {
+        if (footerItem == null) {
+            return
+        }
         footerItems.clear()
         footerItems.add(footerItem)
         notifyDataSetChanged()
     }
 
-    fun setFooterItems(footerItems: MutableList<*>) {
+    fun setFooterItems(footerItems: MutableList<*>?) {
+        if (footerItems == null || footerItems.isEmpty()) {
+            return
+        }
         this.footerItems.clear()
         this.footerItems.addAll(footerItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    fun addFooterItem(footerItem: Any) {
+    fun addFooterItem(footerItem: Any?) {
         addFooterItem(footerCount, footerItem)
     }
 
-    fun addFooterItem(position: Int, footerItem: Any) {
+    fun addFooterItem(position: Int, footerItem: Any?) {
+        if (footerItem == null) {
+            return
+        }
         footerItems.add(position, footerItem)
         notifyItemRangeInserted(headerCount + dataCount + position, 1)
     }
 
-    fun addFooterItems(footerItems: MutableList<*>) {
+    fun addFooterItems(footerItems: MutableList<*>?) {
         addFooterItems(footerCount, footerItems)
     }
 
-    fun addFooterItems(position: Int, footerItems: MutableList<*>) {
+    fun addFooterItems(position: Int, footerItems: MutableList<*>?) {
+        if (footerItems == null || footerItems.isEmpty()) {
+            return
+        }
         this.footerItems.addAll(position, footerItems.filterNotNull())
         notifyItemRangeInserted(headerCount + dataCount + position, footerItems.size)
     }
 
-    fun setDataItems(dataItems: MutableList<*>) {
+    fun setDataItems(dataItems: MutableList<*>?) {
+        if (dataItems == null || dataItems.isEmpty()) {
+            return
+        }
         this.dataItems.clear()
         this.dataItems.addAll(dataItems.filterNotNull())
         notifyDataSetChanged()
     }
 
-    fun addDataItem(item: Any) {
-        addDataItem(dataCount, item)
+    fun addDataItem(dataItem: Any?) {
+        addDataItem(dataCount, dataItem)
     }
 
-    fun addDataItem(position: Int = dataCount, item: Any) {
-        dataItems.add(position, item)
+    fun addDataItem(position: Int = dataCount, dataItem: Any?) {
+        if (dataItem == null) {
+            return
+        }
+        dataItems.add(position, dataItem)
         notifyItemRangeInserted(headerCount + position, 1)
     }
 
-    fun addDataItems(dataItems: MutableList<*>) {
+    fun addDataItems(dataItems: MutableList<*>?) {
         addDataItems(dataCount, dataItems)
     }
 
-    fun addDataItems(position: Int = dataCount, dataItems: MutableList<*>) {
+    fun addDataItems(position: Int = dataCount, dataItems: MutableList<*>?) {
+        if (dataItems == null || dataItems.isEmpty()) {
+            return
+        }
         this.dataItems.addAll(position, dataItems.filterNotNull())
         notifyItemRangeInserted(headerCount + position, dataItems.size)
     }
@@ -138,7 +171,10 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyItemMoved(fromPosition, moveToPosition)
     }
 
-    fun removeDataItem(dataItem: Any) {
+    fun removeDataItem(dataItem: Any?) {
+        if (dataItem == null) {
+            return
+        }
         val index = dataItems.indexOf(dataItem)
         if (index != -1 && index <= dataCount) {
             removeDataItemAt(index)
