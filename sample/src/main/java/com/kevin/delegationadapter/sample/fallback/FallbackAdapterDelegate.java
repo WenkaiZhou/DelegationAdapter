@@ -20,17 +20,21 @@ import com.kevin.delegationadapter.sample.R;
  * @author mender，Modified Date Modify Content:
  */
 
-public class FallbackAdapterDelegate extends AdapterDelegate<Object, FallbackAdapterDelegate.ViewHolder> {
+public class FallbackAdapterDelegate extends AdapterDelegate<Object, RecyclerView.ViewHolder> {
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fallback, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
+        TextView view = new TextView(parent.getContext());
+        view.setLayoutParams(
+                new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+        return new RecyclerView.ViewHolder(view) {
+        };
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, Object item) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, Object item) {
 
         String content = "No delegate found for "
                 + item
@@ -41,20 +45,10 @@ public class FallbackAdapterDelegate extends AdapterDelegate<Object, FallbackAda
                 + ", item detail ==> "
                 + new Gson().toJson(item);
 
-        holder.tvContent.setText(content);
+        ((TextView) holder.itemView).setText(content);
 
 //        if (isRelease) {
 //            holder.tvContent.setVisibility(View.GONE);
 //        }
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView tvContent;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            tvContent = itemView.findViewById(R.id.tv_content);
-        }
     }
 }
