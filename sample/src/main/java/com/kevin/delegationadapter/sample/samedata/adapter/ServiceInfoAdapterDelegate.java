@@ -1,11 +1,17 @@
 package com.kevin.delegationadapter.sample.samedata.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
+import com.kevin.delegationadapter.extras.binding.BindingViewHolder;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.samedata.bean.Bill;
+
+import java.util.List;
 
 /**
  * ServiceInfoAdapterDelegate
@@ -23,6 +29,76 @@ public class ServiceInfoAdapterDelegate extends BindingAdapterDelegate<Bill> {
 
     public ServiceInfoAdapterDelegate() {
         super(TAG);
+    }
+
+    @Override
+    public void onBindViewHolder(BindingViewHolder holder, int position, List<?> payloads, Bill item) {
+        super.onBindViewHolder(holder, position, payloads, item);
+    }
+
+    @Override
+    public void onBindViewHolder(BindingViewHolder holder, int position, Bill item) {
+        super.onBindViewHolder(holder, position, item);
+    }
+
+    @Override
+    public BindingViewHolder onCreateViewHolder(ViewGroup parent) {
+        return super.onCreateViewHolder(parent);
+    }
+
+    @Override
+    public boolean onFailedToRecycleView(BindingViewHolder holder) {
+        return super.onFailedToRecycleView(holder);
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onViewAttachedToWindow(BindingViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(BindingViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+    }
+
+    @Override
+    public void onViewRecycled(BindingViewHolder holder) {
+        super.onViewRecycled(holder);
+    }
+
+    @Override
+    public boolean onItemLongClick(View view, Bill item, int position) {
+        return super.onItemLongClick(view, item, position);
+    }
+
+    @Override
+    public void onItemClick(View view, Bill item, int position) {
+        super.onItemClick(view, item, position);
+    }
+
+    @Override
+    public boolean longClickable(int position) {
+        return super.longClickable(position);
+    }
+
+    @Override
+    public void configureViewHolder(BindingViewHolder holder) {
+        super.configureViewHolder(holder);
+    }
+
+    @Override
+    public boolean isForViewType(Bill item, int position) {
+        return super.isForViewType(item, position);
     }
 
     @Override

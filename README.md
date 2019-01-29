@@ -53,9 +53,9 @@
 ## 引入
 
 ```
-implementation 'com.kevin:delegationadapter:1.1.1'
+implementation 'com.kevin:delegationadapter:1.1.2'
 // 扩展库，扩展支持了item click、item long click、databinding
-implementation 'com.kevin:delegationadapter-extras:1.1.1'
+implementation 'com.kevin:delegationadapter-extras:1.1.2'
 ```
 
 ## 如何使用
