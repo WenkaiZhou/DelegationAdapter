@@ -19,7 +19,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 
 import com.kevin.delegationadapter.AdapterDelegate
-import com.kevin.delegationadapter.ItemData
 
 /**
  * ClickableAdapterDelegate
@@ -30,39 +29,56 @@ import com.kevin.delegationadapter.ItemData
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : AdapterDelegate<T, VH> {
+abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : AdapterDelegate<T, VH>, View.OnClickListener, View.OnLongClickListener {
 
     constructor()
 
     constructor(tag: String) : super(tag)
 
     override fun onBindViewHolder(holder: VH, position: Int, item: T) {
-        holder.itemView.setOnClickListener { v ->
-            val currentPosition = getPosition(holder)
-            // If the item can click
-            if (clickable(currentPosition)) {
-                if (item is ItemData) {
-                    @Suppress("UNCHECKED_CAST")
-                    onItemClick(v, item.data as T, currentPosition)
-                } else {
-                    onItemClick(v, item, currentPosition)
-                }
+        if (clickable(position) || longClickable(position)) {
+
+            holder.itemView.setTag(R.id.tag_clickable_adapter_delegate_holder, holder)
+            holder.itemView.setTag(R.id.tag_clickable_adapter_delegate_data, item)
+
+            if (clickable(position)) {
+                holder.itemView.setOnClickListener(this)
+            }
+
+            if (clickable(position)) {
+                holder.itemView.setOnLongClickListener(this)
             }
         }
+    }
 
-        holder.itemView.setOnLongClickListener(View.OnLongClickListener { v ->
-            val currentPosition = getPosition(holder)
-            // If the item can long click
-            if (longClickable(currentPosition)) {
-                return@OnLongClickListener if (item is ItemData) {
-                    @Suppress("UNCHECKED_CAST")
-                    onItemLongClick(v, item.data as T, currentPosition)
-                } else {
-                    onItemLongClick(v, item, currentPosition)
-                }
-            }
-            false
-        })
+    @Suppress("UNCHECKED_CAST")
+    override fun onClick(view: View) {
+        val holder = view.getTag(R.id.tag_clickable_adapter_delegate_holder) as VH
+        val item = view.getTag(R.id.tag_clickable_adapter_delegate_data) as T
+        val position = getPosition(holder)
+        if (position == RecyclerView.NO_POSITION) {
+            // ignore
+            return
+        }
+
+        if (clickable(position)) {
+            onItemClick(view, item, position)
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun onLongClick(view: View): Boolean {
+        val holder = view.getTag(R.id.tag_clickable_adapter_delegate_holder) as VH
+        val item = view.getTag(R.id.tag_clickable_adapter_delegate_data) as T
+        val position = getPosition(holder)
+        if (position == RecyclerView.NO_POSITION) {
+            // ignore
+            return false
+        }
+
+        return if (longClickable(position)) {
+            onItemLongClick(view, item, position)
+        } else false
     }
 
     /**
