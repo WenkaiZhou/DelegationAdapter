@@ -21,7 +21,6 @@ import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-import com.kevin.delegationadapter.ItemData
 import com.kevin.delegationadapter.extras.ClickableAdapterDelegate
 
 /**
@@ -61,12 +60,7 @@ abstract class BindingAdapterDelegate<T> : ClickableAdapterDelegate<T, BindingVi
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int, item: T) {
         super.onBindViewHolder(holder, position, item)
-        if (item is ItemData) {
-            @Suppress("UNCHECKED_CAST")
-            setVariable(holder.getBinding(), item.data as T, position)
-        } else {
-            setVariable(holder.getBinding(), item, position)
-        }
+        setVariable(holder.getBinding(), item, position)
         holder.getBinding<ViewDataBinding>().executePendingBindings()
     }
 
