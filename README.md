@@ -3,7 +3,7 @@
 使得RecyclerView各种情况的多类型条目更简单！
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
-[![JCenter](https://img.shields.io/badge/%20JCenter%20-1.1.3-5bc0de.svg?style=flat-square)](https://bintray.com/xuehuayous/maven/DelegationAdapter/_latestVersion)
+[![JCenter](https://img.shields.io/badge/%20JCenter%20-1.1.5-5bc0de.svg?style=flat-square)](https://bintray.com/xuehuayous/maven/DelegationAdapter/_latestVersion)
 [![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
 
 ## 示例图片
@@ -53,9 +53,9 @@
 ## 引入
 
 ```
-implementation 'com.kevin:delegationadapter:1.1.3'
+implementation 'com.kevin:delegationadapter:1.1.5'
 // 扩展库，扩展支持了item click、item long click、databinding
-implementation 'com.kevin:delegationadapter-extras:1.1.3'
+implementation 'com.kevin:delegationadapter-extras:1.1.5'
 ```
 
 ## 如何使用
