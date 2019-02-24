@@ -57,7 +57,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun setHeaderItems(headerItems: MutableList<*>?) {
-        if (headerItems == null || headerItems.isEmpty()) {
+        if (headerItems == null) {
             return
         }
         this.headerItems.clear()
@@ -82,7 +82,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<*>?) {
-        if (headerItems == null || headerItems.isEmpty()) {
+        if (headerItems == null) {
             return
         }
         this.headerItems.addAll(position, headerItems.filterNotNull())
@@ -99,7 +99,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun setFooterItems(footerItems: MutableList<*>?) {
-        if (footerItems == null || footerItems.isEmpty()) {
+        if (footerItems == null) {
             return
         }
         this.footerItems.clear()
@@ -124,7 +124,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun addFooterItems(position: Int, footerItems: MutableList<*>?) {
-        if (footerItems == null || footerItems.isEmpty()) {
+        if (footerItems == null) {
             return
         }
         this.footerItems.addAll(position, footerItems.filterNotNull())
@@ -132,7 +132,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun setDataItems(dataItems: MutableList<*>?) {
-        if (dataItems == null || dataItems.isEmpty()) {
+        if (dataItems == null) {
             return
         }
         this.dataItems.clear()
@@ -157,7 +157,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     fun addDataItems(position: Int = dataCount, dataItems: MutableList<*>?) {
-        if (dataItems == null || dataItems.isEmpty()) {
+        if (dataItems == null) {
             return
         }
         this.dataItems.addAll(position, dataItems.filterNotNull())
