@@ -209,6 +209,32 @@ open class DelegationAdapter : AbsDelegationAdapter {
         return footerItems[offsetPosition]
     }
 
+    /**
+     * Returns the index of the first occurrence of the specified element in the list.
+     */
+    fun getItemPosition(dataItem: Any?): Int {
+        if (dataItem == null) {
+            return -1
+        }
+
+        var index = headerItems.indexOf(dataItem)
+        if (index != -1) {
+            return index
+        }
+
+        index = dataItems.indexOf(dataItem)
+        if (index != -1) {
+            return headerCount + index
+        }
+
+        index = footerItems.indexOf(dataItem)
+        if (index != -1) {
+            return headerCount + dataCount + index
+        }
+
+        return -1
+    }
+
     override fun getItemCount() = headerCount + dataCount + footerCount
 
     fun clearData() = dataItems.clear()
