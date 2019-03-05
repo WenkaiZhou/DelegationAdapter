@@ -201,7 +201,7 @@ open class DelegationAdapter : AbsDelegationAdapter {
     }
 
     @JvmOverloads
-    fun undateDataItem(dataItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+    fun updateDataItem(dataItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
         if (dataItem == null) {
             return
         }
