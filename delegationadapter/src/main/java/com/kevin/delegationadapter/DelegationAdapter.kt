@@ -171,14 +171,25 @@ open class DelegationAdapter : AbsDelegationAdapter {
         notifyItemMoved(fromPosition, moveToPosition)
     }
 
-    fun removeDataItem(dataItem: Any?) {
+    @JvmOverloads
+    fun removeDataItem(dataItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
         if (dataItem == null) {
             return
         }
-        val index = dataItems.indexOf(dataItem)
-        if (index != -1 && index <= dataCount) {
+
+        val indexes = ArrayList<Int>()
+        dataItems.forEachIndexed { index, item ->
+            if (item is ItemData && dataItem == item.data && tag == item.tag) {
+                indexes.add(index)
+            } else if (dataItem == item) {
+                indexes.add(index)
+            }
+        }
+
+        indexes.forEach { index ->
             removeDataItemAt(index)
         }
+
     }
 
     @JvmOverloads
@@ -187,6 +198,21 @@ open class DelegationAdapter : AbsDelegationAdapter {
             dataItems.removeAt(position)
         }
         notifyItemRangeRemoved(headerCount + position, itemCount)
+    }
+
+    @JvmOverloads
+    fun undateDataItem(dataItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+        if (dataItem == null) {
+            return
+        }
+
+        dataItems.forEachIndexed { index, item ->
+            if (item is ItemData && dataItem == item.data && tag == item.tag) {
+                notifyItemChanged(headerCount + index)
+            } else if (dataItem == item) {
+                notifyItemChanged(headerCount + index)
+            }
+        }
     }
 
     fun getDataItems() = dataItems
@@ -207,32 +233,6 @@ open class DelegationAdapter : AbsDelegationAdapter {
 
         offsetPosition -= dataCount
         return footerItems[offsetPosition]
-    }
-
-    /**
-     * Returns the index of the first occurrence of the specified element in the list.
-     */
-    fun getItemPosition(dataItem: Any?): Int {
-        if (dataItem == null) {
-            return -1
-        }
-
-        var index = headerItems.indexOf(dataItem)
-        if (index != -1) {
-            return index
-        }
-
-        index = dataItems.indexOf(dataItem)
-        if (index != -1) {
-            return headerCount + index
-        }
-
-        index = footerItems.indexOf(dataItem)
-        if (index != -1) {
-            return headerCount + dataCount + index
-        }
-
-        return -1
     }
 
     override fun getItemCount() = headerCount + dataCount + footerCount
