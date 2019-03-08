@@ -27,7 +27,7 @@ import java.util.ArrayList
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-open class DelegationAdapter : AbsDelegationAdapter {
+open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : AbsDelegationAdapter(AdapterDelegatesManager(hasConsistItemType)) {
 
     private var dataItems: MutableList<Any> = ArrayList()
     private var headerItems: MutableList<Any> = ArrayList()
@@ -41,11 +41,6 @@ open class DelegationAdapter : AbsDelegationAdapter {
 
     val footerCount: Int
         get() = footerItems.size
-
-    @JvmOverloads
-    constructor(hasConsistItemType: Boolean = false) : super(AdapterDelegatesManager(hasConsistItemType))
-
-    constructor(delegatesManager: AdapterDelegatesManager) : super(delegatesManager)
 
     fun setHeaderItem(headerItem: Any?) {
         if (headerItem == null) {

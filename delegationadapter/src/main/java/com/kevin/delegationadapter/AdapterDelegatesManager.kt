@@ -99,7 +99,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
     }
 
     /**
-     * Return the view type of the item.
+     * Returns the view type of the item.
      *
      * @param item
      * @param position

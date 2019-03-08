@@ -30,7 +30,7 @@ import com.kevin.delegationadapter.DelegationAdapter
  * @author mender，Modified Date Modify Content:
  */
 
-class SpanDelegationAdapter : DelegationAdapter() {
+open class SpanDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : DelegationAdapter(hasConsistItemType) {
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
         super.onAttachedToRecyclerView(recyclerView)
