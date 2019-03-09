@@ -17,12 +17,8 @@ import android.view.ViewGroup
  * @author mender，Modified Date Modify Content:
  */
 abstract class LoadAdapterDelegate {
-
-    abstract fun onCreateLoadMoreViewHolder(parent: ViewGroup): LoadViewHolder
-
-    abstract fun onCreateNoMoreViewHolder(parent: ViewGroup): LoadViewHolder
-
-    abstract fun onCreateLoadFailViewHolder(parent: ViewGroup): LoadViewHolder
+    abstract fun onCreateLoadViewHolder(parent: ViewGroup, viewType: Int): LoadViewHolder
+    open fun onBindViewHolder(viewHolder: LoadViewHolder, position: Int) { }
 }
 
 class LoadViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
