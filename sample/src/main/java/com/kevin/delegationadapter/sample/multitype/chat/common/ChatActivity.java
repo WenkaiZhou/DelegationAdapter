@@ -39,7 +39,8 @@ public class ChatActivity extends AppCompatActivity {
         initData();
     }
 
-    int count = 0;
+    int headCount = 0;
+    int tailCount = 0;
 
     private void initRecyclerView() {
         recyclerView = this.findViewById(R.id.recycler_view);
@@ -58,16 +59,64 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setAdapter(delegationAdapter);
 
 
-        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
+//        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
+//
+//            @Override
+//            public void onLoadMore() {
+//                recyclerView.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (count == 2) {
+//                            delegationAdapter.showLoadFailed();
+//                        } else if (count == 5) {
+//                            delegationAdapter.showLoadCompleted();
+//                        } else {
+//                            delegationAdapter.setLoading(false);
+//                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
+//                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
+//                            delegationAdapter.addDataItems(chat.msgs);
+//                        }
+//
+//                        count++;
+//                    }
+//                }, 2000);
+//                Toast.makeText(ChatActivity.this, "加载更多 " + count, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        delegationAdapter.setOnLoadListener2(new LoadDelegationAdapter.OnLoadListener2() {
 
             @Override
-            public void onLoadMore() {
+            public void onLoadFromHead() {
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (count == 2) {
+                        delegationAdapter.setHeadLoading(false);
+                        if (headCount == 2) {
+//                            delegationAdapter.showLoadFailed();
+                        } else if (headCount == 5) {
+//                            delegationAdapter.showLoadCompleted();
+                        } else {
+                            delegationAdapter.setHeadLoading(false);
+                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
+                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
+                            delegationAdapter.addDataItems(0, chat.msgs);
+                        }
+
+                        headCount++;
+                    }
+                }, 2000);
+                Toast.makeText(ChatActivity.this, "加载上一页 " + headCount, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLoadFromTail() {
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (tailCount == 2) {
                             delegationAdapter.showLoadFailed();
-                        } else if (count == 5) {
+                        } else if (tailCount == 5) {
                             delegationAdapter.showLoadCompleted();
                         } else {
                             delegationAdapter.setLoading(false);
@@ -76,10 +125,10 @@ public class ChatActivity extends AppCompatActivity {
                             delegationAdapter.addDataItems(chat.msgs);
                         }
 
-                        count++;
+                        tailCount++;
                     }
                 }, 2000);
-                Toast.makeText(ChatActivity.this, "加载更多 " + count, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatActivity.this, "加载更多 " + tailCount, Toast.LENGTH_SHORT).show();
             }
         });
     }

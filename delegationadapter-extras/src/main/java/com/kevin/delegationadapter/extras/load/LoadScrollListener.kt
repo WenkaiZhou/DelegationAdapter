@@ -32,8 +32,12 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
 
+        if (newState == RecyclerView.SCROLL_STATE_IDLE && isFirstItemVisible(recyclerView)) {
+            loadFromHead()
+        }
+
         if (newState == RecyclerView.SCROLL_STATE_IDLE && isLastItemVisible(recyclerView)) {
-            loadMore()
+            loadFromTail()
         }
     }
 
@@ -41,8 +45,20 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
         super.onScrolled(recyclerView, dx, dy)
 
         if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_IDLE && lessThanOneScreen(recyclerView)) {
-            loadMore()
+            loadFromTail()
         }
+    }
+
+    private fun isFirstItemVisible(recyclerView: RecyclerView): Boolean {
+        return getFirstVisiblePosition(recyclerView) == 0
+    }
+
+    private fun getFirstVisiblePosition(recyclerView: RecyclerView): Int {
+        val firstVisibleChild = recyclerView.getChildAt(0)
+        return if (firstVisibleChild != null)
+            recyclerView.getChildAdapterPosition(firstVisibleChild)
+        else
+            RecyclerView.NO_POSITION
     }
 
     /**
@@ -54,22 +70,6 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
     private fun isLastItemVisible(recyclerView: RecyclerView): Boolean {
         val lastVisiblePosition = getLastVisiblePosition(recyclerView)
         return lastVisiblePosition == recyclerView.adapter.itemCount - 1
-    }
-
-    /**
-     * 判断是否未满一屏
-     *
-     * @param recyclerView
-     * @return
-     */
-    private fun lessThanOneScreen(recyclerView: RecyclerView): Boolean {
-        val lastVisiblePosition = getLastVisiblePosition(recyclerView)
-        return if (isLastItemVisible(recyclerView) && lastVisiblePosition > (if (hasStateView()) 1 else 0)) {
-            // 最后一条的底部小于RecyclerView的底部，即未满一屏幕
-            recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
-        } else {
-            false
-        }
     }
 
     /**
@@ -88,7 +88,24 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
         }
     }
 
-    abstract fun loadMore()
+    /**
+     * 判断是否未满一屏
+     *
+     * @param recyclerView
+     * @return
+     */
+    private fun lessThanOneScreen(recyclerView: RecyclerView): Boolean {
+        val lastVisiblePosition = getLastVisiblePosition(recyclerView)
+        return if (isLastItemVisible(recyclerView) && lastVisiblePosition > (if (hasTailStateView()) 1 else 0)) {
+            // 最后一条的底部小于RecyclerView的底部，即未满一屏幕
+            recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
+        } else {
+            false
+        }
+    }
 
-    abstract fun hasStateView(): Boolean
+    abstract fun loadFromHead()
+    abstract fun loadFromTail()
+
+    abstract fun hasTailStateView(): Boolean
 }
