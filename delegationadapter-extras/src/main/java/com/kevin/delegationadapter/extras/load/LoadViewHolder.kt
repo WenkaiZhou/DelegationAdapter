@@ -15,18 +15,16 @@
  */
 package com.kevin.delegationadapter.extras.load
 
-import android.view.ViewGroup
+import android.support.v7.widget.RecyclerView
+import android.view.View
 
 /**
- * LoadAdapterDelegate
+ * LoadViewHolder
  *
- * @author zwenkai@foxmail.com, Created on 2019-03-09 10:59:27
- *         Major Function：<b></b>
+ * @author zwenkai@foxmail.com, Created on 2019-03-09 21:27:09
+ *         Major Function：<b>LoadViewHolder</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-abstract class LoadAdapterDelegate {
-    abstract fun onCreateLoadViewHolder(parent: ViewGroup, viewType: Int): LoadViewHolder
-    open fun onBindViewHolder(viewHolder: LoadViewHolder, position: Int) { }
-}
+class LoadViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

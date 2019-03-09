@@ -35,10 +35,10 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private var loadDelegate: LoadAdapterDelegate? = null
 
     private val loadScrollListener: LoadScrollListener
-    private var mOnLoadListener: OnLoadListener? = null
+    private var onLoadListener: OnLoadListener? = null
 
     private var enabledLoad = true
-    private var currentItemType = VIEW_TYPE_LOAD_MORE
+    private var loadViewType = VIEW_TYPE_LOAD_MORE
 
     /**
      * Whether it is loading
@@ -48,15 +48,16 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     init {
         loadScrollListener = object : LoadScrollListener() {
             override fun loadMore() {
-                if (currentItemType == VIEW_TYPE_LOAD_FAILED) {
+                if (loadViewType == VIEW_TYPE_LOAD_FAILED) {
                     showLoading()
                 }
 
                 if (!loading
                         && enabledLoad
-                        && mOnLoadListener != null
-                        && currentItemType == VIEW_TYPE_LOAD_MORE) {
-                    mOnLoadListener?.onLoadMore()
+                        && onLoadListener != null
+                        && loadViewType == VIEW_TYPE_LOAD_MORE) {
+                    loading = true
+                    onLoadListener?.onLoadMore()
                 }
             }
 
@@ -78,7 +79,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
     override fun getItemViewType(position: Int): Int =
             if (hasLoadStatesView() && isLoadStatesItem(position)) {
-                currentItemType
+                loadViewType
             } else super.getItemViewType(position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -96,7 +97,8 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
             if (holder.getItemViewType() == VIEW_TYPE_LOAD_FAILED) {
                 holder.itemView.setOnClickListener {
-                    mOnLoadListener?.onRetry()
+                    showLoading()
+                    onLoadListener?.onLoadMore()
                 }
             }
         } else {
@@ -140,7 +142,8 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     fun showLoading() {
-        currentItemType = VIEW_TYPE_LOAD_MORE
+        loadViewType = VIEW_TYPE_LOAD_MORE
+        loading = false
         if (!enabledLoad) {
             enabledLoad = true
             notifyDataSetChanged()
@@ -150,19 +153,22 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     fun showLoadFailed() {
-        currentItemType = VIEW_TYPE_LOAD_FAILED
+        loadViewType = VIEW_TYPE_LOAD_FAILED
+        loading = false
         enabledLoad = true
         notifyItemChanged(itemCount)
     }
 
     fun showLoadComplete() {
-        currentItemType = VIEW_TYPE_NO_MORE
+        loadViewType = VIEW_TYPE_NO_MORE
+        loading = false
         enabledLoad = true
         notifyItemChanged(itemCount)
     }
 
     fun disableLoad() {
-        currentItemType = VIEW_TYPE_NO_VIEW
+        loadViewType = VIEW_TYPE_NO_VIEW
+        loading = false
         enabledLoad = false
         notifyDataSetChanged()
     }
@@ -188,12 +194,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         const val VIEW_TYPE_NO_VIEW = Integer.MAX_VALUE - 3
     }
 
-    fun setOnLoadListener(onLoadListener: OnLoadListener) {
-        mOnLoadListener = onLoadListener
+    fun setOnLoadListener(listener: OnLoadListener) {
+        this.onLoadListener = listener
     }
 
     interface OnLoadListener {
-        fun onRetry()
         fun onLoadMore()
     }
 

@@ -61,33 +61,15 @@ public class ChatActivity extends AppCompatActivity {
 
 
         delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
-            @Override
-            public void onRetry() {
-                delegationAdapter.showLoading();
-                delegationAdapter.setLoading(true);
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
-                        Chat chat = new Gson().fromJson(chatStr, Chat.class);
-                        delegationAdapter.addDataItems(chat.msgs);
-                        delegationAdapter.setLoading(false);
-                        count++;
-                    }
-                }, 2000);
-            }
 
             @Override
             public void onLoadMore() {
-                delegationAdapter.setLoading(true);
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-                        if (count == 3) {
+                        if (count == 2) {
                             delegationAdapter.showLoadFailed();
-                            delegationAdapter.setLoading(false);
-                        } else if (count == 7) {
+                        } else if (count == 5) {
                             delegationAdapter.showLoadComplete();
                         } else {
                             delegationAdapter.setLoading(false);
@@ -99,7 +81,7 @@ public class ChatActivity extends AppCompatActivity {
                         count++;
                     }
                 }, 2000);
-                Toast.makeText(ChatActivity.this, "加载更多", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChatActivity.this, "加载更多 " + count, Toast.LENGTH_SHORT).show();
             }
         });
     }
