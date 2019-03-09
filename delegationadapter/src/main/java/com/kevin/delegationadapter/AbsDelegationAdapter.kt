@@ -40,12 +40,13 @@ abstract class AbsDelegationAdapter (protected var delegatesManager: AdapterDele
     fun addDelegate(delegate: AdapterDelegate<*, *>, tag: String = delegate.tag): AbsDelegationAdapter {
         delegate.tag = tag
         delegatesManager.addDelegate(delegate, tag)
-        return this;
+        return this
     }
 
-    fun setFallbackDelegate(delegate: AdapterDelegate<*, *>) {
+    fun setFallbackDelegate(delegate: AdapterDelegate<*, *>): AbsDelegationAdapter {
         @Suppress("UNCHECKED_CAST")
         delegatesManager.fallbackDelegate = delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?
+        return this
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

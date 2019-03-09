@@ -22,7 +22,7 @@ import android.view.ViewGroup
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
 
 /**
- * LoadMoreDelegationAdapter
+ * LoadDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2019-03-08 23:39:15
  *         Major Function：<b>DelegationAdapter with load more</b>
@@ -32,13 +32,11 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
  */
 class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
 
+    private var loadViewType = VIEW_TYPE_LOAD_MORE
     private var loadDelegate: LoadAdapterDelegate? = null
-
     private val loadScrollListener: LoadScrollListener
     private var onLoadListener: OnLoadListener? = null
-
     private var enabledLoad = true
-    private var loadViewType = VIEW_TYPE_LOAD_MORE
 
     /**
      * Whether it is loading
@@ -67,8 +65,9 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         }
     }
 
-    fun setLoadDelegate(delegate: LoadAdapterDelegate) {
+    fun setLoadDelegate(delegate: LoadAdapterDelegate): LoadDelegationAdapter {
         this.loadDelegate = delegate
+        return this
     }
 
     override fun getItemCount(): Int =
@@ -159,7 +158,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         notifyItemChanged(itemCount)
     }
 
-    fun showLoadComplete() {
+    fun showLoadCompleted() {
         loadViewType = VIEW_TYPE_NO_MORE
         loading = false
         enabledLoad = true

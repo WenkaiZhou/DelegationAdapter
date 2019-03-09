@@ -3,14 +3,11 @@ package com.kevin.delegationadapter.sample.multitype.chat.common;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.Chat;
@@ -53,10 +50,11 @@ public class ChatActivity extends AppCompatActivity {
         // 设置Adapter
         delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter
-        delegationAdapter.addDelegate(new ChatItemMyImageAdapterDelegate());
-        delegationAdapter.addDelegate(new ChatItemMyTextAdapterDelegate());
-        delegationAdapter.addDelegate(new ChatItemOtherTextAdapterDelegate());
-        delegationAdapter.setLoadDelegate(new ChatLoadAdapterDelegate());
+        delegationAdapter
+                .setLoadDelegate(new ChatLoadAdapterDelegate())
+                .addDelegate(new ChatItemMyImageAdapterDelegate())
+                .addDelegate(new ChatItemMyTextAdapterDelegate())
+                .addDelegate(new ChatItemOtherTextAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
 
 
@@ -70,7 +68,7 @@ public class ChatActivity extends AppCompatActivity {
                         if (count == 2) {
                             delegationAdapter.showLoadFailed();
                         } else if (count == 5) {
-                            delegationAdapter.showLoadComplete();
+                            delegationAdapter.showLoadCompleted();
                         } else {
                             delegationAdapter.setLoading(false);
                             String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
