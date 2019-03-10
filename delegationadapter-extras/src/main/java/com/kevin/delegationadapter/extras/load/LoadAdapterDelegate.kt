@@ -15,18 +15,45 @@
  */
 package com.kevin.delegationadapter.extras.load
 
+import android.support.annotation.LayoutRes
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 
 /**
  * LoadAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2019-03-09 10:59:27
- *         Major Function：<b></b>
+ *         Major Function：<b>LoadAdapterDelegate</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 abstract class LoadAdapterDelegate {
-    abstract fun onCreateLoadViewHolder(parent: ViewGroup, viewType: Int): LoadViewHolder
-    open fun onBindViewHolder(viewHolder: LoadViewHolder, position: Int) { }
+
+    @get:LayoutRes
+    abstract val loadingLayoutRes: Int
+
+    @get:LayoutRes
+    abstract val noMoreLayoutRes: Int
+
+    @get:LayoutRes
+    abstract val loadFailedLayoutRes: Int
+
+    fun onCreateLoadViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        var view: View? = null
+        when (viewType) {
+            LoadDelegationAdapter.VIEW_TYPE_LOADING -> view = layoutInflater.inflate(loadingLayoutRes, parent, false)
+            LoadDelegationAdapter.VIEW_TYPE_NO_MORE -> view = layoutInflater.inflate(noMoreLayoutRes, parent, false)
+            LoadDelegationAdapter.VIEW_TYPE_LOAD_FAILED -> view = layoutInflater.inflate(loadFailedLayoutRes, parent, false)
+            else -> {
+                // Can't reach;
+            }
+        }
+        return object : RecyclerView.ViewHolder(view!!) {}
+    }
+
+    open fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {}
 }

@@ -15,14 +15,7 @@
  */
 package com.kevin.delegationadapter.sample.multitype.chat.common;
 
-import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.kevin.delegationadapter.extras.load.LoadAdapterDelegate;
-import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
-import com.kevin.delegationadapter.extras.load.LoadViewHolder;
 import com.kevin.delegationadapter.sample.R;
 
 /**
@@ -36,25 +29,18 @@ import com.kevin.delegationadapter.sample.R;
  */
 public class ChatLoadAdapterDelegate extends LoadAdapterDelegate {
 
-    @NonNull
     @Override
-    public LoadViewHolder onCreateLoadViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = null;
-        switch (viewType) {
-            case LoadDelegationAdapter.VIEW_TYPE_LOAD_MORE:
-                view = layoutInflater.inflate(R.layout.layout_load_more_footer, parent, false);
-                break;
-            case LoadDelegationAdapter.VIEW_TYPE_NO_MORE:
-                view = layoutInflater.inflate(R.layout.layout_no_more_footer, parent, false);
-                break;
-            case LoadDelegationAdapter.VIEW_TYPE_LOAD_FAILED:
-                view = layoutInflater.inflate(R.layout.layout_load_fail_footer, parent, false);
-                break;
-            default:
-                // Can't reach;
-                break;
-        }
-        return new LoadViewHolder(view);
+    public int getLoadingLayoutRes() {
+        return R.layout.layout_load_more_footer;
+    }
+
+    @Override
+    public int getNoMoreLayoutRes() {
+        return R.layout.layout_no_more_footer;
+    }
+
+    @Override
+    public int getLoadFailedLayoutRes() {
+        return R.layout.layout_load_fail_footer;
     }
 }
