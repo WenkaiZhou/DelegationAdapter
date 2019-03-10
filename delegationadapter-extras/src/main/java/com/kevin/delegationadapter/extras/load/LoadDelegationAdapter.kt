@@ -15,12 +15,10 @@
  */
 package com.kevin.delegationadapter.extras.load
 
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.ViewGroup
-import com.kevin.delegationadapter.DelegationAdapter
-import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate
+import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
 
 /**
  * LoadDelegationAdapter
@@ -31,7 +29,7 @@ import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : DelegationAdapter(hasConsistItemType) {
+class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
 
     private var loadViewType = VIEW_TYPE_LOADING
     private var loadDelegate: LoadAdapterDelegate? = null
@@ -39,7 +37,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private var onLoadListener: OnLoadListener? = null
     private var enabledLoad = false
 
-    var loading: Boolean = false
+    private var loading: Boolean = false
 
     init {
         scrollListener = object : ScrollListener() {
@@ -118,27 +116,13 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
         super.onAttachedToRecyclerView(recyclerView)
-
-        val layoutManager = recyclerView?.layoutManager
-        if (layoutManager is GridLayoutManager) {
-
-            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    if (hasLoadStateView() && isLoadStateItem(position)) {
-                        return layoutManager.spanCount
-                    }
-
-                    val delegate = delegatesManager.getDelegate(getItemViewType(position))
-                    return if (null != delegate && delegate is SpanAdapterDelegate) {
-                        delegate.spanSize
-                    } else {
-                        layoutManager.spanCount
-                    }
-                }
-            }
-        }
-
         recyclerView?.addOnScrollListener(scrollListener)
+    }
+
+    fun isLoading(): Boolean = loading
+
+    fun setLoading(loading: Boolean) {
+        this.loading = loading
     }
 
     fun reset() {
