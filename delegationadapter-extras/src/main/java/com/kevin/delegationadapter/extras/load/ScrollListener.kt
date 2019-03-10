@@ -32,10 +32,6 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
 
-        if (newState == RecyclerView.SCROLL_STATE_IDLE && isFirstItemVisible(recyclerView)) {
-            refresh()
-        }
-
         if (newState == RecyclerView.SCROLL_STATE_IDLE && isLastItemVisible(recyclerView)) {
             loadMore()
         }
@@ -47,18 +43,6 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
         if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_IDLE && lessThanOneScreen(recyclerView)) {
             loadMore()
         }
-    }
-
-    private fun isFirstItemVisible(recyclerView: RecyclerView): Boolean {
-        return getFirstVisiblePosition(recyclerView) == 0
-    }
-
-    private fun getFirstVisiblePosition(recyclerView: RecyclerView): Int {
-        val firstVisibleChild = recyclerView.getChildAt(0)
-        return if (firstVisibleChild != null)
-            recyclerView.getChildAdapterPosition(firstVisibleChild)
-        else
-            RecyclerView.NO_POSITION
     }
 
     /**
@@ -104,8 +88,6 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
             false
         }
     }
-
-    abstract fun refresh()
 
     abstract fun loadMore()
 

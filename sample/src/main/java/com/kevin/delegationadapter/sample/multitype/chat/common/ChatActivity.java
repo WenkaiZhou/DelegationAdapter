@@ -39,7 +39,6 @@ public class ChatActivity extends AppCompatActivity {
         initData();
     }
 
-    int headCount = 0;
     int tailCount = 0;
 
     private void initRecyclerView() {
@@ -57,28 +56,6 @@ public class ChatActivity extends AppCompatActivity {
                 .addDelegate(new ChatItemMyTextAdapterDelegate())
                 .addDelegate(new ChatItemOtherTextAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
-
-        delegationAdapter.setOnAutoRefreshListener(new LoadDelegationAdapter.AutoRefreshListener() {
-            @Override
-            public void onRefresh() {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (headCount == 5) {
-                            delegationAdapter.setRefreshCompleted();
-                        } else {
-                            delegationAdapter.setRefreshing(false);
-                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
-                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
-                            delegationAdapter.addDataItems(0, chat.msgs);
-                        }
-
-                        headCount++;
-                    }
-                }, 2000);
-                Toast.makeText(ChatActivity.this, "加载上一页 " + headCount, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
 

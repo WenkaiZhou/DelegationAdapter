@@ -36,26 +36,12 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private var loadDelegate: LoadAdapterDelegate? = null
     private val scrollListener: ScrollListener
     private var onLoadListener: OnLoadListener? = null
-    private var onRefreshListener: AutoRefreshListener? = null
-    private var enabledRefresh = false
     private var enabledLoad = false
 
-    var refreshing: Boolean = false
     var loading: Boolean = false
-    private var refreshCompleted: Boolean = false
 
     init {
         scrollListener = object : ScrollListener() {
-
-            override fun refresh() {
-                if (!refreshing
-                        && enabledRefresh
-                        && onRefreshListener != null
-                        && !refreshCompleted) {
-                    refreshing = true
-                    onRefreshListener?.onRefresh()
-                }
-            }
 
             override fun loadMore() {
                 if (loadViewType == VIEW_TYPE_LOAD_FAILED) {
@@ -175,11 +161,6 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         notifyItemChanged(itemCount)
     }
 
-    fun setRefreshCompleted() {
-        this.refreshCompleted = true
-        this.refreshing = false
-    }
-
     fun disableLoad() {
         loadViewType = VIEW_TYPE_NO_VIEW
         loading = false
@@ -208,18 +189,9 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         const val VIEW_TYPE_NO_VIEW = Integer.MAX_VALUE - 3
     }
 
-    fun setOnAutoRefreshListener(listener: AutoRefreshListener) {
-        this.enabledRefresh = true
-        this.onRefreshListener = listener
-    }
-
     fun setOnLoadListener(listener: OnLoadListener) {
         this.enabledLoad = true
         this.onLoadListener = listener
-    }
-
-    interface AutoRefreshListener {
-        fun onRefresh()
     }
 
     interface OnLoadListener {
