@@ -50,29 +50,4 @@ public class Meishi {
         public String title;
     }
 
-//    public List<Channel> channel;
-//    public SanCan sancan;
-//
-//    public static class Channel {
-//        public String img;
-//        public String title;
-//    }
-//
-//    public static class SanCan {
-//        public List<SanCanItem> items;
-//    }
-//
-//    public static class SanCanItem {
-//        private String title;
-//        private String type;
-//        public List<SanCanSubItem> items;
-//    }
-//
-//    public static class SanCanSubItem {
-//        public String img;
-//        public String id;
-//        public String title;
-//    }
-
-
 }

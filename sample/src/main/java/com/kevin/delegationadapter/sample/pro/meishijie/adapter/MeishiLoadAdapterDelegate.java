@@ -1,7 +1,4 @@
-/*
- * Copyright (C) 2019 Baidu, Inc. All Rights Reserved.
- */
-package com.kevin.delegationadapter.sample.pro.meishijie;
+package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
 import com.kevin.delegationadapter.extras.load.LoadAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;

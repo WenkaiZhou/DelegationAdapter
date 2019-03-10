@@ -13,7 +13,7 @@ import com.kevin.delegationadapter.sample.bean.Chat;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyImageAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemOtherTextAdapterDelegate;
-import com.kevin.delegationadapter.sample.pro.meishijie.MeishiLoadAdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoadAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 /**
