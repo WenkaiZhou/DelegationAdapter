@@ -42,13 +42,15 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
     private var headLoading: Boolean = false
     private var tailLoading: Boolean = false
+    private var headLoadCompleted: Boolean = false
 
     init {
         loadScrollListener = object : LoadScrollListener() {
 
             override fun loadFromHead() {
                 if (!headLoading
-                        && enabledLoadFromHead) {
+                        && enabledLoadFromHead
+                        && !headLoadCompleted) {
                     headLoading = true
                     onLoadListener2?.onLoadFromHead()
                 }
@@ -56,7 +58,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
             override fun loadFromTail() {
                 if (tailLoadViewType == VIEW_TYPE_LOAD_FAILED) {
-                    showLoading()
+                    setTailLoading()
                 }
 
                 if (!tailLoading
@@ -109,7 +111,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
             if (holder.getItemViewType() == VIEW_TYPE_LOAD_FAILED) {
                 holder.itemView.setOnClickListener {
-                    showLoading()
+                    setTailLoading()
                     onLoadListener?.onLoadMore()
                     onLoadListener2?.onLoadFromTail()
                 }
@@ -152,23 +154,23 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         recyclerView?.addOnScrollListener(loadScrollListener)
     }
 
-    fun setLoading(loading: Boolean) {
-        setTailLoading(loading)
+    fun finishLoading() {
+        finishTailLoading()
     }
 
-    fun setHeadLoading(loading: Boolean) {
-        this.headLoading = loading
+    fun finishHeadLoading() {
+        this.headLoading = false
     }
 
-    fun setTailLoading(loading: Boolean) {
-        this.tailLoading = loading
+    fun finishTailLoading() {
+        this.tailLoading = false
     }
 
-    fun showLoading() {
-        showTailLoading()
+    fun setLoading() {
+        setTailLoading()
     }
 
-    fun showTailLoading() {
+    fun setTailLoading() {
         tailLoadViewType = VIEW_TYPE_LOAD_MORE
         tailLoading = false
         if (!enabledLoadFromTail) {
@@ -179,22 +181,27 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         }
     }
 
-    fun showLoadFailed() {
-        showTailLoadFailed()
+    fun setLoadFailed() {
+        setTailLoadFailed()
     }
 
-    fun showTailLoadFailed() {
+    fun setTailLoadFailed() {
         tailLoadViewType = VIEW_TYPE_LOAD_FAILED
         tailLoading = false
         enabledLoadFromTail = true
         notifyItemChanged(itemCount)
     }
 
-    fun showLoadCompleted() {
-        showTailLoadCompleted()
+    fun setLoadCompleted() {
+        setTailLoadCompleted()
     }
 
-    fun showTailLoadCompleted() {
+    fun setHeadLoadCompleted() {
+        this.headLoadCompleted = true
+        this.headLoading = false
+    }
+
+    fun setTailLoadCompleted() {
         tailLoadViewType = VIEW_TYPE_NO_MORE
         tailLoading = false
         enabledLoadFromTail = true
