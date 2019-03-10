@@ -41,8 +41,7 @@ open class SpanDelegationAdapter @JvmOverloads constructor(hasConsistItemType: B
             layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     val delegate = delegatesManager.getDelegate(getItemViewType(position))
-                    return if (null != delegate
-                            && delegate is SpanAdapterDelegate<Any, out RecyclerView.ViewHolder>) {
+                    return if (null != delegate && delegate is SpanAdapterDelegate) {
                         delegate.spanSize
                     } else {
                         layoutManager.spanCount

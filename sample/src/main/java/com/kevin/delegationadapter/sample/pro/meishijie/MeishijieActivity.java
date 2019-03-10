@@ -2,14 +2,14 @@ package com.kevin.delegationadapter.sample.pro.meishijie;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.kevin.delegationadapter.DelegationAdapter;
-import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter;
+import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiChannelAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiSancanAdapterDelegate;
@@ -31,14 +31,59 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 public class MeishijieActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DelegationAdapter delegationAdapter;
+    LoadDelegationAdapter delegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meishijie);
         initRecyclerView();
+        initRefreshView();
         initData();
+    }
+
+
+    int count = 0;
+
+    private void initRefreshView() {
+        final SwipeRefreshLayout refreshLayout = findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        delegationAdapter.reset();
+                        count = 0;
+                        initData();
+                    }
+                }, 2000);
+            }
+        });
+
+        delegationAdapter.setLoadDelegate(new MeishiLoadAdapterDelegate());
+        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
+            @Override
+            public void onLoadMore() {
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        delegationAdapter.setLoading(false);
+                        if (count == 2) {
+                            delegationAdapter.setLoadFailed();
+                        } else if (count == 5) {
+                            delegationAdapter.setLoadCompleted();
+                        } else {
+                            String meishiStr = LocalFileUtils.getStringFormAsset(MeishijieActivity.this, "meishi.json");
+                            Meishi meishi = new Gson().fromJson(meishiStr, Meishi.class);
+                            delegationAdapter.addDataItems(meishi.zhuanti.items);
+                        }
+                        count++;
+                    }
+                }, 2000);
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -47,7 +92,7 @@ public class MeishijieActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(layoutManager);
         // 设置Adapter
-        delegationAdapter = new SpanDelegationAdapter();
+        delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter
         delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate())
                 .addDelegate(new MeishiSancanAdapterDelegate())
@@ -59,7 +104,7 @@ public class MeishijieActivity extends AppCompatActivity {
     private void initData() {
         String meishiStr = LocalFileUtils.getStringFormAsset(this, "meishi.json");
         Meishi meishi = new Gson().fromJson(meishiStr, Meishi.class);
-        delegationAdapter.addDataItems(meishi.channel);
+        delegationAdapter.setDataItems(meishi.channel);
         delegationAdapter.addDataItem(meishi.sancan);
         delegationAdapter.addDataItem(meishi.zhuanti);
         delegationAdapter.addDataItems(meishi.zhuanti.items);

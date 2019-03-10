@@ -19,7 +19,8 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.ViewGroup
-import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
+import com.kevin.delegationadapter.DelegationAdapter
+import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate
 
 /**
  * LoadDelegationAdapter
@@ -30,7 +31,7 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
+class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : DelegationAdapter(hasConsistItemType) {
 
     private var loadViewType = VIEW_TYPE_LOADING
     private var loadDelegate: LoadAdapterDelegate? = null
@@ -116,27 +117,35 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
-        if (hasLoadStateView() && recyclerView != null) {
-            val layoutManager = recyclerView.layoutManager
-            // When GridLayoutManager, the Load View takes up one line;
-            if (layoutManager is GridLayoutManager) {
-                val spanSizeLookup = layoutManager.spanSizeLookup
-                layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int {
-                        if (isLoadStateItem(position)) {
-                            return layoutManager.spanCount
-                        }
-                        return spanSizeLookup.getSpanSize(position)
+        super.onAttachedToRecyclerView(recyclerView)
+
+        val layoutManager = recyclerView?.layoutManager
+        if (layoutManager is GridLayoutManager) {
+
+            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    if (hasLoadStateView() && isLoadStateItem(position)) {
+                        return layoutManager.spanCount
+                    }
+
+                    val delegate = delegatesManager.getDelegate(getItemViewType(position))
+                    return if (null != delegate && delegate is SpanAdapterDelegate) {
+                        delegate.spanSize
+                    } else {
+                        layoutManager.spanCount
                     }
                 }
-                layoutManager.spanCount = layoutManager.spanCount
             }
         }
 
         recyclerView?.addOnScrollListener(scrollListener)
     }
 
-    fun setLoading() {
+    fun reset() {
+        setLoading()
+    }
+
+    private fun setLoading() {
         loadViewType = VIEW_TYPE_LOADING
         loading = false
         if (!enabledLoad) {

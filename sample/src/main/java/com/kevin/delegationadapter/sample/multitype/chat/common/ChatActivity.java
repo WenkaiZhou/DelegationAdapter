@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
@@ -14,6 +13,7 @@ import com.kevin.delegationadapter.sample.bean.Chat;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyImageAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemOtherTextAdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.MeishiLoadAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 /**
@@ -39,8 +39,6 @@ public class ChatActivity extends AppCompatActivity {
         initData();
     }
 
-    int tailCount = 0;
-
     private void initRecyclerView() {
         recyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
@@ -51,37 +49,11 @@ public class ChatActivity extends AppCompatActivity {
         delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter
         delegationAdapter
-                .setLoadDelegate(new ChatLoadAdapterDelegate())
+                .setLoadDelegate(new MeishiLoadAdapterDelegate())
                 .addDelegate(new ChatItemMyImageAdapterDelegate())
                 .addDelegate(new ChatItemMyTextAdapterDelegate())
                 .addDelegate(new ChatItemOtherTextAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
-
-        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
-
-            @Override
-            public void onLoadMore() {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (tailCount == 2) {
-                            delegationAdapter.setLoadFailed();
-                        } else if (tailCount == 5) {
-                            delegationAdapter.setLoadCompleted();
-                        } else {
-                            delegationAdapter.setLoading(false);
-                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
-                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
-                            delegationAdapter.addDataItems(chat.msgs);
-                        }
-
-                        tailCount++;
-                    }
-                }, 2000);
-                Toast.makeText(ChatActivity.this, "加载更多 " + tailCount, Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void initData() {
