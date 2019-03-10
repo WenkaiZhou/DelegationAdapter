@@ -33,11 +33,11 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
         super.onScrollStateChanged(recyclerView, newState)
 
         if (newState == RecyclerView.SCROLL_STATE_IDLE && isFirstItemVisible(recyclerView)) {
-            loadFromHead()
+            refresh()
         }
 
         if (newState == RecyclerView.SCROLL_STATE_IDLE && isLastItemVisible(recyclerView)) {
-            loadFromTail()
+            loadMore()
         }
     }
 
@@ -45,7 +45,7 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
         super.onScrolled(recyclerView, dx, dy)
 
         if (recyclerView.scrollState == RecyclerView.SCROLL_STATE_IDLE && lessThanOneScreen(recyclerView)) {
-            loadFromTail()
+            loadMore()
         }
     }
 
@@ -96,7 +96,7 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
      */
     private fun lessThanOneScreen(recyclerView: RecyclerView): Boolean {
         val lastVisiblePosition = getLastVisiblePosition(recyclerView)
-        return if (isLastItemVisible(recyclerView) && lastVisiblePosition > (if (hasTailStateView()) 1 else 0)) {
+        return if (isLastItemVisible(recyclerView) && lastVisiblePosition > (if (hasStateView()) 1 else 0)) {
             // 最后一条的底部小于RecyclerView的底部，即未满一屏幕
             recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
         } else {
@@ -104,8 +104,9 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
         }
     }
 
-    abstract fun loadFromHead()
-    abstract fun loadFromTail()
+    abstract fun refresh()
 
-    abstract fun hasTailStateView(): Boolean
+    abstract fun loadMore()
+
+    abstract fun hasStateView(): Boolean
 }

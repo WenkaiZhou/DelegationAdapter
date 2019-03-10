@@ -32,88 +32,84 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
  */
 class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
 
-    private var tailLoadViewType = VIEW_TYPE_LOAD_MORE
-    private var tailLoadDelegate: LoadAdapterDelegate? = null
+    private var loadViewType = VIEW_TYPE_LOAD_MORE
+    private var loadDelegate: LoadAdapterDelegate? = null
     private val loadScrollListener: LoadScrollListener
     private var onLoadListener: OnLoadListener? = null
-    private var onLoadListener2: OnLoadListener2? = null
-    private var enabledLoadFromHead = true
-    private var enabledLoadFromTail = true
+    private var onLoadListener2: AutoRefreshListener? = null
+    private var enabledRefresh = true
+    private var enabledLoad = true
 
-    private var headLoading: Boolean = false
-    private var tailLoading: Boolean = false
-    private var headLoadCompleted: Boolean = false
+    var refreshing: Boolean = false
+    var loading: Boolean = false
+    private var refreshCompleted: Boolean = false
 
     init {
         loadScrollListener = object : LoadScrollListener() {
 
-            override fun loadFromHead() {
-                if (!headLoading
-                        && enabledLoadFromHead
-                        && !headLoadCompleted) {
-                    headLoading = true
-                    onLoadListener2?.onLoadFromHead()
+            override fun refresh() {
+                if (!refreshing
+                        && enabledRefresh
+                        && onLoadListener2 != null
+                        && !refreshCompleted) {
+                    refreshing = true
+                    onLoadListener2?.onRefresh()
                 }
             }
 
-            override fun loadFromTail() {
-                if (tailLoadViewType == VIEW_TYPE_LOAD_FAILED) {
-                    setTailLoading()
+            override fun loadMore() {
+                if (loadViewType == VIEW_TYPE_LOAD_FAILED) {
+                    setLoading()
                 }
 
-                if (!tailLoading
-                        && enabledLoadFromTail
-                        && tailLoadViewType == VIEW_TYPE_LOAD_MORE) {
-                    tailLoading = true
+                if (!loading
+                        && enabledLoad
+                        && onLoadListener != null
+                        && loadViewType == VIEW_TYPE_LOAD_MORE) {
+                    loading = true
                     onLoadListener?.onLoadMore()
-                    onLoadListener2?.onLoadFromTail()
                 }
             }
 
-            override fun hasTailStateView(): Boolean {
-                return hasTailLoadStateView()
+            override fun hasStateView(): Boolean {
+                return hasLoadStateView()
             }
         }
     }
 
     fun setLoadDelegate(delegate: LoadAdapterDelegate): LoadDelegationAdapter {
-        return setTailLoadDelegate(delegate)
-    }
-
-    fun setTailLoadDelegate(delegate: LoadAdapterDelegate): LoadDelegationAdapter {
-        this.tailLoadDelegate = delegate
+        this.loadDelegate = delegate
         return this
     }
 
     override fun getItemCount(): Int =
-            if (hasTailLoadStateView() && enabledLoadFromTail)
+            if (hasLoadStateView() && enabledLoad)
                 super.getItemCount() + 1
             else
                 super.getItemCount()
 
     override fun getItemViewType(position: Int): Int =
-            if (hasTailLoadStateView() && isTailLoadItem(position)) {
-                tailLoadViewType
+            if (hasLoadStateView() && isLoadStateItem(position)) {
+                loadViewType
             } else super.getItemViewType(position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_LOAD_MORE,
             VIEW_TYPE_NO_MORE,
-            VIEW_TYPE_LOAD_FAILED -> tailLoadDelegate!!.onCreateLoadViewHolder(parent, viewType)
+            VIEW_TYPE_LOAD_FAILED -> loadDelegate!!.onCreateLoadViewHolder(parent, viewType)
             else -> super.onCreateViewHolder(parent, viewType)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>?) {
-        if (hasTailLoadStateView() && isTailLoadItem(position)) {
-            tailLoadDelegate!!.onBindViewHolder(holder as LoadViewHolder, position)
+        if (hasLoadStateView() && isLoadStateItem(position)) {
+            loadDelegate!!.onBindViewHolder(holder as LoadViewHolder, position)
 
             if (holder.getItemViewType() == VIEW_TYPE_LOAD_FAILED) {
                 holder.itemView.setOnClickListener {
-                    setTailLoading()
+                    setLoading()
                     onLoadListener?.onLoadMore()
-                    onLoadListener2?.onLoadFromTail()
                 }
             }
         } else {
@@ -122,7 +118,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
-        if (holder != null && hasTailLoadStateView() && isTailLoadItem(holder.layoutPosition)) {
+        if (holder != null && hasLoadStateView() && isLoadStateItem(holder.layoutPosition)) {
             val layoutParams = holder.itemView.layoutParams
             // When StaggeredGridLayoutManager, the Load View takes up one line;
             if (layoutParams != null && layoutParams is StaggeredGridLayoutManager.LayoutParams) {
@@ -134,14 +130,14 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
-        if (hasTailLoadStateView() && recyclerView != null) {
+        if (hasLoadStateView() && recyclerView != null) {
             val layoutManager = recyclerView.layoutManager
             // When GridLayoutManager, the Load View takes up one line;
             if (layoutManager is GridLayoutManager) {
                 val spanSizeLookup = layoutManager.spanSizeLookup
                 layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        if (isTailLoadItem(position)) {
+                        if (isLoadStateItem(position)) {
                             return layoutManager.spanCount
                         }
                         return spanSizeLookup.getSpanSize(position)
@@ -154,27 +150,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         recyclerView?.addOnScrollListener(loadScrollListener)
     }
 
-    fun finishLoading() {
-        finishTailLoading()
-    }
-
-    fun finishHeadLoading() {
-        this.headLoading = false
-    }
-
-    fun finishTailLoading() {
-        this.tailLoading = false
-    }
-
     fun setLoading() {
-        setTailLoading()
-    }
-
-    fun setTailLoading() {
-        tailLoadViewType = VIEW_TYPE_LOAD_MORE
-        tailLoading = false
-        if (!enabledLoadFromTail) {
-            enabledLoadFromTail = true
+        loadViewType = VIEW_TYPE_LOAD_MORE
+        loading = false
+        if (!enabledLoad) {
+            enabledLoad = true
             notifyDataSetChanged()
         } else {
             notifyItemChanged(itemCount)
@@ -182,55 +162,43 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     fun setLoadFailed() {
-        setTailLoadFailed()
-    }
-
-    fun setTailLoadFailed() {
-        tailLoadViewType = VIEW_TYPE_LOAD_FAILED
-        tailLoading = false
-        enabledLoadFromTail = true
+        loadViewType = VIEW_TYPE_LOAD_FAILED
+        loading = false
+        enabledLoad = true
         notifyItemChanged(itemCount)
     }
 
     fun setLoadCompleted() {
-        setTailLoadCompleted()
-    }
-
-    fun setHeadLoadCompleted() {
-        this.headLoadCompleted = true
-        this.headLoading = false
-    }
-
-    fun setTailLoadCompleted() {
-        tailLoadViewType = VIEW_TYPE_NO_MORE
-        tailLoading = false
-        enabledLoadFromTail = true
+        loadViewType = VIEW_TYPE_NO_MORE
+        loading = false
+        enabledLoad = true
         notifyItemChanged(itemCount)
     }
 
-    fun disableLoad() {
-        disableTailLoad()
+    fun setRefreshCompleted() {
+        this.refreshCompleted = true
+        this.refreshing = false
     }
 
-    fun disableTailLoad() {
-        tailLoadViewType = VIEW_TYPE_NO_VIEW
-        tailLoading = false
-        enabledLoadFromTail = false
+    fun disableLoad() {
+        loadViewType = VIEW_TYPE_NO_VIEW
+        loading = false
+        enabledLoad = false
         notifyDataSetChanged()
     }
 
     /**
      * Returns whether has extra load item.
      */
-    private fun hasTailLoadStateView(): Boolean {
-        return tailLoadDelegate != null
+    private fun hasLoadStateView(): Boolean {
+        return loadDelegate != null
     }
 
     /**
-     * Returns whether is the load states item.
+     * Returns whether is the load state item. 加载状态条目
      */
-    private fun isTailLoadItem(position: Int): Boolean {
-        return enabledLoadFromTail && position == itemCount - 1
+    private fun isLoadStateItem(position: Int): Boolean {
+        return enabledLoad && position == itemCount - 1
     }
 
     companion object {
@@ -244,17 +212,15 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         this.onLoadListener = listener
     }
 
-    fun setOnLoadListener2(listener: OnLoadListener2) {
-        this.onLoadListener2 = listener
-    }
-
     interface OnLoadListener {
         fun onLoadMore()
     }
 
-    interface OnLoadListener2 {
-        fun onLoadFromHead()
-        fun onLoadFromTail()
+    fun setOnAutoRefreshListener(listener: AutoRefreshListener) {
+        this.onLoadListener2 = listener
     }
 
+    interface AutoRefreshListener {
+        fun onRefresh()
+    }
 }

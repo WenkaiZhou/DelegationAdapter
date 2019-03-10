@@ -58,6 +58,27 @@ public class ChatActivity extends AppCompatActivity {
                 .addDelegate(new ChatItemOtherTextAdapterDelegate());
         recyclerView.setAdapter(delegationAdapter);
 
+        delegationAdapter.setOnAutoRefreshListener(new LoadDelegationAdapter.AutoRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (headCount == 5) {
+                            delegationAdapter.setRefreshCompleted();
+                        } else {
+                            delegationAdapter.setRefreshing(false);
+                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
+                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
+                            delegationAdapter.addDataItems(0, chat.msgs);
+                        }
+
+                        headCount++;
+                    }
+                }, 2000);
+                Toast.makeText(ChatActivity.this, "加载上一页 " + headCount, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
 
@@ -71,7 +92,7 @@ public class ChatActivity extends AppCompatActivity {
                         } else if (tailCount == 5) {
                             delegationAdapter.setLoadCompleted();
                         } else {
-                            delegationAdapter.finishLoading();
+                            delegationAdapter.setLoading(false);
                             String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
                             Chat chat = new Gson().fromJson(chatStr, Chat.class);
                             delegationAdapter.addDataItems(chat.msgs);
@@ -84,50 +105,6 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-//        delegationAdapter.setOnLoadListener2(new LoadDelegationAdapter.OnLoadListener2() {
-//
-//            @Override
-//            public void onLoadFromHead() {
-//                recyclerView.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (headCount == 5) {
-//                            delegationAdapter.setHeadLoadCompleted();
-//                        } else {
-//                            delegationAdapter.finishHeadLoading();
-//                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
-//                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
-//                            delegationAdapter.addDataItems(0, chat.msgs);
-//                        }
-//
-//                        headCount++;
-//                    }
-//                }, 2000);
-//                Toast.makeText(ChatActivity.this, "加载上一页 " + headCount, Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onLoadFromTail() {
-//                recyclerView.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (tailCount == 2) {
-//                            delegationAdapter.setLoadFailed();
-//                        } else if (tailCount == 5) {
-//                            delegationAdapter.setLoadCompleted();
-//                        } else {
-//                            delegationAdapter.finishLoading();
-//                            String chatStr = LocalFileUtils.getStringFormAsset(ChatActivity.this, "chat.json");
-//                            Chat chat = new Gson().fromJson(chatStr, Chat.class);
-//                            delegationAdapter.addDataItems(chat.msgs);
-//                        }
-//
-//                        tailCount++;
-//                    }
-//                }, 2000);
-//                Toast.makeText(ChatActivity.this, "加载更多 " + tailCount, Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     private void initData() {
