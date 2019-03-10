@@ -57,16 +57,4 @@ public class ChatLoadAdapterDelegate extends LoadAdapterDelegate {
         }
         return new LoadViewHolder(view);
     }
-
-    @Override
-    public void onBindViewHolder(LoadViewHolder holder, int position) {
-        if (holder.getItemViewType() == LoadDelegationAdapter.VIEW_TYPE_LOAD_FAILED) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.out.print(1);
-                }
-            });
-        }
-    }
 }

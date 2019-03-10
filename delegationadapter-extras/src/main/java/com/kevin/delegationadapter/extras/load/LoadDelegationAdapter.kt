@@ -34,26 +34,26 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
     private var loadViewType = VIEW_TYPE_LOAD_MORE
     private var loadDelegate: LoadAdapterDelegate? = null
-    private val loadScrollListener: LoadScrollListener
+    private val scrollListener: ScrollListener
     private var onLoadListener: OnLoadListener? = null
-    private var onLoadListener2: AutoRefreshListener? = null
-    private var enabledRefresh = true
-    private var enabledLoad = true
+    private var onRefreshListener: AutoRefreshListener? = null
+    private var enabledRefresh = false
+    private var enabledLoad = false
 
     var refreshing: Boolean = false
     var loading: Boolean = false
     private var refreshCompleted: Boolean = false
 
     init {
-        loadScrollListener = object : LoadScrollListener() {
+        scrollListener = object : ScrollListener() {
 
             override fun refresh() {
                 if (!refreshing
                         && enabledRefresh
-                        && onLoadListener2 != null
+                        && onRefreshListener != null
                         && !refreshCompleted) {
                     refreshing = true
-                    onLoadListener2?.onRefresh()
+                    onRefreshListener?.onRefresh()
                 }
             }
 
@@ -147,7 +147,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
             }
         }
 
-        recyclerView?.addOnScrollListener(loadScrollListener)
+        recyclerView?.addOnScrollListener(scrollListener)
     }
 
     fun setLoading() {
@@ -208,19 +208,21 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         const val VIEW_TYPE_NO_VIEW = Integer.MAX_VALUE - 3
     }
 
-    fun setOnLoadListener(listener: OnLoadListener) {
-        this.onLoadListener = listener
-    }
-
-    interface OnLoadListener {
-        fun onLoadMore()
-    }
-
     fun setOnAutoRefreshListener(listener: AutoRefreshListener) {
-        this.onLoadListener2 = listener
+        this.enabledRefresh = true
+        this.onRefreshListener = listener
+    }
+
+    fun setOnLoadListener(listener: OnLoadListener) {
+        this.enabledLoad = true
+        this.onLoadListener = listener
     }
 
     interface AutoRefreshListener {
         fun onRefresh()
+    }
+
+    interface OnLoadListener {
+        fun onLoadMore()
     }
 }

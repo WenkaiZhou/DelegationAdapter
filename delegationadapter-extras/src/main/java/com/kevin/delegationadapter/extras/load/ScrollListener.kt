@@ -19,15 +19,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 /**
- * LoadScrollListener
+ * ScrollListener
  *
  * @author zwenkai@foxmail.com, Created on 2019-03-09 00:08:35
- *         Major Function：<b></b>
+ *         Major Function：<b>LoadScrollListener</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
+internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
@@ -96,7 +96,8 @@ abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
      */
     private fun lessThanOneScreen(recyclerView: RecyclerView): Boolean {
         val lastVisiblePosition = getLastVisiblePosition(recyclerView)
-        return if (isLastItemVisible(recyclerView) && lastVisiblePosition > (if (hasStateView()) 1 else 0)) {
+        return if (isLastItemVisible(recyclerView)
+                && lastVisiblePosition > (if (hasStateView()) 1 else 0)) { // 没有任何数据时不启用
             // 最后一条的底部小于RecyclerView的底部，即未满一屏幕
             recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
         } else {
