@@ -9,10 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
+import com.kevin.delegationadapter.extras.load2.Load2DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiChannelAdapterDelegate;
-import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoadAdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoad2AdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiSancanAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiTitleAdapterDelegate;
@@ -32,7 +32,7 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 public class MeishijieActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    LoadDelegationAdapter delegationAdapter;
+    Load2DelegationAdapter delegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +63,8 @@ public class MeishijieActivity extends AppCompatActivity {
             }
         });
 
-        delegationAdapter.setLoadDelegate(new MeishiLoadAdapterDelegate());
-        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
+        delegationAdapter.setLoadDelegate(new MeishiLoad2AdapterDelegate());
+        delegationAdapter.setOnLoadListener(new Load2DelegationAdapter.OnLoadListener() {
             @Override
             public void onLoadMore() {
                 recyclerView.postDelayed(new Runnable() {
@@ -93,7 +93,7 @@ public class MeishijieActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(layoutManager);
         // 设置Adapter
-        delegationAdapter = new LoadDelegationAdapter();
+        delegationAdapter = new Load2DelegationAdapter();
         // 添加委托Adapter
         delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate())
                 .addDelegate(new MeishiSancanAdapterDelegate())

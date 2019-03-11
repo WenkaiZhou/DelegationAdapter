@@ -7,13 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
+import com.kevin.delegationadapter.DelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.Chat;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyImageAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemMyTextAdapterDelegate;
 import com.kevin.delegationadapter.sample.multitype.chat.common.adapter.ChatItemOtherTextAdapterDelegate;
-import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoadAdapterDelegate;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
 /**
@@ -29,7 +28,7 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 public class ChatActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    LoadDelegationAdapter delegationAdapter;
+    DelegationAdapter delegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,10 +45,9 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // 设置Adapter
-        delegationAdapter = new LoadDelegationAdapter();
+        delegationAdapter = new DelegationAdapter();
         // 添加委托Adapter
         delegationAdapter
-                .setLoadDelegate(new MeishiLoadAdapterDelegate())
                 .addDelegate(new ChatItemMyImageAdapterDelegate())
                 .addDelegate(new ChatItemMyTextAdapterDelegate())
                 .addDelegate(new ChatItemOtherTextAdapterDelegate());
