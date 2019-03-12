@@ -17,13 +17,15 @@ package com.kevin.delegationadapter.extras.load
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.ViewGroup
+import android.util.Log
+import com.kevin.delegationadapter.AdapterDelegate
+import com.kevin.delegationadapter.extras.load.ScrollListener
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
 
 /**
  * LoadDelegationAdapter
  *
- * @author zwenkai@foxmail.com, Created on 2019-03-08 23:39:15
+ * @author zwenkai@foxmail.com, Created on 2019-03-11 23:30:43
  *         Major Function：<b>DelegationAdapter with load more</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
@@ -31,26 +33,27 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
  */
 class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
 
-    private var loadViewType = VIEW_TYPE_LOADING
-    private var loadDelegate: LoadAdapterDelegate? = null
+    private var loadDelegate: AdapterDelegate<*, *>? = null
     private val scrollListener: ScrollListener
     private var onLoadListener: OnLoadListener? = null
     private var enabledLoad = false
 
     private var loading: Boolean = false
 
+    private val loadFooter: LoadFooter = LoadFooter(LOAD_STATE_LOADING)
+
     init {
         scrollListener = object : ScrollListener() {
 
             override fun loadMore() {
-                if (loadViewType == VIEW_TYPE_LOAD_FAILED) {
+                if (loadFooter.loadState == LOAD_TYPE_FAILED) {
                     setLoading()
                 }
 
                 if (!loading
                         && enabledLoad
                         && onLoadListener != null
-                        && loadViewType == VIEW_TYPE_LOADING) {
+                        && loadFooter.loadState == LOAD_STATE_LOADING) {
                     loading = true
                     onLoadListener?.onLoadMore()
                 }
@@ -62,7 +65,8 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         }
     }
 
-    fun setLoadDelegate(delegate: LoadAdapterDelegate): LoadDelegationAdapter {
+    fun setLoadDelegate(delegate: AdapterDelegate<*, *>): LoadDelegationAdapter {
+        addDelegate(delegate)
         this.loadDelegate = delegate
         return this
     }
@@ -73,33 +77,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
             else
                 super.getItemCount()
 
-    override fun getItemViewType(position: Int): Int =
-            if (hasLoadStateView() && isLoadStateItem(position)) {
-                loadViewType
-            } else super.getItemViewType(position)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            VIEW_TYPE_LOADING,
-            VIEW_TYPE_NO_MORE,
-            VIEW_TYPE_LOAD_FAILED -> loadDelegate!!.onCreateLoadViewHolder(parent, viewType)
-            else -> super.onCreateViewHolder(parent, viewType)
-        }
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>?) {
-        if (hasLoadStateView() && isLoadStateItem(position)) {
-            loadDelegate!!.onBindViewHolder(holder, position)
-
-            if (holder.getItemViewType() == VIEW_TYPE_LOAD_FAILED) {
-                holder.itemView.setOnClickListener {
-                    setLoading()
-                    onLoadListener?.onLoadMore()
-                }
-            }
-        } else {
-            super.onBindViewHolder(holder, position)
-        }
+    override fun getItem(position: Int): Any {
+        return if (hasLoadStateView() && isLoadStateItem(position))
+            loadFooter
+        else
+            super.getItem(position)
     }
 
     override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
@@ -129,33 +111,37 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         setLoading()
     }
 
+    fun retry() {
+        setLoading()
+        onLoadListener?.onLoadMore()
+    }
+
     private fun setLoading() {
-        loadViewType = VIEW_TYPE_LOADING
+        loadFooter.loadState = LOAD_STATE_LOADING
         loading = false
         if (!enabledLoad) {
             enabledLoad = true
             notifyDataSetChanged()
         } else {
-            notifyItemChanged(itemCount)
+            notifyItemChanged(itemCount - 1)
         }
     }
 
     fun setLoadFailed() {
-        loadViewType = VIEW_TYPE_LOAD_FAILED
+        loadFooter.loadState = LOAD_TYPE_FAILED
         loading = false
         enabledLoad = true
-        notifyItemChanged(itemCount)
+        notifyItemChanged(itemCount - 1)
     }
 
     fun setLoadCompleted() {
-        loadViewType = VIEW_TYPE_NO_MORE
+        loadFooter.loadState = LOAD_STATE_COMPLETED
         loading = false
         enabledLoad = true
-        notifyItemChanged(itemCount)
+        notifyItemChanged(itemCount - 1)
     }
 
     fun disableLoad() {
-        loadViewType = VIEW_TYPE_NO_VIEW
         loading = false
         enabledLoad = false
         notifyDataSetChanged()
@@ -175,13 +161,6 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         return enabledLoad && position == itemCount - 1
     }
 
-    companion object {
-        const val VIEW_TYPE_LOADING = Integer.MAX_VALUE - 1
-        const val VIEW_TYPE_NO_MORE = Integer.MAX_VALUE - 2
-        const val VIEW_TYPE_LOAD_FAILED = Integer.MAX_VALUE - 3
-        const val VIEW_TYPE_NO_VIEW = Integer.MAX_VALUE - 3
-    }
-
     fun setOnLoadListener(listener: OnLoadListener) {
         this.enabledLoad = true
         this.onLoadListener = listener
@@ -190,4 +169,12 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     interface OnLoadListener {
         fun onLoadMore()
     }
+
+    companion object {
+        const val LOAD_STATE_LOADING = 1
+        const val LOAD_STATE_COMPLETED = 2
+        const val LOAD_TYPE_FAILED = 4
+    }
+
+    class LoadFooter(var loadState: Int)
 }

@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.kevin.delegationadapter.AdapterDelegate;
-import com.kevin.delegationadapter.extras.load2.Load2DelegationAdapter;
+import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
+import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 
 /**
@@ -20,7 +20,14 @@ import com.kevin.delegationadapter.sample.R;
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-public class MeishiLoad2AdapterDelegate extends AdapterDelegate<Load2DelegationAdapter.LoadFooter, MeishiLoad2AdapterDelegate.ViewHolder> {
+public class MeishiLoad2AdapterDelegate extends ClickableAdapterDelegate<LoadDelegationAdapter.LoadFooter, MeishiLoad2AdapterDelegate.ViewHolder> {
+
+    private RecyclerView recyclerView;
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
@@ -30,24 +37,33 @@ public class MeishiLoad2AdapterDelegate extends AdapterDelegate<Load2DelegationA
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, Load2DelegationAdapter.LoadFooter item) {
-        if (item.getLoadState() == Load2DelegationAdapter.LOAD_STATE_LOADING) {
+    public void onBindViewHolder(ViewHolder holder, int position, LoadDelegationAdapter.LoadFooter item) {
+        super.onBindViewHolder(holder, position, item);
+        if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_LOADING) {
             holder.progressBar.setVisibility(View.VISIBLE);
             holder.textView.setText("加载中...");
-        } else if (item.getLoadState() == Load2DelegationAdapter.LOAD_TYPE_FAILED) {
+        } else if (item.getLoadState() == LoadDelegationAdapter.LOAD_TYPE_FAILED) {
             holder.progressBar.setVisibility(View.GONE);
             holder.textView.setText("加载失败，点击重试");
-            // TODO 失败重试
-        } else if (item.getLoadState() == Load2DelegationAdapter.LOAD_STATE_COMPLETED) {
+        } else if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_COMPLETED) {
             holder.progressBar.setVisibility(View.GONE);
             holder.textView.setText("没有更多数据");
         }
     }
 
+    @Override
+    public void onItemClick(View view, LoadDelegationAdapter.LoadFooter item, int position) {
+        if (item.getLoadState() == LoadDelegationAdapter.LOAD_TYPE_FAILED) {
+            if (recyclerView.getAdapter() instanceof LoadDelegationAdapter) {
+                ((LoadDelegationAdapter) recyclerView.getAdapter()).retry();
+            }
+        }
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ProgressBar progressBar;
-        public TextView textView;
+        private ProgressBar progressBar;
+        private TextView textView;
 
         public ViewHolder(View itemView) {
             super(itemView);

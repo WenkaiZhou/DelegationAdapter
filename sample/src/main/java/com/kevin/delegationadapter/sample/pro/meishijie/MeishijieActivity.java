@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.google.gson.Gson;
-import com.kevin.delegationadapter.extras.load2.Load2DelegationAdapter;
+import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiChannelAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoad2AdapterDelegate;
@@ -32,7 +32,7 @@ import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 public class MeishijieActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Load2DelegationAdapter delegationAdapter;
+    LoadDelegationAdapter delegationAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +63,7 @@ public class MeishijieActivity extends AppCompatActivity {
             }
         });
 
-        delegationAdapter.setLoadDelegate(new MeishiLoad2AdapterDelegate());
-        delegationAdapter.setOnLoadListener(new Load2DelegationAdapter.OnLoadListener() {
+        delegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
             @Override
             public void onLoadMore() {
                 recyclerView.postDelayed(new Runnable() {
@@ -93,9 +92,11 @@ public class MeishijieActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(layoutManager);
         // 设置Adapter
-        delegationAdapter = new Load2DelegationAdapter();
+        delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter
-        delegationAdapter.addDelegate(new MeishiChannelAdapterDelegate())
+        delegationAdapter
+                .setLoadDelegate(new MeishiLoad2AdapterDelegate())
+                .addDelegate(new MeishiChannelAdapterDelegate())
                 .addDelegate(new MeishiSancanAdapterDelegate())
                 .addDelegate(new MeishiZhuantiTitleAdapterDelegate())
                 .addDelegate(new MeishiZhuantiAdapterDelegate());
