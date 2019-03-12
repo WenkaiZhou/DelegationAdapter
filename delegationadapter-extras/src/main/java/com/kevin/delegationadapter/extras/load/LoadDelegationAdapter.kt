@@ -44,7 +44,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         scrollListener = object : ScrollListener() {
 
             override fun loadMore() {
-                if (loadFooter.loadState == LOAD_TYPE_FAILED) {
+                if (loadFooter.loadState == LOAD_STATE_FAILED) {
                     setLoading()
                 }
 
@@ -110,8 +110,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     fun retry() {
-        setLoading()
-        onLoadListener?.onLoadMore()
+        scrollListener.loadMore()
     }
 
     private fun setLoading() {
@@ -126,7 +125,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     fun setLoadFailed() {
-        loadFooter.loadState = LOAD_TYPE_FAILED
+        loadFooter.loadState = LOAD_STATE_FAILED
         loading = false
         enabledLoad = true
         notifyItemChanged(itemCount - 1)
@@ -173,7 +172,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     companion object {
         const val LOAD_STATE_LOADING = 1
         const val LOAD_STATE_COMPLETED = 2
-        const val LOAD_TYPE_FAILED = 4
+        const val LOAD_STATE_FAILED = 4
     }
 
     class LoadFooter(var loadState: Int)

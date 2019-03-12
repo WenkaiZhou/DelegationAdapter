@@ -42,7 +42,7 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDele
         if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_LOADING) {
             holder.progressBar.setVisibility(View.VISIBLE);
             holder.textView.setText("加载中...");
-        } else if (item.getLoadState() == LoadDelegationAdapter.LOAD_TYPE_FAILED) {
+        } else if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_FAILED) {
             holder.progressBar.setVisibility(View.GONE);
             holder.textView.setText("加载失败，点击重试");
         } else if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_COMPLETED) {
@@ -53,10 +53,8 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDele
 
     @Override
     public void onItemClick(View view, LoadDelegationAdapter.LoadFooter item, int position) {
-        if (item.getLoadState() == LoadDelegationAdapter.LOAD_TYPE_FAILED) {
-            if (recyclerView.getAdapter() instanceof LoadDelegationAdapter) {
-                ((LoadDelegationAdapter) recyclerView.getAdapter()).retry();
-            }
+        if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_FAILED) {
+            ((LoadDelegationAdapter) recyclerView.getAdapter()).retry();
         }
     }
 
