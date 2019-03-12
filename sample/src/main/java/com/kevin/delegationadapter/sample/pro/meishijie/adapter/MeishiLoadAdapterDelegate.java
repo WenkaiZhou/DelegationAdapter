@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.kevin.delegationadapter.extras.ClickableAdapterDelegate;
 import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
+import com.kevin.delegationadapter.extras.load.LoadFooter;
 import com.kevin.delegationadapter.sample.R;
 
 /**
@@ -20,7 +21,7 @@ import com.kevin.delegationadapter.sample.R;
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDelegationAdapter.LoadFooter, MeishiLoadAdapterDelegate.ViewHolder> {
+public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadFooter, MeishiLoadAdapterDelegate.ViewHolder> {
 
     private RecyclerView recyclerView;
 
@@ -37,7 +38,7 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDele
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, LoadDelegationAdapter.LoadFooter item) {
+    public void onBindViewHolder(ViewHolder holder, int position, LoadFooter item) {
         super.onBindViewHolder(holder, position, item);
         if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_LOADING) {
             holder.progressBar.setVisibility(View.VISIBLE);
@@ -52,7 +53,7 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDele
     }
 
     @Override
-    public void onItemClick(View view, LoadDelegationAdapter.LoadFooter item, int position) {
+    public void onItemClick(View view, LoadFooter item, int position) {
         if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_FAILED) {
             ((LoadDelegationAdapter) recyclerView.getAdapter()).retry();
         }

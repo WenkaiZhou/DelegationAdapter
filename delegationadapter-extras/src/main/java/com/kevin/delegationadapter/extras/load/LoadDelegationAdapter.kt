@@ -175,5 +175,4 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         const val LOAD_STATE_FAILED = 4
     }
 
-    class LoadFooter(var loadState: Int)
 }
