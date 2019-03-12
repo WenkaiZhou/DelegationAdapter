@@ -17,9 +17,7 @@ package com.kevin.delegationadapter.extras.load
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
 import com.kevin.delegationadapter.AdapterDelegate
-import com.kevin.delegationadapter.extras.load.ScrollListener
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
 
 /**
@@ -155,7 +153,9 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     /**
-     * Returns whether is the load state item. 加载状态条目
+     * Returns whether is the load state item.
+     *
+     * @param position
      */
     private fun isLoadStateItem(position: Int): Boolean {
         return enabledLoad && position == itemCount - 1

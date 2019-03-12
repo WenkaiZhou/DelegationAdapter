@@ -7,12 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiChannelAdapterDelegate;
-import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoad2AdapterDelegate;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoadAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiSancanAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiAdapterDelegate;
 import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiZhuantiTitleAdapterDelegate;
@@ -82,6 +83,7 @@ public class MeishijieActivity extends AppCompatActivity {
                         count++;
                     }
                 }, 2000);
+                Toast.makeText(MeishijieActivity.this, "load more :" + count, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,7 +97,7 @@ public class MeishijieActivity extends AppCompatActivity {
         delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter
         delegationAdapter
-                .setLoadDelegate(new MeishiLoad2AdapterDelegate())
+                .setLoadDelegate(new MeishiLoadAdapterDelegate())
                 .addDelegate(new MeishiChannelAdapterDelegate())
                 .addDelegate(new MeishiSancanAdapterDelegate())
                 .addDelegate(new MeishiZhuantiTitleAdapterDelegate())

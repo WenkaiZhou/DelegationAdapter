@@ -73,7 +73,7 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
     }
 
     /**
-     * 判断是否未满一屏
+     * Returns whether the data is full screen.
      *
      * @param recyclerView
      * @return
@@ -82,7 +82,7 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
         val lastVisiblePosition = getLastVisiblePosition(recyclerView)
         return if (isLastItemVisible(recyclerView)
                 && lastVisiblePosition > (if (hasStateView()) 1 else 0)) { // 没有任何数据时不启用
-            // 最后一条的底部小于RecyclerView的底部，即未满一屏幕
+            // The bottom of the last item is less than the bottom of the RecyclerView, i.e., less than one screen.
             recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
         } else {
             false

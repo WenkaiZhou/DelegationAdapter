@@ -20,7 +20,7 @@ import com.kevin.delegationadapter.sample.R;
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-public class MeishiLoad2AdapterDelegate extends ClickableAdapterDelegate<LoadDelegationAdapter.LoadFooter, MeishiLoad2AdapterDelegate.ViewHolder> {
+public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadDelegationAdapter.LoadFooter, MeishiLoadAdapterDelegate.ViewHolder> {
 
     private RecyclerView recyclerView;
 
