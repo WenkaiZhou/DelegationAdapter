@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -74,6 +75,9 @@ public class MeishijieActivity extends AppCompatActivity {
                         if (count == 2) {
                             delegationAdapter.setLoadFailed();
                         } else if (count == 5) {
+                            String meishiStr = LocalFileUtils.getStringFormAsset(MeishijieActivity.this, "meishi.json");
+                            Meishi meishi = new Gson().fromJson(meishiStr, Meishi.class);
+                            delegationAdapter.addDataItems(meishi.zhuanti.items);
                             delegationAdapter.setLoadCompleted();
                         } else {
                             String meishiStr = LocalFileUtils.getStringFormAsset(MeishijieActivity.this, "meishi.json");
@@ -93,6 +97,7 @@ public class MeishijieActivity extends AppCompatActivity {
         // 设置LayoutManager
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         // 设置Adapter
         delegationAdapter = new LoadDelegationAdapter();
         // 添加委托Adapter

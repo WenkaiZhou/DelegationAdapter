@@ -19,6 +19,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import com.kevin.delegationadapter.AdapterDelegate
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
+import android.support.v7.widget.SimpleItemAnimator
 
 /**
  * LoadDelegationAdapter
@@ -35,7 +36,6 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private val scrollListener: ScrollListener
     private var onLoadListener: OnLoadListener? = null
     private var enabledLoad = false
-
     private var loading: Boolean = false
 
     private val loadFooter: LoadFooter = LoadFooter(LOAD_STATE_LOADING)
@@ -119,8 +119,9 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         if (!enabledLoad) {
             enabledLoad = true
             notifyDataSetChanged()
-        } else {
-            notifyItemChanged(itemCount - 1)
+        } else if (hasLoadStateView()) {
+//            notifyItemChanged(itemCount - 1)
+            notifyDataSetChanged()
         }
     }
 
@@ -128,14 +129,20 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         loadFooter.loadState = LOAD_STATE_FAILED
         loading = false
         enabledLoad = true
-        notifyItemChanged(itemCount - 1)
+        if (hasLoadStateView()) {
+//            notifyItemChanged(itemCount - 1)
+            notifyDataSetChanged()
+        }
     }
 
     fun setLoadCompleted() {
         loadFooter.loadState = LOAD_STATE_COMPLETED
         loading = false
         enabledLoad = true
-        notifyItemChanged(itemCount - 1)
+        if (hasLoadStateView()) {
+//            notifyItemChanged(itemCount - 1)
+            notifyDataSetChanged()
+        }
     }
 
     fun disableLoad() {

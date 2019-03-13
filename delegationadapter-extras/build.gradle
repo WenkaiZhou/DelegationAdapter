@@ -60,7 +60,7 @@ task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
 setProperty "VERSION_CODE", "14"
-setProperty "VERSION_NAME", "1.1.7alpha"
+setProperty "VERSION_NAME", "1.1.7alpha1"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
