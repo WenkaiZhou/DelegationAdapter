@@ -41,7 +41,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
 
     private val loadFooter: LoadFooter = LoadFooter(LOAD_STATE_LOADING)
 
-    private var viewHolder: WeakReference<RecyclerView.ViewHolder>? = null
+    private var viewHolderRef: WeakReference<RecyclerView.ViewHolder>? = null
 
     init {
         scrollListener = object : ScrollListener() {
@@ -105,7 +105,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (hasLoadStateView() && loadDelegate == delegatesManager.getDelegate(viewType)) {
             val viewHolder = super.onCreateViewHolder(parent, viewType)
-            this.viewHolder = WeakReference(viewHolder)
+            this.viewHolderRef = WeakReference(viewHolder)
             return viewHolder
         }
         return super.onCreateViewHolder(parent, viewType)
@@ -155,10 +155,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     }
 
     private fun notifyLoadItemChanged(position: Int) {
-        if (loadDelegate != null && viewHolder?.get() != null) {
+        val viewHolder = viewHolderRef?.get()
+        if (viewHolder != null) {
             @Suppress("UNCHECKED_CAST")
             val adapterDelegate = loadDelegate as AdapterDelegate<Any?, RecyclerView.ViewHolder>
-            adapterDelegate.onBindViewHolder(viewHolder!!.get()!!, position, loadFooter)
+            adapterDelegate.onBindViewHolder(viewHolder, position, loadFooter)
         } else {
             notifyDataSetChanged()
         }
