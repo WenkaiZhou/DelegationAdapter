@@ -17,9 +17,10 @@ package com.kevin.delegationadapter.extras.load
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.ViewGroup
 import com.kevin.delegationadapter.AdapterDelegate
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
-import android.support.v7.widget.SimpleItemAnimator
+import java.lang.ref.WeakReference
 
 /**
  * LoadDelegationAdapter
@@ -39,6 +40,8 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private var loading: Boolean = false
 
     private val loadFooter: LoadFooter = LoadFooter(LOAD_STATE_LOADING)
+
+    private var viewHolder: WeakReference<RecyclerView.ViewHolder>? = null
 
     init {
         scrollListener = object : ScrollListener() {
@@ -99,6 +102,15 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         recyclerView?.addOnScrollListener(scrollListener)
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (hasLoadStateView() && loadDelegate == delegatesManager.getDelegate(viewType)) {
+            val viewHolder = super.onCreateViewHolder(parent, viewType)
+            this.viewHolder = WeakReference(viewHolder)
+            return viewHolder
+        }
+        return super.onCreateViewHolder(parent, viewType)
+    }
+
     fun isLoading(): Boolean = loading
 
     fun setLoading(loading: Boolean) {
@@ -120,8 +132,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
             enabledLoad = true
             notifyDataSetChanged()
         } else if (hasLoadStateView()) {
-//            notifyItemChanged(itemCount - 1)
-            notifyDataSetChanged()
+            notifyLoadItemChanged(itemCount - 1)
         }
     }
 
@@ -130,8 +141,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         loading = false
         enabledLoad = true
         if (hasLoadStateView()) {
-//            notifyItemChanged(itemCount - 1)
-            notifyDataSetChanged()
+            notifyLoadItemChanged(itemCount - 1)
         }
     }
 
@@ -140,7 +150,16 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         loading = false
         enabledLoad = true
         if (hasLoadStateView()) {
-//            notifyItemChanged(itemCount - 1)
+            notifyLoadItemChanged(itemCount - 1)
+        }
+    }
+
+    private fun notifyLoadItemChanged(position: Int) {
+        if (loadDelegate != null && viewHolder?.get() != null) {
+            @Suppress("UNCHECKED_CAST")
+            val adapterDelegate = loadDelegate as AdapterDelegate<Any?, RecyclerView.ViewHolder>
+            adapterDelegate.onBindViewHolder(viewHolder!!.get()!!, position, loadFooter)
+        } else {
             notifyDataSetChanged()
         }
     }
