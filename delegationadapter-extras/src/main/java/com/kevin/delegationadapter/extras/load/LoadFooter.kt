@@ -18,7 +18,7 @@ package com.kevin.delegationadapter.extras.load
 /**
  * LoadFooter
  *
- * @author zhouwenkai@baidu.com, Created on 2019-03-12 16:21:58
+ * @author zwenkai@foxmail.com, Created on 2019-03-12 16:21:58
  *         Major Function：<b>LoadFooter</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
