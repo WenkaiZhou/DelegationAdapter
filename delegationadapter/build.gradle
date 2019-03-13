@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 14
-        versionName "1.1.7alpha"
+        targetSdkVersion 27
+        versionCode 15
+        versionName "1.1.7"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.android.support:recyclerview-v7:26.1.0'
+    compileOnly 'com.android.support:recyclerview-v7:27.1.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
@@ -62,6 +62,6 @@ setProperty "VERSION_NAME", "1.1.7alpha"
 setProperty "POM_DESCRIPTION", "Delegation Adapter"
 
 ext {
-    kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
+    sourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
 }
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

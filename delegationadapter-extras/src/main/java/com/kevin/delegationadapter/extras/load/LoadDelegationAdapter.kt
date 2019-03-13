@@ -85,8 +85,8 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
             super.getItem(position)
     }
 
-    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
-        if (holder != null && hasLoadStateView() && isLoadStateItem(holder.layoutPosition)) {
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        if (hasLoadStateView() && isLoadStateItem(holder.layoutPosition)) {
             val layoutParams = holder.itemView.layoutParams
             // When StaggeredGridLayoutManager, the Load View takes up one line;
             if (layoutParams != null && layoutParams is StaggeredGridLayoutManager.LayoutParams) {
@@ -97,9 +97,9 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         }
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        recyclerView?.addOnScrollListener(scrollListener)
+        recyclerView.addOnScrollListener(scrollListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
