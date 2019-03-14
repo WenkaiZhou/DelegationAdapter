@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,19 +27,20 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadFoot
     private RecyclerView recyclerView;
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_load_more_footer, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, LoadFooter item) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position, LoadFooter item) {
         super.onBindViewHolder(holder, position, item);
         if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_LOADING) {
             holder.progressBar.setVisibility(View.VISIBLE);
@@ -53,7 +55,7 @@ public class MeishiLoadAdapterDelegate extends ClickableAdapterDelegate<LoadFoot
     }
 
     @Override
-    public void onItemClick(View view, LoadFooter item, int position) {
+    public void onItemClick(@NonNull View view, LoadFooter item, int position) {
         if (item.getLoadState() == LoadDelegationAdapter.LOAD_STATE_FAILED) {
             ((LoadDelegationAdapter) recyclerView.getAdapter()).retry();
         }

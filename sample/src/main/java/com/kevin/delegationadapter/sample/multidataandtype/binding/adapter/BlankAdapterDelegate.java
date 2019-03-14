@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;
@@ -25,7 +26,7 @@ public class BlankAdapterDelegate extends BindingAdapterDelegate<BlankParameters
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, BlankParameters item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, BlankParameters item, int position) {
         binding.setVariable(BR.params, item);
     }
 

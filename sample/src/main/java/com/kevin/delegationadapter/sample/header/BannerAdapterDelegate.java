@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.header;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +30,7 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
     }
 
     @Override
-    public void configureViewHolder(BindingViewHolder holder) {
+    public void configureViewHolder(@NonNull BindingViewHolder holder) {
         BannerAdapterBinding binding = holder.getBinding();
         binding.bannerView.setImageLoader(new ImageLoader() {
             @Override
@@ -40,7 +41,7 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, LoopData item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, LoopData item, int position) {
         binding.setVariable(BR.model, item);
     }
 }

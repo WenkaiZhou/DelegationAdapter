@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.fallback;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,9 @@ import com.kevin.delegationadapter.sample.R;
 
 public class FallbackAdapterDelegate extends AdapterDelegate<Object, RecyclerView.ViewHolder> {
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         TextView view = new TextView(parent.getContext());
         view.setLayoutParams(
                 new ViewGroup.LayoutParams(
@@ -34,7 +36,7 @@ public class FallbackAdapterDelegate extends AdapterDelegate<Object, RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, Object item) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, Object item) {
 
         String content = "No delegate found for "
                 + item

@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.multitype.chat.binding.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
@@ -31,7 +32,7 @@ public class ChatItemMyTextAdapterDelegate extends BindingAdapterDelegate<Chat.T
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Chat.TalkMsg item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, Chat.TalkMsg item, int position) {
         binding.setVariable(BR.model, item);
     }
 

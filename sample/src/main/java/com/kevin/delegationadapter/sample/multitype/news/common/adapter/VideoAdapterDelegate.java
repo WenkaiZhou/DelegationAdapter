@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.multitype.news.common.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,15 +31,16 @@ public class VideoAdapterDelegate extends AdapterDelegate<News, VideoAdapterDele
         return news.type == 3;
     }
 
+    @NonNull
     @Override
-    public VideoViewHolder onCreateViewHolder(ViewGroup parent) {
+    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_video, parent, false);
         VideoViewHolder holder = new VideoViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(VideoViewHolder holder, int position, News news) {
+    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);

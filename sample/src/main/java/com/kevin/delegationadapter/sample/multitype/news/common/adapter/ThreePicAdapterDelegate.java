@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.multitype.news.common.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,15 +32,16 @@ public class ThreePicAdapterDelegate extends AdapterDelegate<News, ThreePicAdapt
         return item.type == 1;
     }
 
+    @NonNull
     @Override
-    public ThreePicViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ThreePicViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_three_pic, parent, false);
         ThreePicViewHolder holder = new ThreePicViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ThreePicViewHolder holder, int position, News news) {
+    public void onBindViewHolder(@NonNull ThreePicViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);

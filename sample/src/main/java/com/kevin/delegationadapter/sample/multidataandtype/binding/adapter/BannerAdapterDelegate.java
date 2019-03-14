@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,7 +35,7 @@ public class BannerAdapterDelegate extends BindingAdapterDelegate<LoopData> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, final LoopData item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, final LoopData item, int position) {
 
         BannerView bannerView = ((ItemGoodsBannerBindingBinding) binding).loopView;
         LoopData data = bannerView.getData();

@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.samedata.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,57 +33,58 @@ public class ServiceInfoAdapterDelegate extends BindingAdapterDelegate<Bill> {
     }
 
     @Override
-    public void onBindViewHolder(BindingViewHolder holder, int position, List<?> payloads, Bill item) {
+    public void onBindViewHolder(@NonNull BindingViewHolder holder, int position, @NonNull List<?> payloads, Bill item) {
         super.onBindViewHolder(holder, position, payloads, item);
     }
 
     @Override
-    public void onBindViewHolder(BindingViewHolder holder, int position, Bill item) {
+    public void onBindViewHolder(@NonNull BindingViewHolder holder, int position, Bill item) {
         super.onBindViewHolder(holder, position, item);
     }
 
+    @NonNull
     @Override
-    public BindingViewHolder onCreateViewHolder(ViewGroup parent) {
+    public BindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         return super.onCreateViewHolder(parent);
     }
 
     @Override
-    public boolean onFailedToRecycleView(BindingViewHolder holder) {
+    public boolean onFailedToRecycleView(@NonNull BindingViewHolder holder) {
         return super.onFailedToRecycleView(holder);
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
-    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onDetachedFromRecyclerView(recyclerView);
     }
 
     @Override
-    public void onViewAttachedToWindow(BindingViewHolder holder) {
+    public void onViewAttachedToWindow(@NonNull BindingViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
 
     @Override
-    public void onViewDetachedFromWindow(BindingViewHolder holder) {
+    public void onViewDetachedFromWindow(@NonNull BindingViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
     }
 
     @Override
-    public void onViewRecycled(BindingViewHolder holder) {
+    public void onViewRecycled(@NonNull BindingViewHolder holder) {
         super.onViewRecycled(holder);
     }
 
     @Override
-    public boolean onItemLongClick(View view, Bill item, int position) {
+    public boolean onItemLongClick(@NonNull View view, Bill item, int position) {
         return super.onItemLongClick(view, item, position);
     }
 
     @Override
-    public void onItemClick(View view, Bill item, int position) {
+    public void onItemClick(@NonNull View view, Bill item, int position) {
         super.onItemClick(view, item, position);
     }
 
@@ -92,7 +94,7 @@ public class ServiceInfoAdapterDelegate extends BindingAdapterDelegate<Bill> {
     }
 
     @Override
-    public void configureViewHolder(BindingViewHolder holder) {
+    public void configureViewHolder(@NonNull BindingViewHolder holder) {
         super.configureViewHolder(holder);
     }
 
@@ -107,7 +109,7 @@ public class ServiceInfoAdapterDelegate extends BindingAdapterDelegate<Bill> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Bill item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, Bill item, int position) {
         binding.setVariable(BR.model, item);
     }
 }

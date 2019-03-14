@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class MeishiZhuantiTitleAdapterDelegate extends BindingAdapterDelegate<Me
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Meishi.Zhuanti item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, Meishi.Zhuanti item, int position) {
         binding.setVariable(BR.model, item);
         binding.setVariable(BR.view, this);
     }

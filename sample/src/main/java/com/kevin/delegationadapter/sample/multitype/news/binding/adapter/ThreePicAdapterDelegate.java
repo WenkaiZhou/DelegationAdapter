@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.multitype.news.binding.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
@@ -31,7 +32,7 @@ public class ThreePicAdapterDelegate extends BindingAdapterDelegate<News> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, News item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, News item, int position) {
         binding.setVariable(BR.model, item);
     }
 }

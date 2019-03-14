@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.home;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,21 +28,22 @@ public class HomeAdapterDelegate extends ClickableAdapterDelegate<String, HomeAd
         this.mActivity = activity;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position, final String item) {
         super.onBindViewHolder(holder, position, item);
         holder.tvContent.setText(item);
     }
 
     @Override
-    public void onItemClick(View view, String item, int position) {
+    public void onItemClick(@NonNull View view, String item, int position) {
         mActivity.onItemClick(view, position, item);
     }
 

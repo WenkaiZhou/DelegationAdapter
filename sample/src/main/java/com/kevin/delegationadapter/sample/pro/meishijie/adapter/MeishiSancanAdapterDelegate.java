@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.S
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Meishi.Sancan sancan, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, Meishi.Sancan sancan, int position) {
         binding.setVariable(BR.model, sancan);
         binding.setVariable(BR.view, this);
         ItemMeishiSancanBinding sancanBinding = (ItemMeishiSancanBinding) binding;
@@ -75,7 +76,7 @@ public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.S
      * @param view
      * @param index
      */
-    public void onMealTitleClick(View view, int index) {
+    public void onMealTitleClick(@NonNull View view, int index) {
         selected.set(index);
     }
 
@@ -84,7 +85,7 @@ public class MeishiSancanAdapterDelegate extends BindingAdapterDelegate<Meishi.S
      *
      * @param view
      */
-    public void onMoreClick(View view) {
+    public void onMoreClick(@NonNull View view) {
         Toast.makeText(view.getContext(), "更多", Toast.LENGTH_SHORT).show();
     }
 

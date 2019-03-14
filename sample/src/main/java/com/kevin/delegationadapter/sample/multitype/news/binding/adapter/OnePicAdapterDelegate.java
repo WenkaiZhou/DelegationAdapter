@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.multitype.news.binding.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,18 +34,18 @@ public class OnePicAdapterDelegate extends BindingAdapterDelegate<News> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, News item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, News item, int position) {
         binding.setVariable(BR.model, item);
     }
 
     @Override
-    public void onItemClick(View view, News item, int position) {
+    public void onItemClick(@NonNull View view, News item, int position) {
         Toast.makeText(view.getContext(), "click position " + position + "\ncontent:" + item.content,
                 Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public boolean onItemLongClick(View view, News item, int position) {
+    public boolean onItemLongClick(@NonNull View view, News item, int position) {
         Toast.makeText(view.getContext(), "long click position " + position + "\ncontent:" + item.content,
                 Toast.LENGTH_SHORT).show();
         return true;

@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.fallback;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,15 +22,16 @@ import com.kevin.delegationadapter.sample.R;
 
 public class TextAdapterDelegate extends AdapterDelegate<String, TextAdapterDelegate.ViewHolder> {
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position, final String item) {
         holder.tvContent.setText(item);
     }
 

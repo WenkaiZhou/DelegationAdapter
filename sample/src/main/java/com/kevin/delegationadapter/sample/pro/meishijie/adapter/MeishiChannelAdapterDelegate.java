@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,22 +26,23 @@ import com.kevin.delegationadapter.sample.pro.meishijie.bean.Meishi;
 
 public class MeishiChannelAdapterDelegate extends SpanAdapterDelegate<Meishi.Channel, MeishiChannelAdapterDelegate.ViewHolder> {
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_meishi_channel, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, Meishi.Channel item) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position, Meishi.Channel item) {
         super.onBindViewHolder(holder, position, item);
         Glide.with(holder.itemView.getContext()).load(item.img).into(holder.ivImg);
         holder.tvTitle.setText(item.title);
     }
 
     @Override
-    public void onItemClick(View view, Meishi.Channel item, int position) {
+    public void onItemClick(@NonNull View view, Meishi.Channel item, int position) {
         Toast.makeText(view.getContext(), item.title, Toast.LENGTH_SHORT).show();
     }
 

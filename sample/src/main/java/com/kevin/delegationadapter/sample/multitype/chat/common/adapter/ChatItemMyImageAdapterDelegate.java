@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.multitype.chat.common.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,20 +31,21 @@ public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Cha
         return item.user.type == 1 && item.type == 2;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_my_image, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onItemClick(View view, Chat.TalkMsg item, int position) {
+    public void onItemClick(@NonNull View view, Chat.TalkMsg item, int position) {
         Toast.makeText(view.getContext(), "position = " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position, Chat.TalkMsg item) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position, Chat.TalkMsg item) {
         Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
         Glide.with(holder.itemView.getContext()).load(item.pic).asBitmap().override(600, 600).into(holder.ivPic);
     }

@@ -1,5 +1,6 @@
 package com.kevin.delegationadapter.sample.multitype.news.common.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,15 +31,16 @@ public class OnePicAdapterDelegate extends AdapterDelegate<News, OnePicAdapterDe
         return news.type == 0;
     }
 
+    @NonNull
     @Override
-    public OnePicViewHolder onCreateViewHolder(ViewGroup parent) {
+    public OnePicViewHolder onCreateViewHolder(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_news_one_pic, parent, false);
         OnePicViewHolder holder = new OnePicViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(OnePicViewHolder holder, int position, News news) {
+    public void onBindViewHolder(@NonNull OnePicViewHolder holder, int position, News news) {
         holder.tvContent.setText(news.content);
         holder.tvSource.setText(news.source);
         holder.tvTime.setText(news.time);

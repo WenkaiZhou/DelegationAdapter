@@ -1,6 +1,7 @@
 package com.kevin.delegationadapter.sample.samedata.adapter;
 
 import android.databinding.ViewDataBinding;
+import android.support.annotation.NonNull;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
@@ -25,7 +26,7 @@ public class BillItemAdapterDelegate extends BindingAdapterDelegate<Bill.Item> {
     }
 
     @Override
-    public void setVariable(ViewDataBinding binding, Bill.Item item, int position) {
+    public void setVariable(@NonNull ViewDataBinding binding, Bill.Item item, int position) {
         binding.setVariable(BR.model, item);
     }
 }
