@@ -54,7 +54,7 @@
 
 ```
 implementation 'com.kevin:delegationadapter:1.1.7'
-// 扩展库，扩展支持了item click、item long click、databinding
+// 扩展库，扩展支持了item click、item long click、databinding、load more
 implementation 'com.kevin:delegationadapter-extras:1.1.7'
 ```
 
