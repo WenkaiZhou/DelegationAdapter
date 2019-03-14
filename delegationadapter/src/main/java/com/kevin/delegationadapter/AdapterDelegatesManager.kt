@@ -91,7 +91,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         delegate.onBindViewHolder(holder, position, targetItem(item))
     }
 
-    fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>?, item: Any) {
+    fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any>, item: Any) {
         val viewType = holder.itemViewType
         val delegate = getDelegate(viewType)
                 ?: throw NullPointerException("No delegate found for item at position = $position for viewType = $viewType")
@@ -130,38 +130,34 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         throw NullPointerException("No AdapterDelegate added that matches position = $position item = ${targetItem(item)} in data source.")
     }
 
-    fun onViewRecycled(holder: RecyclerView.ViewHolder?) {
-        val itemViewType = holder?.itemViewType ?: return
-        val delegate = getDelegate(itemViewType)
+    fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        val delegate = getDelegate(holder.itemViewType)
         delegate?.onViewRecycled(holder)
     }
 
-    fun onFailedToRecycleView(holder: RecyclerView.ViewHolder?): Boolean {
-        val itemViewType = holder?.itemViewType ?: return false
-        val delegate = getDelegate(itemViewType)
+    fun onFailedToRecycleView(holder: RecyclerView.ViewHolder): Boolean {
+        val delegate = getDelegate(holder.itemViewType)
         return delegate?.onFailedToRecycleView(holder) ?: false
     }
 
-    fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder?) {
-        val itemViewType = holder?.itemViewType ?: return
-        val delegate = getDelegate(itemViewType)
+    fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        val delegate = getDelegate(holder.itemViewType)
         delegate?.onViewAttachedToWindow(holder)
     }
 
-    fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder?) {
-        val itemViewType = holder?.itemViewType ?: return
-        val delegate = getDelegate(itemViewType)
+    fun onViewDetachedFromWindow(holder: RecyclerView.ViewHolder) {
+        val delegate = getDelegate(holder.itemViewType)
         delegate?.onViewDetachedFromWindow(holder)
     }
 
-    fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+    fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
             delegate.onAttachedToRecyclerView(recyclerView)
         }
     }
 
-    fun onDetachedFromRecyclerView(recyclerView: RecyclerView?) {
+    fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
             delegate.onDetachedFromRecyclerView(recyclerView)
