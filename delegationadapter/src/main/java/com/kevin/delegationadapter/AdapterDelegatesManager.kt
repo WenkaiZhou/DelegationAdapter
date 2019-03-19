@@ -30,7 +30,7 @@ import java.util.ArrayList
  *         Major Function：**This class is the element that ties [RecyclerView.Adapter]
  *         together with [AdapterDelegate].
  *
- *         So you have to add / register your [AdapterDelegate]s to this manager by calling
+ *         So you have to add delegate your [AdapterDelegate]s to this manager by calling
  *         [.addDelegate]
  *         /b>
  *
