@@ -153,14 +153,14 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
     fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
-            delegate.onAttachedToRecyclerView(recyclerView)
+            delegate?.onAttachedToRecyclerView(recyclerView)
         }
     }
 
     fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         for (i in 0 until delegates.size()) {
             val delegate = delegates.get(delegates.keyAt(i))
-            delegate.onDetachedFromRecyclerView(recyclerView)
+            delegate?.onDetachedFromRecyclerView(recyclerView)
         }
     }
 

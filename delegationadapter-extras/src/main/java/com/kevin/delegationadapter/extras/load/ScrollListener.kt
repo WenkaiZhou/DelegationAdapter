@@ -53,7 +53,7 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
      */
     private fun isLastItemVisible(recyclerView: RecyclerView): Boolean {
         val lastVisiblePosition = getLastVisiblePosition(recyclerView)
-        return lastVisiblePosition == recyclerView.adapter.itemCount - 1
+        return lastVisiblePosition == recyclerView.adapter!!.itemCount - 1
     }
 
     /**
