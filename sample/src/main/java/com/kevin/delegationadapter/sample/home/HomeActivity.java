@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.kevin.delegationadapter.DelegationAdapter;
@@ -61,28 +62,32 @@ public class HomeActivity extends AppCompatActivity {
         // 向Adapter中注册委托Adapter
         mDelegationAdapter.addDelegate(new HomeAdapterDelegate(this));
         mRecyclerView.setAdapter(mDelegationAdapter);
+
+        // 添加拖动排序
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new HomeItemDragCallback());
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
+    List<String> titleList = Arrays.asList(
+            "同一类型多种样式(新闻)",
+            "同一类型多种样式(新闻-dataBinding实现)",
+            "同一类型多种样式(聊天)",
+            "同一类型多种样式(聊天-dataBinding实现)",
+            "不同数据类型多种样式",
+            "同一数据多种类型",
+            "带头部数据的不同数据类型多样式",
+            "带尾部数据的不同数据类型多样式",
+            "带兜底的委托Adapter(未注册委托时的处理)",
+            "美食杰",
+            "刷新加载");
+
     private void initData() {
-        String[] titles = {
-                "同一类型多种样式(新闻)",
-                "同一类型多种样式(新闻-dataBinding实现)",
-                "同一类型多种样式(聊天)",
-                "同一类型多种样式(聊天-dataBinding实现)",
-                "不同数据类型多种样式",
-                "同一数据多种类型",
-                "带头部数据的不同数据类型多样式",
-                "带尾部数据的不同数据类型多样式",
-                "带兜底的委托Adapter(未注册委托时的处理)",
-                "美食杰",
-                "刷新加载",
-        };
-        List<String> titleList = Arrays.asList(titles);
         mDelegationAdapter.setDataItems(titleList);
     }
 
     public void onItemClick(View v, int position, String item) {
-        switch (position) {
+        int index = titleList.indexOf(item);
+        switch (index) {
             case 0:
                 startActivity(new Intent(this, NewsActivity.class));
                 break;
