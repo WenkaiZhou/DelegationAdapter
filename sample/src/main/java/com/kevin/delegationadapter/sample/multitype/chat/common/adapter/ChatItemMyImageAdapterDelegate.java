@@ -47,7 +47,7 @@ public class ChatItemMyImageAdapterDelegate extends ClickableAdapterDelegate<Cha
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position, Chat.TalkMsg item) {
         Glide.with(holder.itemView.getContext()).load(item.user.avatar).into(holder.ivAvatar);
-        Glide.with(holder.itemView.getContext()).load(item.pic).asBitmap().override(600, 600).into(holder.ivPic);
+        Glide.with(holder.itemView.getContext()).asBitmap().load(item.pic).override(600, 600).into(holder.ivPic);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

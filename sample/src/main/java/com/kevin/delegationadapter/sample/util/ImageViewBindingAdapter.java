@@ -43,6 +43,6 @@ public class ImageViewBindingAdapter {
 
     @BindingAdapter({"thumbnailUrl", "error"})
     public static void loadThumbnailImage(ImageView view, String url, Drawable error) {
-        Glide.with(view.getContext()).load(url).asBitmap().override(600, 600).into(view);
+        Glide.with(view.getContext()).asBitmap().load(url).override(600, 600).into(view);
     }
 }
