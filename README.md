@@ -28,7 +28,7 @@
       <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/02.png" width="300" />
     </td>
     <td>
-      <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/05.png" width="300" />
+      <img src="https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/05.jpg" width="300" />
     </td>
   </tr>
 </table>
