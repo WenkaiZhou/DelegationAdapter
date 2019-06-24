@@ -1,0 +1,188 @@
+{
+  "cellList": [
+    {
+      "bgImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/mis_img_20190313192600772.png",
+      "cellType": 9,
+      "secondBanner": {
+        "path": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/mis_img_20190313192555728.png"
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/4fbbafb36c10419db6138365331a3187.jpg",
+        "name": "丹东小柿子250g",
+        "subtitle": "柿子味儿超浓的丹东人气王",
+        "price": 690
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/bb7b5cc8b2d146d79217c3cb769ebdb6.jpg",
+        "name": "供港江永西兰花250g",
+        "subtitle": "供港基地的品质 真不是吹的",
+        "price": 590
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/a3073edbb59844d2af8efea203d09987.jpg",
+        "name": "密云西红柿500g",
+        "subtitle": "清甜西红柿 这辈子都吃不腻",
+        "price": 790
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/3998fbb2d7284b298cc3f6ad511f46a3.jpg",
+        "name": "【产地直供】红芽香椿80g",
+        "subtitle": "春天里的“小清新”味道",
+        "price": 690
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/920ec83fd11141ce9af4c5ecc9a4e8e8.jpg",
+        "name": "莴笋500g（莴苣）",
+        "subtitle": "口感清脆 清炒凉拌都好吃",
+        "price": 790
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/9a7ae45b1f87478d9b4ecdd773be5ab7.jpg",
+        "name": "水果黄瓜*4根装",
+        "subtitle": "小黄瓜总是更加鲜嫩",
+        "price": 590
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/0aa90f8dfc76421589b77678627343ce.jpg",
+        "name": "优选贝贝南瓜300g",
+        "subtitle": "板栗味的南瓜  软甜沙糯",
+        "price": 690
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/3d0ac8c842294c6ebe0181b86df845d5.jpg",
+        "name": "沙拉蔬菜组合150g",
+        "subtitle": "集齐7款蔬菜 召唤营养沙拉",
+        "price": 590
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/255d8d938e514603b3d1811716ce08a1.jpg",
+        "name": "新土豆 500g",
+        "subtitle": "刚从地里刨出来的新鲜土豆",
+        "price": 299
+      }
+    },
+    {
+      "bgImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/mis_img_20190313192403302.png",
+      "cellType": 9,
+      "secondBanner": {
+        "path": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/mis_img_20190313192359463.png"
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/6609963f2ed44c8491637a738d83b4ba.jpg",
+        "name": "红黄小番茄组合300g",
+        "subtitle": "自然熟的番茄更好吃",
+        "price": 1190
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/831b5166274c4a01ae35b72a08ebf182.jpg",
+        "name": "甜豆200g",
+        "subtitle": "清甜纤维少 拌炒两相宜",
+        "price": 690
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/78f19e665a8546c09650eff622773c27.jpg",
+        "name": "千禧圣女果500g",
+        "subtitle": "西餐沙拉必备首选",
+        "price": 990
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/9a088f6ea2c3444ea31bb9d15b6fc13b.jpg",
+        "name": "毛冬瓜700g-1000g",
+        "subtitle": "肉质厚实 炖煮后软糯不散",
+        "price": 1190
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/860cbc8d3c434f0bb75c822efc834607.jpg",
+        "name": "地瓜叶200g",
+        "subtitle": "刚掐的叶头  鲜嫩的惹人怀念",
+        "price": 890
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/03bd964b7bed46329fd43364bda95903.jpg",
+        "name": "鸡毛菜150g",
+        "subtitle": "好嫩好好吃 但不许说我像鸡毛",
+        "price": 790
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/3397b02ce4f14c47af8e3ffa3127e4da.jpg",
+        "name": "平价沙地红薯1.5斤",
+        "subtitle": "平价沙地红薯",
+        "price": 590
+      }
+    },
+    {
+      "cellType": 7,
+      "normalProduct": {
+        "cartImage": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/img_20170425134548759.png",
+        "image": "https://raw.githubusercontent.com/xuehuayous/DelegationAdapter/master/sample/pic/missfresh/89c4aa00bab7404986b980a12db299a4.jpg",
+        "name": "平价菜心400g",
+        "subtitle": "慢慢嚼有甜甜的味道",
+        "price": 390
+      }
+    }
+  ]
+}
