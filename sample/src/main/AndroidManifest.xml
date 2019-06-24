@@ -33,6 +33,7 @@
         <activity android:name=".samedata.SameDataActivity" />
         <activity android:name=".pro.meishijie.MeishijieActivity" />
         <activity android:name=".refreshload.RefreshLoadActivity" />
+        <activity android:name=".pro.missfresh.MissFreshActivity" />
     </application>
 
 </manifest>

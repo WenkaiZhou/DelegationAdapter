@@ -20,6 +20,7 @@ import com.kevin.delegationadapter.sample.multitype.chat.common.ChatActivity;
 import com.kevin.delegationadapter.sample.multitype.news.binding.BindingNewsActivity;
 import com.kevin.delegationadapter.sample.multitype.news.common.NewsActivity;
 import com.kevin.delegationadapter.sample.pro.meishijie.MeishijieActivity;
+import com.kevin.delegationadapter.sample.pro.missfresh.MissFreshActivity;
 import com.kevin.delegationadapter.sample.refreshload.RefreshLoadActivity;
 import com.kevin.delegationadapter.sample.samedata.SameDataActivity;
 
@@ -30,9 +31,9 @@ import java.util.List;
  * HomeActivity
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-27 16:12:00
- *         Major Function：<b></b>
- *         <p/>
- *         注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
+ * Major Function：<b></b>
+ * <p/>
+ * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * @author mender，Modified Date Modify Content:
  */
 
@@ -79,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
             "带尾部数据的不同数据类型多样式",
             "带兜底的委托Adapter(未注册委托时的处理)",
             "美食杰",
+            "每日优鲜",
             "刷新加载");
 
     private void initData() {
@@ -119,6 +121,9 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MeishijieActivity.class));
                 break;
             case 10:
+                startActivity(new Intent(this, MissFreshActivity.class));
+                break;
+            case 11:
                 startActivity(new Intent(this, RefreshLoadActivity.class));
                 break;
             default:
