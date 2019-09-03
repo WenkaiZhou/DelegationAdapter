@@ -47,6 +47,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
      * Add a Delegate
      *
      * @param delegate
+     * @param tag
      */
     fun addDelegate(delegate: AdapterDelegate<*, *>, tag: String): AdapterDelegatesManager {
         val superclass = delegate.javaClass.genericSuperclass
