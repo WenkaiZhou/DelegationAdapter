@@ -24,8 +24,8 @@ android {
 
 dependencies {
     compileOnly 'com.android.support:recyclerview-v7:28.0.0'
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compileOnly 'com.android.databinding:library:3.4.0'
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compileOnly 'com.android.databinding:library:3.5.0'
     compileOnly project(':delegationadapter')
 }
 
@@ -35,7 +35,7 @@ apply plugin: 'org.jetbrains.dokka-android'
 task generateSourcesJar(type: Jar) {
     group = 'jar'
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+    archiveClassifier.set('sources')
 }
 
 task javadoc(type: Javadoc) {
@@ -51,7 +51,7 @@ task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
 
 task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
     group = 'jar'
-    classifier = 'javadoc'
+    archiveClassifier.set('javadoc')
     from javadoc.destinationDir
 }
 //------
@@ -64,7 +64,4 @@ setProperty "VERSION_NAME", "1.1.8"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
-ext {
-    sourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
-}
 //apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
