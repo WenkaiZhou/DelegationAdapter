@@ -1,12 +1,13 @@
 package com.kevin.delegationadapter.sample.samedata.adapter;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.databinding.library.baseAdapters.BR;
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
+import androidx.databinding.library.baseAdapters.BR;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.extras.binding.BindingViewHolder;
 import com.kevin.delegationadapter.sample.R;

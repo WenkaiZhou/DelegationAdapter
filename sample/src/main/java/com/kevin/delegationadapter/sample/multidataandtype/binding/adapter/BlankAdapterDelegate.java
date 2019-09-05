@@ -1,7 +1,7 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;

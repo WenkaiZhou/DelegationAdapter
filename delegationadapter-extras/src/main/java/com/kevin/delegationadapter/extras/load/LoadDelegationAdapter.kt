@@ -15,9 +15,9 @@
  */
 package com.kevin.delegationadapter.extras.load
 
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kevin.delegationadapter.AdapterDelegate
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter
 import java.lang.ref.WeakReference

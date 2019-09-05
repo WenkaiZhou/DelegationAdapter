@@ -10,7 +10,7 @@
             type="com.kevin.delegationadapter.sample.samedata.bean.Bill" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -111,5 +111,5 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_receivable"
             tools:text="谢谢光临" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

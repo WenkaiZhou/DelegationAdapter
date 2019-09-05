@@ -1,8 +1,9 @@
 package com.kevin.delegationadapter.sample.header;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;

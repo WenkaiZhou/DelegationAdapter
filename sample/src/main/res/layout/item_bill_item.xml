@@ -10,7 +10,7 @@
             type="com.kevin.delegationadapter.sample.samedata.bean.Bill.Item" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -75,5 +75,5 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="100.00" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

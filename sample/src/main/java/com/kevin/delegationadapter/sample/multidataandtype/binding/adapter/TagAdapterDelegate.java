@@ -1,8 +1,9 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
-import android.databinding.ViewDataBinding;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.databinding.ViewDataBinding;
 
 import com.kevin.delegationadapter.extras.binding.BindingSpanAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;

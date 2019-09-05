@@ -15,10 +15,10 @@
  */
 package com.kevin.delegationadapter
 
-import android.support.v4.util.SparseArrayCompat
-import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.ViewGroup
+import androidx.collection.SparseArrayCompat
+import androidx.recyclerview.widget.RecyclerView
 
 import java.lang.reflect.ParameterizedType
 import java.util.ArrayList

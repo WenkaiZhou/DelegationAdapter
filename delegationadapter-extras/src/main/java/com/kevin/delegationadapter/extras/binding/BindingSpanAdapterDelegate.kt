@@ -15,11 +15,11 @@
  */
 package com.kevin.delegationadapter.extras.binding
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate
 

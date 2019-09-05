@@ -1,9 +1,9 @@
 package com.kevin.delegationadapter.sample.samedata.adapter;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
+import androidx.databinding.library.baseAdapters.BR;
 
-import com.android.databinding.library.baseAdapters.BR;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.samedata.bean.Bill;

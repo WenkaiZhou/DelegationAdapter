@@ -1,18 +1,18 @@
 package com.kevin.delegationadapter.sample.pro.meishijie.adapter;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.databinding.library.baseAdapters.BR;
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableInt;
+import androidx.databinding.ViewDataBinding;
+import androidx.databinding.library.baseAdapters.BR;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.databinding.ItemMeishiSancanBinding;

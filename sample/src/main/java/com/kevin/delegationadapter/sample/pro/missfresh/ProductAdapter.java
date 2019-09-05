@@ -4,8 +4,9 @@
 package com.kevin.delegationadapter.sample.pro.missfresh;
 
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
 import android.text.TextUtils;
+
+import androidx.annotation.ColorInt;
 
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter;
 

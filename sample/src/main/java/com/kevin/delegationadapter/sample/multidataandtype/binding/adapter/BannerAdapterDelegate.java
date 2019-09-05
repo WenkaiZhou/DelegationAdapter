@@ -1,14 +1,14 @@
 package com.kevin.delegationadapter.sample.multidataandtype.binding.adapter;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
+
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
-import com.kevin.delegationadapter.extras.binding.BindingSpanAdapterDelegate;
 import com.kevin.delegationadapter.sample.BR;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.databinding.ItemGoodsBannerBindingBinding;

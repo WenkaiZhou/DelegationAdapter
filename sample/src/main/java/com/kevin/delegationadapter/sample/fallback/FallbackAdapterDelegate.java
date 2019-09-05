@@ -1,15 +1,13 @@
 package com.kevin.delegationadapter.sample.fallback;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.Gson;
 import com.kevin.delegationadapter.AdapterDelegate;
-import com.kevin.delegationadapter.sample.R;
 
 /**
  * FallbackAdapterDelegate

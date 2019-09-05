@@ -1,11 +1,12 @@
 package com.kevin.delegationadapter.sample.multitype.news.binding.adapter;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.databinding.library.baseAdapters.BR;
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
+import androidx.databinding.library.baseAdapters.BR;
+
 import com.kevin.delegationadapter.extras.binding.BindingAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.bean.News;

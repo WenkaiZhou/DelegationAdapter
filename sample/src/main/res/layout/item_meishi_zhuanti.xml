@@ -11,7 +11,7 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -39,5 +39,5 @@
             app:layout_constraintLeft_toLeftOf="@+id/iv_pic"
             app:layout_constraintTop_toBottomOf="@+id/iv_pic" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
