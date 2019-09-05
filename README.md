@@ -55,6 +55,16 @@
 
 ## 引入
 
+**androidX**
+
+```
+implementation 'com.kevin:delegationadapter:2.0.0'
+// 扩展库，扩展支持了item click、item long click、databinding、load more
+implementation 'com.kevin:delegationadapter-extras:2.0.0'
+```
+
+**support**
+
 ```
 implementation 'com.kevin:delegationadapter:1.1.8'
 // 扩展库，扩展支持了item click、item long click、databinding、load more
