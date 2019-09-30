@@ -111,11 +111,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         return super.onCreateViewHolder(parent, viewType)
     }
 
-    fun isLoading(): Boolean = loading
-
-    fun setLoading(loading: Boolean) {
-        this.loading = loading
-    }
+    var isLoading: Boolean
+        get() = loading
+        set(loading) {
+            this.loading = loading
+        }
 
     fun reset() {
         setLoading()
