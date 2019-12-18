@@ -61,7 +61,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
             }
             // Save the delegate to the collection;
             @Suppress("UNCHECKED_CAST")
-            delegates.put(viewType, delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?)
+            delegates.put(viewType, delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>)
             // Save the index of the delegate to the collection;
             dataTypeWithTags.put(viewType, typeWithTag)
         } catch (e: Exception) {
@@ -163,6 +163,14 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
             val delegate = delegates.get(delegates.keyAt(i))
             delegate?.onDetachedFromRecyclerView(recyclerView)
         }
+    }
+
+    fun getDelegateViewType(delegate: AdapterDelegate<*, *>): Int {
+        @Suppress("UNCHECKED_CAST")
+        val index = delegates.indexOfValue(delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>)
+        return if (index >= 0) {
+            delegates.keyAt(index)
+        } else -1
     }
 
     fun getDelegate(viewType: Int): AdapterDelegate<Any, RecyclerView.ViewHolder>? = delegates.get(viewType, fallbackDelegate)

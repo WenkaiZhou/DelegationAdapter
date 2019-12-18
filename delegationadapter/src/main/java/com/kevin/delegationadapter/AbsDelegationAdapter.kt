@@ -43,6 +43,15 @@ abstract class AbsDelegationAdapter(protected var delegatesManager: AdapterDeleg
         return this
     }
 
+    /**
+     * Get the viewType of the adapter delegate.
+     *
+     * @param delegate
+     */
+    fun getDelegateViewType(delegate: AdapterDelegate<*, *>): Int {
+        return delegatesManager.getDelegateViewType(delegate)
+    }
+
     fun setFallbackDelegate(delegate: AdapterDelegate<*, *>): AbsDelegationAdapter {
         @Suppress("UNCHECKED_CAST")
         delegatesManager.fallbackDelegate = delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>?
