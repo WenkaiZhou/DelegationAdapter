@@ -22,7 +22,7 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate
  * SpanAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-06-10 10:00:34
- *         Major Function：**AdapterDelegate with span**
+ *         Major Function：<b>AdapterDelegate with span<b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:

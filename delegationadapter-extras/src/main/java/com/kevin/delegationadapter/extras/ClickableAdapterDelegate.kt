@@ -24,7 +24,7 @@ import com.kevin.delegationadapter.AdapterDelegate
  * ClickableAdapterDelegate
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-06 23:28:37
- *         Major Function：**Clickable ViewHolder Delegate**
+ *         Major Function：<b>Clickable ViewHolder Delegate</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
