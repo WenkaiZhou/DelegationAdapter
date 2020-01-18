@@ -24,7 +24,7 @@ import com.kevin.delegationadapter.DelegationAdapter
  * SpanDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-06-10 11:08:37
- *         Major Function：**DelegationAdapter with span**
+ *         Major Function：<b>DelegationAdapter with span</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:

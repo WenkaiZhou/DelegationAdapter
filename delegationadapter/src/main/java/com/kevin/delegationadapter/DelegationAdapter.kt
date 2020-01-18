@@ -15,13 +15,11 @@
  */
 package com.kevin.delegationadapter
 
-import java.util.ArrayList
-
 /**
  * DelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
- *         Major Function：**Delegation Adapter**
+ *         Major Function：<b>Delegation Adapter</b>
  *
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
@@ -29,9 +27,9 @@ import java.util.ArrayList
  */
 open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : AbsDelegationAdapter(AdapterDelegatesManager(hasConsistItemType)) {
 
-    private var dataItems: MutableList<Any> = ArrayList()
-    private var headerItems: MutableList<Any> = ArrayList()
-    private var footerItems: MutableList<Any> = ArrayList()
+    private var dataItems = mutableListOf<Any>()
+    private var headerItems = mutableListOf<Any>()
+    private var footerItems = mutableListOf<Any>()
 
     val dataCount: Int
         get() = dataItems.size
@@ -181,7 +179,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
             return
         }
 
-        val indexes = ArrayList<Int>()
+        val indexes = mutableListOf<Int>()
         dataItems.forEachIndexed { index, item ->
             if (item is ItemData && dataItem == item.data && tag == item.tag) {
                 indexes.add(index)

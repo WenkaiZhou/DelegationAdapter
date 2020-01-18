@@ -27,7 +27,7 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate
  * BindingDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-11 10:29:52
- *         Major Function：**Binding Delegation Adapter**
+ *         Major Function：<b>Binding Delegation Adapter</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:

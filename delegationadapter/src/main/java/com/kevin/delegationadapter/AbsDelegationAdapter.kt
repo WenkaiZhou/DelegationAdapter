@@ -22,7 +22,7 @@ import android.view.ViewGroup
  * AbsDelegationAdapter
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:08:38
- *         Major Function：**The base DelegationAdapter**
+ *         Major Function：<b>The base DelegationAdapter</b>
  *         <p/>
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:

@@ -21,13 +21,12 @@ import android.util.SparseArray
 import android.view.ViewGroup
 
 import java.lang.reflect.ParameterizedType
-import java.util.ArrayList
 
 /**
  * AdapterDelegatesManager
  *
  * @author zwenkai@foxmail.com, Created on 2018-04-10 23:24:58
- *         Major Function：**This class is the element that ties [RecyclerView.Adapter]
+ *         Major Function：<b>This class is the element that ties [RecyclerView.Adapter]
  *         together with [AdapterDelegate].
  *
  *         So you have to add delegate your [AdapterDelegate]s to this manager by calling
@@ -200,8 +199,8 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
      * @param value
      * @return
      */
-    private fun indexesOfValue(array: SparseArray<String>, value: String): ArrayList<Int> {
-        val indexes = ArrayList<Int>()
+    private fun indexesOfValue(array: SparseArray<String>, value: String): MutableList<Int> {
+        val indexes = mutableListOf<Int>()
 
         for (i in 0 until array.size()) {
             if (value == array.valueAt(i)) {
