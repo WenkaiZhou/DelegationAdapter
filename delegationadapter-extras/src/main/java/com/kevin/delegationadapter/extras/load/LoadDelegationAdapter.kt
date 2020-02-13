@@ -102,6 +102,11 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
         recyclerView.addOnScrollListener(scrollListener)
     }
 
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        recyclerView.removeOnScrollListener(scrollListener)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (hasLoadStateView() && loadDelegate == delegatesManager.getDelegate(viewType)) {
             val viewHolder = super.onCreateViewHolder(parent, viewType)
