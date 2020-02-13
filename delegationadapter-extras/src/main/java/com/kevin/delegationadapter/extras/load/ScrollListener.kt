@@ -83,7 +83,7 @@ internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
         return if (isLastItemVisible(recyclerView)
                 && lastVisiblePosition >= (if (hasStateView()) 1 else 0)) { // Don't load more without any data.
             // The bottom of the last item is less than the bottom of the RecyclerView, i.e., less than one screen.
-            recyclerView.getChildAt(recyclerView.childCount - 1).bottom < recyclerView.bottom
+            recyclerView.getChildAt(recyclerView.childCount - 1).bottom <= recyclerView.bottom
         } else {
             false
         }
