@@ -59,8 +59,8 @@ task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
 // Release jcenter configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
-setProperty "VERSION_CODE", "18"
-setProperty "VERSION_NAME", "1.2.0"
+setProperty "VERSION_CODE", "20"
+setProperty "VERSION_NAME", "1.2.1"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
