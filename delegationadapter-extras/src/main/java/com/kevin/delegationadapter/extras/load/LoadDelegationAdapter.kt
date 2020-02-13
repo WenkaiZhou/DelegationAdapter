@@ -34,7 +34,7 @@ import java.lang.ref.WeakReference
 class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : SpanDelegationAdapter(hasConsistItemType) {
 
     private var loadDelegate: AdapterDelegate<*, *>? = null
-    private val scrollListener: ScrollListener
+    private val scrollListener: LoadScrollListener
     private var onLoadListener: OnLoadListener? = null
     private var enabledLoad = false
     private var loading: Boolean = false
@@ -44,7 +44,7 @@ class LoadDelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolea
     private var viewHolderRef: WeakReference<RecyclerView.ViewHolder>? = null
 
     init {
-        scrollListener = object : ScrollListener() {
+        scrollListener = object : LoadScrollListener() {
 
             override fun loadMore() {
                 if (loadFooter.loadState == LOAD_STATE_FAILED) {

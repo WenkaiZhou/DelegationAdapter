@@ -19,7 +19,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 
 /**
- * ScrollListener
+ * LoadScrollListener
  *
  * @author zwenkai@foxmail.com, Created on 2019-03-09 00:08:35
  *         Major Function：<b>LoadScrollListener</b>
@@ -27,7 +27,7 @@ import android.support.v7.widget.RecyclerView
  *         Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-internal abstract class ScrollListener : RecyclerView.OnScrollListener() {
+internal abstract class LoadScrollListener : RecyclerView.OnScrollListener() {
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
