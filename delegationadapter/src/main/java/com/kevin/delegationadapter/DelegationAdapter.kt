@@ -27,9 +27,9 @@ package com.kevin.delegationadapter
  */
 open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boolean = false) : AbsDelegationAdapter(AdapterDelegatesManager(hasConsistItemType)) {
 
-    private var dataItems = mutableListOf<Any>()
-    private var headerItems = mutableListOf<Any>()
-    private var footerItems = mutableListOf<Any>()
+    private var dataItems = ArrayList<Any>()
+    private var headerItems = ArrayList<Any>()
+    private var footerItems = ArrayList<Any>()
 
     val dataCount: Int
         get() = dataItems.size
@@ -49,7 +49,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         notifyDataSetChanged()
     }
 
-    fun setHeaderItems(headerItems: MutableList<*>?) {
+    fun setHeaderItems(headerItems: List<Any?>?) {
         if (headerItems == null) {
             return
         }
@@ -70,15 +70,16 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         notifyItemRangeInserted(position, 1)
     }
 
-    fun addHeaderItems(headerItems: MutableList<*>?) {
+    fun addHeaderItems(headerItems: List<Any?>?) {
         addHeaderItems(headerCount, headerItems)
     }
 
-    fun addHeaderItems(position: Int = headerCount, headerItems: MutableList<*>?) {
+    fun addHeaderItems(position: Int = headerCount, headerItems: List<Any?>?) {
         if (headerItems == null) {
             return
         }
-        this.headerItems.addAll(position, headerItems.filterNotNull())
+        val headerItems = headerItems.filterNotNull()
+        this.headerItems.addAll(position, headerItems)
         notifyItemRangeInserted(position, headerItems.size)
     }
 
@@ -91,7 +92,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         notifyDataSetChanged()
     }
 
-    fun setFooterItems(footerItems: MutableList<*>?) {
+    fun setFooterItems(footerItems: List<Any?>?) {
         if (footerItems == null) {
             return
         }
@@ -112,19 +113,20 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         notifyItemRangeInserted(headerCount + dataCount + position, 1)
     }
 
-    fun addFooterItems(footerItems: MutableList<*>?) {
+    fun addFooterItems(footerItems: List<Any?>?) {
         addFooterItems(footerCount, footerItems)
     }
 
-    fun addFooterItems(position: Int, footerItems: MutableList<*>?) {
+    fun addFooterItems(position: Int, footerItems: List<Any?>?) {
         if (footerItems == null) {
             return
         }
-        this.footerItems.addAll(position, footerItems.filterNotNull())
+        val footerItems = footerItems.filterNotNull()
+        this.footerItems.addAll(position, footerItems)
         notifyItemRangeInserted(headerCount + dataCount + position, footerItems.size)
     }
 
-    fun setDataItems(dataItems: MutableList<*>?) {
+    fun setDataItems(dataItems: List<Any?>?) {
         if (dataItems == null) {
             return
         }
@@ -145,15 +147,16 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         notifyItemRangeInserted(headerCount + position, 1)
     }
 
-    fun addDataItems(dataItems: MutableList<*>?) {
+    fun addDataItems(dataItems: List<Any?>?) {
         addDataItems(dataCount, dataItems)
     }
 
-    fun addDataItems(position: Int = dataCount, dataItems: MutableList<*>?) {
+    fun addDataItems(position: Int = dataCount, dataItems: List<Any?>?) {
         if (dataItems == null) {
             return
         }
-        this.dataItems.addAll(position, dataItems.filterNotNull())
+        val dataItems = dataItems.filterNotNull()
+        this.dataItems.addAll(position, dataItems)
         notifyItemRangeInserted(headerCount + position, dataItems.size)
     }
 
