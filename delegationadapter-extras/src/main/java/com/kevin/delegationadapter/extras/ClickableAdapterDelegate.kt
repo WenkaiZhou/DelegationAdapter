@@ -15,6 +15,7 @@
  */
 package com.kevin.delegationadapter.extras
 
+import android.os.SystemClock
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
@@ -62,7 +63,11 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
         }
 
         if (clickable(position)) {
-            onItemClick(view, item, position)
+            val lastClickTime = (view.getTag(R.id.tag_clickable_adapter_delegate_click_time) ?: 0L) as Long
+            if (lastClickTime < SystemClock.uptimeMillis() - quickClickInterval()) {
+                onItemClick(view, item, position)
+                view.setTag(R.id.tag_clickable_adapter_delegate_click_time, SystemClock.uptimeMillis())
+            }
         }
     }
 
@@ -88,6 +93,11 @@ abstract class ClickableAdapterDelegate<T, VH : RecyclerView.ViewHolder> : Adapt
      * @return
      */
     open fun clickable(position: Int) = true
+
+    /**
+     * Minimum time interval between two clicks
+     */
+    open fun quickClickInterval() = 500L
 
     /**
      * Whether the adapter item can long click

@@ -2,4 +2,5 @@
 <resources>
     <item name="tag_clickable_adapter_delegate_holder" type="id" />
     <item name="tag_clickable_adapter_delegate_data" type="id" />
+    <item name="tag_clickable_adapter_delegate_click_time" type="id" />
 </resources>
