@@ -161,7 +161,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
     }
 
     fun moveDataItem(fromPosition: Int, toPosition: Int) {
-        if (fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
+        if (fromPosition < headerCount || toPosition < headerCount || fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
             return
         }
         dataItems.add(toPosition - headerCount, dataItems.removeAt(fromPosition - headerCount))
@@ -169,7 +169,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
     }
 
     fun swapDataItem(fromPosition: Int, toPosition: Int) {
-        if (fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
+        if (fromPosition < headerCount || toPosition < headerCount || fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
             return
         }
         dataItems[fromPosition - headerCount] = dataItems.set(toPosition - headerCount, dataItems[fromPosition - headerCount])
