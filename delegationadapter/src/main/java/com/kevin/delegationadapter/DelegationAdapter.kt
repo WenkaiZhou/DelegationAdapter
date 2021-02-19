@@ -161,18 +161,18 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
     }
 
     fun moveDataItem(fromPosition: Int, toPosition: Int) {
-        if (fromPosition > dataItems.size - 1 || toPosition > dataItems.size - 1) {
+        if (fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
             return
         }
-        dataItems.add(toPosition, dataItems.removeAt(fromPosition))
+        dataItems.add(toPosition - headerCount, dataItems.removeAt(fromPosition - headerCount))
         notifyItemMoved(fromPosition, toPosition)
     }
 
     fun swapDataItem(fromPosition: Int, toPosition: Int) {
-        if (fromPosition > dataItems.size - 1 || toPosition > dataItems.size - 1) {
+        if (fromPosition > headerCount + dataItems.size - 1 || toPosition > headerCount + dataItems.size - 1) {
             return
         }
-        dataItems[fromPosition] = dataItems.set(toPosition, dataItems[fromPosition])
+        dataItems[fromPosition - headerCount] = dataItems.set(toPosition - headerCount, dataItems[fromPosition - headerCount])
         notifyItemMoved(fromPosition, toPosition)
     }
 
