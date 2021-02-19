@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
-        versionCode 21
-        versionName "2.0.3"
+        versionCode 22
+        versionName "2.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -59,8 +59,8 @@ task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
 // Release jcenter configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
-setProperty "VERSION_CODE", "21"
-setProperty "VERSION_NAME", "2.0.3"
+setProperty "VERSION_CODE", "24"
+setProperty "VERSION_NAME", "2.0.4"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
