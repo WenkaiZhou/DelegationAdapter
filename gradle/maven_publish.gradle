@@ -1,0 +1,192 @@
+/*
+ * Copyright 2021 Kevin zhou
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+// load properties
+Properties properties = new Properties()
+File localPropertiesFile = rootProject.file("local.properties");
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+}
+
+def developerId = properties.getProperty("POM_DEVELOPER_ID")
+def developerName = properties.getProperty("POM_DEVELOPER_NAME")
+def developerEmail = properties.getProperty("POM_DEVELOPER_EMAIL")
+
+def ossrhUser = properties.getProperty("OSSRH_USER")
+def ossrhPswd = properties.getProperty("OSSRH_PSWD")
+
+// 签名
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//            repository(url: "file://${rootProject.projectDir}/android-repo/") {
+                authentication(userName: ossrhUser, password: ossrhPswd)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUser, password: ossrhPswd)
+            }
+
+            pom.groupId = GROUP_ID
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+
+            pom.project {
+                packaging POM_PACKAGING
+                name PROJECT_NAME
+                description POM_DESCRIPTION
+                url PROJECT_URL
+
+                scm {
+                    connection GIT_URL
+                    developerConnection WEB_URL
+                    url PROJECT_URL
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+            }
+        }
+    }
+
+    // add javadoc/source jar tasks as artifacts
+    if (project.plugins.hasPlugin("com.android.library")) {
+        setupConfigureForAndroid(project)
+    } else {
+        setupConfigureForJava(project)
+    }
+
+    java8Javadoc(project)
+}
+
+def setupConfigureForAndroid(Project project) {
+    project.tasks.create("androidJavadocs", Javadoc.class) {
+        if (plugins.hasPlugin("kotlin-android")) {
+            source = project.android.sourceSets.main.java.srcDirs
+        }
+        failOnError true
+        classpath += project.files(project.android.getBootClasspath().join(File.pathSeparator))
+
+        exclude '**/internal/*'
+    }
+
+    def androidJavadocsJar = project.tasks.create("androidJavadocsJar", Jar.class) {
+        group = 'jar'
+        classifier = 'javadoc'
+    }
+
+    if (plugins.hasPlugin('kotlin-android')) {
+        def dokkaOutput = "${project.docsDir}/dokka"
+        project.plugins.apply('org.jetbrains.dokka')
+        project.dokka {
+            outputFormat = "javadoc"
+            outputDirectory dokkaOutput
+
+        }
+        androidJavadocsJar.configure {
+            dependsOn "dokka"
+            from dokkaOutput
+        }
+    } else {
+        androidJavadocsJar.configure {
+            dependsOn "androidJavadocs"
+            from project.androidJavadocs.destinationDir
+        }
+    }
+
+    project.tasks.create("androidSourcesJar", Jar.class) {
+        classifier = 'sources'
+        from project.android.sourceSets.main.java.srcDirs
+    }
+
+    project.artifacts.add("archives", project.androidSourcesJar)
+    project.artifacts.add("archives", project.androidJavadocsJar)
+}
+
+def setupConfigureForJava(Project project) {
+    if (plugins.hasPlugin('groovy')) {
+        project.tasks.create("groovydocJar", Jar.class) {
+            classifier = 'groovydoc'
+            from project.groovydoc.destinationDir
+        }.dependsOn("groovydoc")
+    }
+
+    project.tasks.create("sourcesJar", Jar.class) {
+        classifier = 'sources'
+        from project.sourceSets.main.allSource
+    }.dependsOn("classes")
+
+    def javadocsJar = project.tasks.create("javadocsJar", Jar.class) {
+        group = 'jar'
+        classifier = 'javadoc'
+    }
+
+    if (project.plugins.hasPlugin("kotlin")) {
+        def dokkaOutput = "${project.docsDir}/dokka"
+        project.plugins.apply('org.jetbrains.dokka')
+        project.dokka {
+            outputFormat 'html'
+            outputDirectory dokkaOutput
+        }
+        javadocsJar.configure {
+            dependsOn "dokka"
+            from dokkaOutput
+        }
+    } else {
+        javadocsJar.configure {
+            dependsOn "javadoc"
+            from project.javadoc.destinationDir
+        }
+    }
+
+    project.artifacts.add("archives", project.javadocsJar)
+    if (plugins.hasPlugin('groovy')) {
+        project.artifacts.add("archives", project.groovydocJar)
+    }
+    project.artifacts.add("archives", project.sourcesJar)
+}
+
+def java8Javadoc(Project project) {
+    if (JavaVersion.current().isJava8Compatible()) {
+        project.allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
+    }
+}

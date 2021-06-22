@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 22
         versionName "2.0.4"
 
@@ -23,40 +23,13 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.recyclerview:recyclerview:1.2.0-alpha05'
+    compileOnly 'androidx.recyclerview:recyclerview:1.2.0-beta01'
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compileOnly 'androidx.databinding:databinding-runtime:4.0.1'
+    compileOnly 'androidx.databinding:databinding-runtime:4.2.1'
     compileOnly project(':delegationadapter')
 }
 
-//------
-apply plugin: 'org.jetbrains.dokka-android'
-
-task generateSourcesJar(type: Jar) {
-    group = 'jar'
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier.set('sources')
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    options.encoding = "UTF-8"
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = "javadoc"
-    outputDirectory = javadoc.destinationDir
-}
-
-task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
-    group = 'jar'
-    archiveClassifier.set('javadoc')
-    from javadoc.destinationDir
-}
-//------
-
-// Release jcenter configuration
+// Release maven configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
 setProperty "PROJECT_NAME", "DelegationAdapter-extras"
 setProperty "VERSION_CODE", "24"
@@ -64,4 +37,4 @@ setProperty "VERSION_NAME", "2.0.4"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
-//apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+apply from: rootProject.file('gradle/maven_publish.gradle')
