@@ -66,6 +66,7 @@ implementation 'com.zwenkai:delegationadapter-extras:2.0.4'
 **support**[不在支持]
 
 ```
+// JCenter
 implementation 'com.kevin:delegationadapter:1.2.1'
 // 扩展库，扩展支持了item click、item long click、databinding、load more
 implementation 'com.kevin:delegationadapter-extras:1.2.1'
