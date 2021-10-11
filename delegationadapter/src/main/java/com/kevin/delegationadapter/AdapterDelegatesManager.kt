@@ -17,6 +17,7 @@ package com.kevin.delegationadapter
 
 import android.util.SparseArray
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.collection.SparseArrayCompat
 import androidx.recyclerview.widget.RecyclerView
 
@@ -172,6 +173,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         } else -1
     }
 
+    @Nullable
     fun getDelegate(viewType: Int): AdapterDelegate<Any, RecyclerView.ViewHolder>? = delegates.get(viewType, fallbackDelegate)
 
     private val typeWithTag = { clazz: Class<*>, tag: String ->

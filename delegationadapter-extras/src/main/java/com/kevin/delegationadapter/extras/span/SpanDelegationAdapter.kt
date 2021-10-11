@@ -17,6 +17,7 @@ package com.kevin.delegationadapter.extras.span
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kevin.delegationadapter.DelegationAdapter
 
 /**
@@ -36,7 +37,6 @@ open class SpanDelegationAdapter @JvmOverloads constructor(hasConsistItemType: B
 
         val layoutManager = recyclerView.layoutManager
         if (layoutManager is GridLayoutManager) {
-
             layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     val delegate = delegatesManager.getDelegate(getItemViewType(position))
@@ -46,6 +46,18 @@ open class SpanDelegationAdapter @JvmOverloads constructor(hasConsistItemType: B
                         layoutManager.spanCount
                     }
                 }
+            }
+        }
+    }
+
+    override fun onViewAttachedToWindow(holder: RecyclerView.ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+
+        val layoutParams = holder.itemView.layoutParams
+        if (layoutParams is StaggeredGridLayoutManager.LayoutParams) {
+            val delegate = delegatesManager.getDelegate(holder.itemViewType)
+            if (null != delegate && delegate is SpanAdapterDelegate) {
+                layoutParams.isFullSpan = delegate.spanSize != SpanAdapterDelegate.DEFAULT_SPAN_SIZE
             }
         }
     }

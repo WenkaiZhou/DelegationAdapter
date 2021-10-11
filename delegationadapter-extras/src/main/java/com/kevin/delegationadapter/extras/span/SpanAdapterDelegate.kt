@@ -30,10 +30,14 @@ import com.kevin.delegationadapter.extras.ClickableAdapterDelegate
 
 abstract class SpanAdapterDelegate<T, VH : RecyclerView.ViewHolder> : ClickableAdapterDelegate<T, VH> {
 
-    open var spanSize: Int = 1
+    open var spanSize: Int = DEFAULT_SPAN_SIZE
 
     constructor()
 
     constructor(tag: String) : super(tag)
+
+    companion object {
+        const val DEFAULT_SPAN_SIZE = 1
+    }
 
 }
