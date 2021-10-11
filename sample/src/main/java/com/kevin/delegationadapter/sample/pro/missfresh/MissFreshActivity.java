@@ -6,11 +6,11 @@ package com.kevin.delegationadapter.sample.pro.missfresh;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.gson.Gson;
+import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.sample.R;
 import com.kevin.delegationadapter.sample.util.LocalFileUtils;
 
@@ -37,7 +37,7 @@ public class MissFreshActivity extends AppCompatActivity {
     private void initRecyclerView() {
         mRecyclerView = this.findViewById(R.id.recycler_view);
         // 设置LayoutManager
-        final LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         // 设置Adapter
         mDelegationAdapter = new ProductAdapter();
@@ -52,6 +52,13 @@ public class MissFreshActivity extends AppCompatActivity {
         });
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setHasFixedSize(true);
+
+        mDelegationAdapter.setOnLoadListener(new LoadDelegationAdapter.OnLoadListener() {
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
     }
 
 }

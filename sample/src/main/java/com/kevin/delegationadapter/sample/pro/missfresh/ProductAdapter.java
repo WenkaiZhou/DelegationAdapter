@@ -8,7 +8,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;
 
+import com.kevin.delegationadapter.extras.load.LoadDelegationAdapter;
 import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter;
+import com.kevin.delegationadapter.sample.pro.meishijie.adapter.MeishiLoadAdapterDelegate;
 
 /**
  * ProductAdapter
@@ -19,13 +21,14 @@ import com.kevin.delegationadapter.extras.span.SpanDelegationAdapter;
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-public class ProductAdapter extends SpanDelegationAdapter {
+public class ProductAdapter extends LoadDelegationAdapter {
 
     public ProductAdapter() {
         super(true);
         // 注册委托Adapter
         addDelegate(new SecondBannerDelegate());
         addDelegate(new NormalProductDelegate());
+        setLoadDelegate(new MeishiLoadAdapterDelegate());
     }
 
     /**
