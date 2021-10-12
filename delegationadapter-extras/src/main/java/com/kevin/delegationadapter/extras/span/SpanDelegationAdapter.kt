@@ -58,6 +58,8 @@ open class SpanDelegationAdapter @JvmOverloads constructor(hasConsistItemType: B
             val delegate = delegatesManager.getDelegate(holder.itemViewType)
             if (null != delegate && delegate is SpanAdapterDelegate) {
                 layoutParams.isFullSpan = delegate.spanSize != SpanAdapterDelegate.DEFAULT_SPAN_SIZE
+            } else {
+                layoutParams.isFullSpan = true
             }
         }
     }
