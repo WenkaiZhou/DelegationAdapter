@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 23
-        versionName "2.0.5"
+        versionCode 24
+        versionName "2.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,8 +30,8 @@ dependencies {
 // Release maven configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter"
 setProperty "PROJECT_NAME", "DelegationAdapter"
-setProperty "VERSION_CODE", "23"
-setProperty "VERSION_NAME", "2.0.5"
+setProperty "VERSION_CODE", "24"
+setProperty "VERSION_NAME", "2.0.6"
 setProperty "POM_DESCRIPTION", "Delegation Adapter"
 
 apply from: rootProject.file('gradle/maven_publish.gradle')
