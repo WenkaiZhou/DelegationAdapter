@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.kevin.delegationadapter.AdapterDelegate;
-import com.kevin.delegationadapter.extras.span.SpanAdapterDelegate;
 import com.kevin.delegationadapter.sample.R;
 
 /**
@@ -27,12 +26,7 @@ import com.kevin.delegationadapter.sample.R;
  * @author mender，Modified Date Modify Content:
  */
 
-public class SecondBannerDelegate extends SpanAdapterDelegate<Products.CellItem, SecondBannerDelegate.ViewHolder> {
-
-    @Override
-    public int getSpanSize() {
-        return 2;
-    }
+public class SecondBannerDelegate extends AdapterDelegate<Products.CellItem, SecondBannerDelegate.ViewHolder> {
 
     @Override
     public boolean isForViewType(Products.CellItem item, int position) {

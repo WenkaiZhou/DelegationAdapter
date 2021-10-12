@@ -42,8 +42,8 @@ dependencies {
     implementation 'com.kevin:loopview:2.0.0'
     implementation project(':delegationadapter')
     implementation project(':delegationadapter-extras')
-//    implementation 'com.kevin:delegationadapter:2.0.5'
-//    implementation 'com.kevin:delegationadapter-extras:2.0.5'
+//    implementation 'com.kevin:delegationadapter:2.0.6'
+//    implementation 'com.kevin:delegationadapter-extras:2.0.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-6'
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
