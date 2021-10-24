@@ -39,11 +39,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'com.kevin:loopview:2.0.0'
-    implementation project(':delegationadapter')
-    implementation project(':delegationadapter-extras')
-//    implementation 'com.kevin:delegationadapter:2.0.6'
-//    implementation 'com.kevin:delegationadapter-extras:2.0.6'
+    implementation 'com.zwenkai:loopview:2.0.1'
+//    implementation project(':delegationadapter')
+//    implementation project(':delegationadapter-extras')
+    implementation 'com.zwenkai:delegationadapter:2.0.6'
+    implementation 'com.zwenkai:delegationadapter-extras:2.0.6'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-6'
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
