@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 24
-        versionName "2.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -37,4 +35,5 @@ setProperty "VERSION_NAME", "2.0.6"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
-apply from: rootProject.file('gradle/maven_publish.gradle')
+apply plugin: "org.jetbrains.dokka-android"
+apply plugin: "com.vanniktech.maven.publish"
