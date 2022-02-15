@@ -35,5 +35,5 @@ setProperty "VERSION_NAME", "2.0.6"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
 
-apply plugin: "org.jetbrains.dokka-android"
+apply plugin: "org.jetbrains.dokka"
 apply plugin: "com.vanniktech.maven.publish"
