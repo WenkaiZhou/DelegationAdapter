@@ -191,7 +191,7 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
             }
         }
 
-        indexes.forEach { index ->
+        indexes.asReversed().forEach { index ->
             removeDataItemAt(index)
         }
 
