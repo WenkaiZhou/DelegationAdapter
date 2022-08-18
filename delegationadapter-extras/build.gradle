@@ -29,11 +29,9 @@ dependencies {
 
 // Release maven configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter-extras"
-setProperty "PROJECT_NAME", "DelegationAdapter-extras"
+setProperty "POM_NAME", "DelegationAdapter-extras"
 setProperty "VERSION_CODE", "24"
 setProperty "VERSION_NAME", "2.0.6"
 
 setProperty "POM_DESCRIPTION", "Delegation Adapter extras"
-
-apply plugin: "org.jetbrains.dokka"
 apply plugin: "com.vanniktech.maven.publish"
