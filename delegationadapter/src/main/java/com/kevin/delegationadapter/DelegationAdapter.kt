@@ -184,9 +184,9 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
 
         val indexes = mutableListOf<Int>()
         dataItems.forEachIndexed { index, item ->
-            if (item is ItemData && dataItem == item.data && tag == item.tag) {
+            if (item is ItemData && dataItem === item.data && tag == item.tag) {
                 indexes.add(index)
-            } else if (dataItem == item) {
+            } else if (dataItem === item) {
                 indexes.add(index)
             }
         }
