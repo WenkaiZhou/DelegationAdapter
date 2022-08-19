@@ -28,8 +28,8 @@ dependencies {
 // Release maven configuration
 setProperty "POM_ARTIFACT_ID", "delegationadapter"
 setProperty "POM_NAME", "DelegationAdapter"
-setProperty "VERSION_CODE", "24"
-setProperty "VERSION_NAME", "2.0.6"
+setProperty "VERSION_CODE", "25"
+setProperty "VERSION_NAME", "2.0.7"
 setProperty "POM_DESCRIPTION", "Delegation Adapter"
 
 apply plugin: "com.vanniktech.maven.publish"
