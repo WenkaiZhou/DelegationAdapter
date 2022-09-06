@@ -54,11 +54,10 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         try {
             val clazz = (superclass as ParameterizedType).actualTypeArguments[0] as Class<*>
             val typeWithTag = typeWithTag(clazz, tag)
-            val viewType = if (hasConsistItemType) {
-                delegate.getItemViewType()
-            } else {
-                delegates.size()
+            if (!hasConsistItemType) {
+                delegate.viewType = delegates.size()
             }
+            val viewType = delegate.viewType
             // Save the delegate to the collection;
             @Suppress("UNCHECKED_CAST")
             delegates.put(viewType, delegate as AdapterDelegate<Any, RecyclerView.ViewHolder>)
@@ -115,11 +114,7 @@ open class AdapterDelegatesManager(private val hasConsistItemType: Boolean) {
         indexList.forEach { index ->
             val delegate = delegates.valueAt(index)
             if (delegate?.tag == tag && delegate.isForViewType(targetItem(item), position)) {
-                return if (hasConsistItemType) {
-                    delegate.getItemViewType()
-                } else {
-                    index
-                }
+                return delegate.viewType
             }
         }
 

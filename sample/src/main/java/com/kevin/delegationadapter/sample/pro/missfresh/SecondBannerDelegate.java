@@ -34,7 +34,7 @@ public class SecondBannerDelegate extends AdapterDelegate<Products.CellItem, Sec
     }
 
     @Override
-    public int getItemViewType() {
+    public int getViewType() {
         return Products.TYPE_SECOND_BANNER;
     }
 

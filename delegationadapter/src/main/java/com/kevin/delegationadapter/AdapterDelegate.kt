@@ -32,6 +32,11 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
 
     var tag = DEFAULT_TAG
 
+    /**
+     * ViewType of current adapter delegate.
+     */
+    open var viewType: Int = 0
+
     constructor()
 
     constructor(tag: String) {
@@ -186,12 +191,6 @@ abstract class AdapterDelegate<T, VH : RecyclerView.ViewHolder> {
      * @see .onAttachedToRecyclerView
      */
     open fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {}
-
-    /**
-     * Called by RecyclerView When sub adapters itemTypes are consistent.
-     *
-     */
-    open fun getItemViewType() = 0
 
     companion object {
         const val DEFAULT_TAG = ""

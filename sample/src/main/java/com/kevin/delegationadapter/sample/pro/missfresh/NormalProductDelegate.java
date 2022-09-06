@@ -35,7 +35,7 @@ public class NormalProductDelegate extends SpanAdapterDelegate<Products.CellItem
     }
 
     @Override
-    public int getItemViewType() {
+    public int getViewType() {
         return Products.TYPE_NORMAL_PRODUCT;
     }
 
