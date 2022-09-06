@@ -3,6 +3,10 @@
 buildscript {
     ext.kotlin_version = '1.5.31'
     repositories {
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
         google()
         mavenCentral()
     }
@@ -18,6 +22,10 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
         google()
         mavenCentral()
         jcenter()

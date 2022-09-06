@@ -43,7 +43,7 @@ dependencies {
 //    implementation project(':delegationadapter')
 //    implementation project(':delegationadapter-extras')
     implementation 'com.zwenkai:delegationadapter:2.0.8'
-    implementation 'com.zwenkai:delegationadapter-extras:2.0.7'
+    implementation 'com.zwenkai:delegationadapter-extras:2.0.8'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-6'
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
