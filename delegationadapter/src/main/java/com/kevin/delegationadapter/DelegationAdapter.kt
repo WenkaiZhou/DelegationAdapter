@@ -220,6 +220,36 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
         }
     }
 
+    @JvmOverloads
+    fun updateHeaderItem(headerItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+        if (headerItem == null) {
+            return
+        }
+
+        headerItems.forEachIndexed { index, item ->
+            if (item is ItemData && headerItem == item.data && tag == item.tag) {
+                notifyItemChanged(index)
+            } else if (headerItem == item) {
+                notifyItemChanged(index)
+            }
+        }
+    }
+
+    @JvmOverloads
+    fun updateFooterItem(footerItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+        if (footerItem == null) {
+            return
+        }
+
+        footerItems.forEachIndexed { index, item ->
+            if (item is ItemData && footerItem == item.data && tag == item.tag) {
+                notifyItemChanged(headerCount + dataCount + index)
+            } else if (footerItem == item) {
+                notifyItemChanged(headerCount + dataCount + index)
+            }
+        }
+    }
+
     fun getDataItems() = dataItems
 
     fun getHeaderItems() = headerItems
