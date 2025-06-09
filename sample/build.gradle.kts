@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId = "com.kevin.delegationadapter.sample"
         minSdk = 14
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -44,10 +44,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.zwenkai:loopview:2.0.1")
-//    implementation project(':delegationadapter')
-//    implementation project(':delegationadapter-extras')
-    implementation("com.zwenkai:delegationadapter:2.0.8")
-    implementation("com.zwenkai:delegationadapter-extras:2.0.8")
+//    implementation(":delegationadapter")
+//    implementation(":delegationadapter-extras")
+    implementation("com.zwenkai:delegationadapter:2.0.9")
+    implementation("com.zwenkai:delegationadapter-extras:2.0.9")
     implementation("com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-6")
     implementation("androidx.viewpager:viewpager:1.0.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
