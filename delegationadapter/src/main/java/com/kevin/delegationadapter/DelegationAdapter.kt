@@ -206,46 +206,46 @@ open class DelegationAdapter @JvmOverloads constructor(hasConsistItemType: Boole
     }
 
     @JvmOverloads
-    fun updateDataItem(dataItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+    fun updateDataItem(dataItem: Any?, payload: Any? = null, tag: String = AdapterDelegate.DEFAULT_TAG) {
         if (dataItem == null) {
             return
         }
 
         dataItems.forEachIndexed { index, item ->
             if (item is ItemData && dataItem == item.data && tag == item.tag) {
-                notifyItemChanged(headerCount + index)
+                notifyItemChanged(headerCount + index, payload)
             } else if (dataItem == item) {
-                notifyItemChanged(headerCount + index)
+                notifyItemChanged(headerCount + index, payload)
             }
         }
     }
 
     @JvmOverloads
-    fun updateHeaderItem(headerItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+    fun updateHeaderItem(headerItem: Any?, payload: Any? = null, tag: String = AdapterDelegate.DEFAULT_TAG) {
         if (headerItem == null) {
             return
         }
 
         headerItems.forEachIndexed { index, item ->
             if (item is ItemData && headerItem == item.data && tag == item.tag) {
-                notifyItemChanged(index)
+                notifyItemChanged(index, payload)
             } else if (headerItem == item) {
-                notifyItemChanged(index)
+                notifyItemChanged(index, payload)
             }
         }
     }
 
     @JvmOverloads
-    fun updateFooterItem(footerItem: Any?, tag: String = AdapterDelegate.DEFAULT_TAG) {
+    fun updateFooterItem(footerItem: Any?, payload: Any? = null, tag: String = AdapterDelegate.DEFAULT_TAG) {
         if (footerItem == null) {
             return
         }
 
         footerItems.forEachIndexed { index, item ->
             if (item is ItemData && footerItem == item.data && tag == item.tag) {
-                notifyItemChanged(headerCount + dataCount + index)
+                notifyItemChanged(headerCount + dataCount + index, payload)
             } else if (footerItem == item) {
-                notifyItemChanged(headerCount + dataCount + index)
+                notifyItemChanged(headerCount + dataCount + index, payload)
             }
         }
     }

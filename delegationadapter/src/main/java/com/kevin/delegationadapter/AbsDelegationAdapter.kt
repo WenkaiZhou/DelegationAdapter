@@ -67,8 +67,11 @@ abstract class AbsDelegationAdapter(protected var delegatesManager: AdapterDeleg
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>) {
-        onBindViewHolder(holder, position)
-        delegatesManager.onBindViewHolder(holder, position, payloads, getItem(position))
+        if (payloads.isEmpty()) {
+            onBindViewHolder(holder, position)
+        } else {
+            delegatesManager.onBindViewHolder(holder, position, payloads, getItem(position))
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
