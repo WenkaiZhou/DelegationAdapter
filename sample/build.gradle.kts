@@ -4,7 +4,8 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
+    namespace = "com.kevin.delegationadapter.sample"
 
     defaultConfig {
         applicationId = "com.kevin.delegationadapter.sample"

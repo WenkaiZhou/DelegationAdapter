@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 33
+    namespace = "com.kevin.delegationadapter.extras"
 
     defaultConfig {
         minSdk = 14
-        targetSdk = 30
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -23,8 +24,8 @@ android {
 }
 
 dependencies {
-    compileOnly("androidx.recyclerview:recyclerview:1.2.0-beta01")
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+    compileOnly("androidx.recyclerview:recyclerview:1.2.1")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
     compileOnly("androidx.databinding:databinding-runtime:4.2.1")
     compileOnly(project(":delegationadapter"))
 }
